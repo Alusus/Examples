@@ -1,0 +1,38 @@
+import "Srl/Console";
+import "Srl/Array";
+use Srl;
+
+func bubbleSort(arr: ref[array[Int]], size: Int) {
+    def i: Int;
+    for i = 0, i < size - 1, i++ {
+        def j: Int;
+        for j = 0, j < size - i - 1, j++ {
+            def temp: Int;
+            if arr(j) > arr(j + 1) {
+                // Swap arr[j] and arr[j+1]
+                temp = arr(j);
+                arr(j) = arr(j + 1);
+                arr(j + 1) = temp;
+            }
+        }
+    }
+}
+
+
+func printArray(arr: ref[array[Int]], size: Int) {
+    def i: Int;
+    for i = 0, i < size, i++ {
+        Console.print("%d ", arr(i));
+    }
+    Console.print("\n");
+}
+
+def arr: Array[Int]({ 64, 34, 25, 12, 22, 11, 90 });
+
+Console.print("Original array: ");
+printArray(arr.buf, arr.getLength());
+
+bubbleSort(arr.buf, arr.getLength());
+
+Console.print("Sorted array: ");
+printArray(arr.buf, arr.getLength());

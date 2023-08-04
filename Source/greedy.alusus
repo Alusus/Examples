@@ -1,0 +1,25 @@
+import "Srl/Console";
+import "Srl/Array";
+use Srl;
+
+func greedyAlgorithm(coins: ref[array[Int]], size: Int, amount: Int) {
+    def remainingAmount: Int = amount;
+    def i: Int;
+    for i = 0, i < size, i++ {
+        def coinCount: Int = remainingAmount / coins(i);
+        remainingAmount = remainingAmount % coins(i);
+
+        if coinCount > 0 {
+            Console.print("Number of %d coin(s): %d\n", coins(i), coinCount);
+        }
+    }
+
+    if (remainingAmount > 0) {
+        Console.print("Remaining amount unable to be changed completely: %d\n", remainingAmount);
+    }
+}
+
+def coins: Array[Int]({ 10, 5, 2, 1 });
+def amount: Int = 28;
+
+greedyAlgorithm(coins.buf, coins.getLength(), amount);

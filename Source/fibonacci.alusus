@@ -1,0 +1,21 @@
+import "Srl/Console";
+import "Srl/Array";
+use Srl;
+
+func fibonacci(n: Word): Word[64] {
+    def fib: Array[Word[64]];
+    fib.add(0);
+    fib.add(1);
+
+    def i: Word;
+    for i = 2, i <= n, i++ {
+        fib.add(fib(i - 1) + fib(i - 2));
+    }
+
+    return fib(n);
+}
+
+def n: Word = 10;
+def result: Word[64] = fibonacci(n);
+
+Console.print("Fibonacci number at index %u is %llu\n", n, result);
