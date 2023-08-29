@@ -1,0 +1,55 @@
+import "Srl/Console";
+use Srl;
+
+
+
+func setBit(num: Word, n: Int){
+     return num | (1 << n);
+}
+
+
+func clearBit(num: Word, n: Int){
+    return num & (1 << n); 
+}
+
+func isBitSet(num: Word, n: Int){
+    return (num & (1 << n)) != 0;
+}
+
+func toggleBit(num: Word, n: Int){
+     return num ^ (1 << n);
+}
+
+
+main(){
+
+    def x: Word[23];
+    
+    
+    def set_result: Word; 
+    
+    set_result = setBit(x, 2);
+    Console.print("set bit result : %u\n", set_result);
+    
+    def clear_result: Word;
+    clear_result= clearBit(x, 2);
+    Console.print("clear bit result: %u\n", clear_result);
+    
+    def toggle_result: Word;
+    toggle_result = toggleBit(x, 1);
+    Console.print("togglebit result: %u\n", toggle_result);
+    
+    def is_set: Int;
+    is_set = isBitSet(x, 4);
+    Console.print("is 5th bit set: %u\n", is_set;
+    
+    is_set = isBitSet(x, 2);
+    Console.print("is 3rd bit set: %u\n", is_set);
+    
+    return 0;
+    
+    
+
+
+
+}

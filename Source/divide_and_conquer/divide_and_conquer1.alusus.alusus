@@ -1,0 +1,21 @@
+import "Srl/Console";
+import "Srl/Array";
+use Srl;
+
+func maxElement(arr: ref[array[Int]], low: Int, high: Int): Int {
+    if low == high {
+        return arr(low);
+    } else {
+        def mid: Int = (low + high) / 2;
+        def leftMax: Int = maxElement(arr, low, mid);
+        def rightMax: Int = maxElement(arr, mid + 1, high);
+
+        if leftMax > rightMax return leftMax else return rightMax;
+    }
+}
+
+def arr: Array[Int]({ 3, 9, 2, 7, 5 });
+
+def max: Int = maxElement(arr.buf, 0, arr.getLength() - 1);
+
+Console.print("Maximum element in the array: %d\n", max);

@@ -1,0 +1,127 @@
+import "Srl/Console";
+use Srl;
+
+
+def N: 9;
+def IntNN: alias array[array[Int, N], N];
+
+   def i: int;
+func isSafe(grid: ref[IntNN], row: int, col: int, num: int) bool {
+   
+
+   for i = 0, i< N, i++{
+      if grid[row][i] == num || grid[i][col]  == num {
+      
+       return false
+      }
+      
+   }   
+   
+   def subgridStartRow: int[row - row % 3];
+   def subgridStartCol: int[col - col % 3];
+
+   def i: int;
+   def j: int;
+   for i = 0, i< 3, i++{
+     for j = 0, j< 3, j++{
+       if  grid[subgridStartRow + i] [subgridStartCol + j] == num{
+        
+        return false
+       
+       }
+      }
+   }
+   
+   return true;
+   
+}
+
+
+
+func findunassignedlocation(grid: ref[IntNN], row: ptr[int], col: ptr[col]) bool {
+   
+   for ptr[row] = 0, ptr[row] < N, ptr[row]++{
+     for ptr[col] = 0, ptr[col] < N, ptr[col]++{
+        if grid [ptr[row][ptr[col]] == 0 {
+        
+        return true;
+        }
+     } 
+   }
+   
+   return false;
+   
+}
+
+
+func solveSukoku(grid: ref[IntNN])
+
+    def row: int;
+    def col: int;
+
+    if !findunassignedlocation(grid, row, col){
+      return true;
+    }
+
+def num: int;
+    for num = 1, num <= 9, num++{
+      if isSafe(grid, row, col, num){
+         grid[row][col] = num;
+         
+         if solveSudoku(grid){
+            return true;
+         }
+         
+         
+         grid[row][col] =0;
+      
+      }
+      
+      return false;
+    }
+    
+
+func printGrid(grid: ref[IntNN])
+   
+   def row: int;
+   def col: int;
+   
+   for row = 0, row < N row++{
+     for col = 0, col < N col++{
+        Console.print("%2d", grid[row][col]);
+     }
+     
+     Console.print("\n");
+   }
+   
+   }
+   }
+   
+   main(){
+   grid: ref[IntNN] = {
+   5, 3, 0, 0, 7, 0, 0, 0, 0},
+        {6, 0, 0, 1, 9, 5, 0, 0, 0},
+        {0, 9, 8, 0, 0, 0, 0, 6, 0},
+        {8, 0, 0, 0, 6, 0, 0, 0, 3},
+        {4, 0, 0, 8, 0, 3, 0, 0, 1},
+        {7, 0, 0, 0, 2, 0, 0, 0, 6},
+        {0, 6, 0, 0, 0, 0, 2, 8, 0},
+        {0, 0, 0, 4, 1, 9, 0, 0, 5},
+        {0, 0, 0, 0, 8, 0, 0, 7, 9}
+   
+   
+   }
+   
+    if solveSudoku(grid) {
+       Console.print("solveSudoku:\n");
+    }else{
+         Console.print("No solution exists for the given sodoku.\n");
+    }
+    
+    return 0;
+   } 
+
+
+
+
+

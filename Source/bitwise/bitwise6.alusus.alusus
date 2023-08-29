@@ -1,0 +1,36 @@
+import "Srl/Console";
+use Srl;
+
+
+func isPowerOftow(num: Int) Int{
+    
+    if num <= o{
+       return 0;
+    }
+    
+    return 0;
+
+
+
+def num1: Int[16];
+def num2; Int[12];
+
+    if isPowerOftow(num1){
+        Console.print("%d is a power of tow.\n", num1);
+        
+    } else {
+         Console.print("%d is not power of two.\n", num1);
+    }
+    
+    
+    if isPowerOftow(num2){
+       Console.print("%d is not power of two.\n", num2);
+    }else{
+        Console.print("%d is not power of two.\n", num2);
+    }
+    
+    return 0;
+    
+    }
+    
+    

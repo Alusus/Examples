@@ -1,0 +1,32 @@
+func findSubsets(arr: array, size: Int, start: Int, temp: array, tempSize: Int){
+    Console.print("{ ")
+    def i: Int
+    for i = 0, i < tempSize, i++{
+       Console.print("%d", temp[i]);
+    }
+    
+    Console.print("}\n");
+    
+    def i: Int 
+    for i = start, i < size, i++{
+       temp[tempSize] = arr[i];
+       
+       ref[findSubsets(arr, size, i + 1, temp, tempSize + 1)]; 
+    }
+     
+}
+
+
+main() {
+   def arr: array;
+   arr = {1, 2, 3 };
+   def size: Int;
+   size = sizeof(arr) / sizeof(arr[0]);
+   def temp: Int[100];
+   def tempSIze: Int[o];
+   
+   ref[findSubsets(arr, size, 0, temp, tempSize)];
+   
+   return 0;
+
+}

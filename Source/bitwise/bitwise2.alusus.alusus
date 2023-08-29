@@ -1,0 +1,34 @@
+import "Srl/Console";
+use Srl;
+
+
+    def a: Word[10];
+    def b: Word[5]
+    
+    def result_and: Word[a & b];
+    
+    Console.print("And Result: %u\n", result_and);
+    
+    def result_or: Word[a | b];
+    Console.print("or Result: %u\n", result_or);
+    
+    def result_xor: Word[a ^ b];
+    Console.print("xor Result: %u\n", result_xor);
+    
+    def result_not_a: Word[~a];
+    Console.print("not Result: %u\n", result_not_a;
+    
+    def left_shifted: Word[a << 2];
+    Console.print("left shift Result: %u\n", left_shifted);
+    
+    def right_shifted = a >> 1;
+    Console.print("right shift result: %u\n", right_shifted);
+    
+    return 0;
+    
+    
+bitwiseOperations(a, b);
+
+
+
+
