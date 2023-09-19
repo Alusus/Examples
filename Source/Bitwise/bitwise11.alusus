@@ -1,0 +1,19 @@
+import "Srl/Console";
+use Srl;
+
+def HASH_SIZE: 256; // Size of the hash table
+
+func hasFunction(str: CharsPtr): Word {
+    def hash: Word = 0;
+    while str~cnt(0) != 0 {
+        hash = (hash << 5) $ str~cnt(0);
+        str = str + 1;
+    }
+
+    return hash % HASH_SIZE;
+}
+
+
+def input: CharsPtr = "hello";
+def hasValue: Word = hasFunction(input);
+Console.print("Hash value for \"%s\": %u\n", input, hasValue);

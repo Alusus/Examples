@@ -1,0 +1,42 @@
+import "Srl/Console";
+use Srl;
+
+// Function to extract the nth bit from a number
+func getBit(num: Int, n: Int): Int {
+    return (num >> n) & 1;
+}
+
+// Function to set the nth bit in a number to 1
+func setBit(num: Int, n: Int): Int {
+    return num | (1i32 << n);
+}
+
+// Function to clear the nth bit in a number (set it to 0)
+func clearBit(num: Int, n: Int): Int {
+    return num & !(1i32 << n);
+}
+
+// Function to toggle the nth bit in a number
+func toggleBit(num: Int, n: Int): Int {
+    return num $ (1i32 << n);
+}
+
+func main() {
+    def num: Int = 42; // Binary: 101010
+
+    Console.print("Original number: %d\n", num);
+
+    def bitPosition: Int = 3;
+    Console.print("Bit at position %d: %d\n", bitPosition, getBit(num, bitPosition));
+
+    num = setBit(num, 2); // Set 3rd bit to 1
+    Console.print("Number after setting 3rd bit: %d\n", num);
+
+    num = clearBit(num, 3); // Clear 4th bit (counting from 0)
+    Console.print("Number after clearing 4th bit: %d\n", num);
+
+    num = toggleBit(num, 2); // Toggle 3rd bit
+    Console.print("Number after toggling 3rd bit: %d\n", num);
+}
+
+main();

@@ -1,0 +1,17 @@
+import "Srl/Console";
+use Srl;
+
+func largestPowerOfTow(num: Int): Int {
+    if num <= 0 return 0;
+
+    def power: Int = 1;
+    while power * 2 <= num {
+        power *= 2;
+    }
+
+    return power;
+}
+
+def num: Int = 27;
+def result: Int = largestPowerOfTow(num);
+Console.print("Largest power of 2 less then or equal to %d: %d\n", num, result);

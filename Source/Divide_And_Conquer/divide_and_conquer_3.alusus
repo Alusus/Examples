@@ -1,0 +1,48 @@
+import "Srl/Console";
+import "Srl/Array";
+use Srl;
+
+func swap(a: ref[Int], b: ref[Int]) {
+    def temp: Int = a;
+    a = b;
+    b = temp;
+}
+
+func partition(arr: ref[Array[Int]], low: Int, high: Int): Int {
+    def pivot: Int = arr(high);
+    def i: Int = (low - 1);
+
+    def j: Int;
+
+    for j = low, j <= high - 1, j++ {
+        if arr(j) < pivot {
+            i++;
+            swap(arr(i), arr(j));
+        }
+    }
+
+    swap(arr(i + 1), arr(high));
+    return i + 1;
+}
+
+func quickSort(arr: ref[Array[Int]], low: Int, high: Int) {
+    if low < high {
+        def pivotIndex: Int = partition(arr, low, high);
+
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    }
+}
+
+def arr: Array[Int]({ 10, 7, 8, 9, 1, 5 });
+def i: Int
+
+Console.print("Original array: ");
+for i = 0, i < arr.getLength(), i++ Console.print("%d ", arr(i));
+Console.print("\n");
+
+quickSort(arr, 0, arr.getLength() - 1);
+
+Console.print("Sorted array: ");
+for i = 0, i < arr.getLength(), i++ Console.print("%d ", arr(i));
+Console.print("\n");

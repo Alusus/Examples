@@ -1,0 +1,22 @@
+import "Srl/Console";
+use Srl;
+
+func reveseBits(num: Word): Word {
+    def reversed: Word = 0;
+    def bits: Int = num~size * 8;
+    def i: Int;
+    for i = 0, i < bits, i++ {
+        if num & (1i32 << i) != 0 {
+            reversed |= 1i32 << ((bits - 1) - i);
+        }
+    }
+
+    return reversed;
+}
+
+def num: Word = 123;
+
+def reversedNum: Word = reveseBits(num);
+
+Console.print("Original number: %u\n", num);
+Console.print("reversed number: %u\n", reversedNum);

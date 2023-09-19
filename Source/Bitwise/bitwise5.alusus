@@ -1,0 +1,34 @@
+import "Srl/Console";
+use Srl;
+
+func isPowerOfTwo(num: Word): Bool {
+    return (num != 0) && ((num & (num - 1)) == 0);
+}
+
+func nextPowerOfTwo(num: Word): Word {
+    num--;
+    num |= num >> 1;
+    num |= num >> 2;
+    num |= num >> 4;
+    num |= num >> 8;
+    num |= num >> 16;
+
+    return num + 1;
+}
+
+def n1: Word = 16;
+def n2: Word = 25;
+
+// Check if n1 is a power of two
+Console.print("%u is %s a power of two.\n", n1, CharsPtr().{ if isPowerOfTwo(n1) this = "" else this "not" });
+
+// Check if n2 is a power of two
+Console.print("%u is %s a power of two.\n", n2, CharsPtr().{ if isPowerOfTwo(n2) this = "" else this "not" });
+
+// Find the next power of two for n1
+def next_pow_2_n1: Word = nextPowerOfTwo(n1);
+Console.print("Next power of two after %u is %u.\n", n1, next_pow_2_n1);
+
+// Find the next power of two for n2
+def next_pow_2_n2: Word = nextPowerOfTwo(n2);
+Console.print("Next power of two after %u is %u.\n", n2, next_pow_2_n2);

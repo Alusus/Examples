@@ -1,0 +1,23 @@
+import "Srl/Console";
+use Srl;
+
+def a: Word = 10;
+def b: Word = 5;
+
+def result_and: Word = a & b;
+Console.print("and result: %u\n", result_and);
+
+def result_or: Word = a | b;
+Console.print("or result: %u\n", result_or);
+
+def result_xor: Word = a $ b;
+Console.print("xor result: %u\n", result_xor);
+
+def result_not_a: Word = !a;
+Console.print("not result: %u\n", result_not_a);
+
+def left_shifted: Word = a << 2;
+Console.print("left shift result: %u\n", left_shifted);
+
+def right_shifted: Word = b >> 1;
+Console.print("right shift result: %u\n", right_shifted);

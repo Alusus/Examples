@@ -1,0 +1,11 @@
+import "Srl/Console";
+use Srl;
+
+func setRightmostUnsetBit(num: Int): Int {
+   return num | (num + 1);
+}
+
+def num: Int = 43;
+Console.print("Original number: %d\n", num);
+def numWIthSetBit: Int = setRightmostUnsetBit(num);
+Console.print("Number with the rightmost unset bit set: %d\n", numWIthSetBit);
