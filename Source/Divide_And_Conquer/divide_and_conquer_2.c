@@ -1,34 +1,50 @@
 #include <stdio.h>
+#include <limits.h>
 
-// Recursive binary search function
-int binarySearch(int arr[], int low, int high, int target) {
-    if (low <= high) {
-        int mid = low + (high - low) / 2;
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
 
-        if (arr[mid] == target) {
-            return mid; // Base case: element found
-        } else if (arr[mid] < target) {
-            return binarySearch(arr, mid + 1, high, target); // Search in the right half
-        } else {
-            return binarySearch(arr, low, mid - 1, target); // Search in the left half
-        }
+int maxCrossingSum(int arr[], int low, int mid, int high) {
+    int sum = 0;
+    int left_sum = INT_MIN;
+
+    for (int i = mid; i >= low; i--) {
+        sum += arr[i];
+        if (sum > left_sum)
+            left_sum = sum;
     }
 
-    return -1; // Base case: element not found
+    sum = 0;
+    int right_sum = INT_MIN;
+
+    for (int i = mid + 1; i <= high; i++) {
+        sum += arr[i];
+        if (sum > right_sum)
+            right_sum = sum;
+    }
+
+    return max(max(left_sum, right_sum), left_sum + right_sum);
+}
+
+int maxSubarraySum(int arr[], int low, int high) {
+    if (low == high)
+        return arr[low];
+
+    int mid = (low + high) / 2;
+
+    return max(max(maxSubarraySum(arr, low, mid),
+                   maxSubarraySum(arr, mid + 1, high)),
+               maxCrossingSum(arr, low, mid, high));
 }
 
 int main() {
-    int arr[] = {2, 5, 8, 12, 16, 23, 38, 45, 56, 72};
+    int arr[] = {-2, -3, 4, -1, -2, 1, 5, -3};
     int n = sizeof(arr) / sizeof(arr[0]);
-    int target = 23;
 
-    int result = binarySearch(arr, 0, n - 1, target);
-
-    if (result == -1) {
-        printf("Element not found\n");
-    } else {
-        printf("Element found at index %d\n", result);
-    }
+    int max_sum = maxSubarraySum(arr, 0, n - 1);
+    printf("Maximum subarray sum is %d\n", max_sum);
 
     return 0;
 }
+

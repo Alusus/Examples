@@ -1,0 +1,29 @@
+import "Srl/Console";
+import "Srl/Array";
+use Srl;
+
+func binarySearch(arr: Array[Int], low: Int, high: Int, target: Int): Int {
+    if low <= high {
+        def mid: Int = low + (high - low) / 2;
+        if arr(mid) == target {
+            return mid;
+        } else if arr(mid) < target {
+            return binarySearch(arr, mid + 1, high, target);
+        } else {
+            return binarySearch(arr, low, mid - 1, target);
+        }
+    }
+
+    return - 1;
+}
+
+def arr: Array[Int]({ 2, 5, 8, 12, 16, 23, 38, 45, 56, 72 });
+def target: Int(23);
+
+def result: Int = binarySearch(arr, 0, arr.getLength() - 1, target);
+
+if result ==  - 1 {
+    Console.print("Element not found\n");
+} else {
+    Console.print("Element found at index %d\n", result);
+}
