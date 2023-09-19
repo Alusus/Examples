@@ -1,0 +1,30 @@
+import "Srl/Console";
+use Srl;
+
+func countTrailingZeros(num:Int):Int{
+    def counnt: Int[0];
+    
+    if num == 0{
+       return 32;
+    }
+    
+    while (num & 1) == 0 {
+        num >>= 1;
+        count++;
+    } 
+    
+    
+    
+    return count;
+
+}
+
+ 
+    def num: Int[40];
+    def numTrailingZeros: Int[countTrailingZeros(num)];
+    
+    Console.print("Number of trailing zeros in %d: %d\n", num, numTrailingZeros);
+    
+    
+    return 0;
+    

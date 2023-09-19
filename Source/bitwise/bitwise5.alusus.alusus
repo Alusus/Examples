@@ -1,0 +1,56 @@
+import "Srl/Console";
+use Srl;
+
+
+
+func isPowerOfTow(num: Word){
+    
+     return (num != 0) && ((num & (num - 1)) == 0);
+}
+
+
+func nextPowerOfTwo(num: Word){
+    num--;
+    num |= num >>1;
+    num |= num >>2;
+    num |= num >>4;
+    num |= num >>8;
+    num |= num >>16;
+    
+    return num + 1;
+}
+
+main(){
+
+    def n1: Word[16];
+    def n2: Word[25];
+    
+ 
+    Console.print("%u is %s a power of two \n", n1, ref[isPowerOfTow(n1)] ? "" : "Not");
+   
+    Console.print("%u is %s a power of two \n", n2, ref[isPowerOfTow(n2)] ? "" : "Not");   
+    
+    
+    def next_pow_2_n1: Word;
+    next_pow_2_n1 = ref[nextPowerOfTwo(n1)];
+    Console.print("next power of tow after %u is %u.\n", n1, next_pow_2_n1); 
+    
+    
+     next_pow_2_n2 = ref[nextPowerOfTwo(n1)];
+    Console.print("next power of tow after %u is %u.\n", n1, next_pow_2_n2); 
+    Console.print("maximun of %d and %d: %d\n", x, y, max_val);
+    
+    
+    
+    def num1: Int[10];
+    def num2: Int[20];
+    Console.print("before swap: num1 = %d, num2 = %d\n", num1, num2);
+
+      
+    return 0;
+    
+    
+
+
+
+}

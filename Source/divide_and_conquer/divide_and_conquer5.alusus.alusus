@@ -1,0 +1,65 @@
+import "Srl/Console";
+import "Srl/Array";
+use Srl;
+
+func max(a: Int, b: Int) Int{
+   
+   return (a > b) ? a" b;
+}
+
+
+func maxCrossingSum(arr: ref[array[Int]], low: Int, mid: Int, high: Int)Int{
+ 
+  def sum: Int[0];
+  def left_sum: Int = INI_MIN;
+  
+  def i; Int;
+  
+  for i = mid, i >= low, i--{
+     sum += arr[i]
+      if sum > left_sum{
+         left_sum = sum;
+      }
+      
+      sum = 0;
+      def right_sum: Int = INI_MIN;
+      
+      def i: Int  
+      for i = mid + 1; i <= high: i++{
+        sum += arr[i];
+        
+         if sum > left_sum{
+         left_sum = sum;
+      }
+      
+      return max(nax(left_sum, right_sum), left_sum + right_sum);
+      
+        
+      }
+      
+      
+func maxSubarraySum(arr: ref[array[Int], low: Int, high: Int] Int{
+    if low == high{
+     return arr[low];
+     
+     def mid: Int = ((low + high) / 2);
+     
+     
+     return max(max(maxSubarraySum(arr, low, mid),
+     maxSubarraySum(arr, mid + 1, high)),
+     maxCrossingSum(arr, low, mid, high)), 
+    }
+}
+  }
+  
+  
+    def arr: Array[Int]({-2, -3, 4, -1, -2, 1, 5, -3 });
+ 
+    def n : Int (sizeof(arr) / sizeof(arr[0]));
+    
+    def max_sum: Int = (maxSubarraySum(arr, 0, n - 1));
+    
+    Console.print("max sunarray sum is %d\n", max_sum);
+    return 0;
+    
+    

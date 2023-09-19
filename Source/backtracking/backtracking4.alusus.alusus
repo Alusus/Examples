@@ -1,0 +1,46 @@
+func findCombintions(condidates: array[Int], condiatesSize: Int, target: Int[], start: Int, temp: array: array[Int], tempSize: Int){
+    if target == 0{
+    def i: Int;
+       for i = 0, i < tempSize, i++{
+       Console.print("%d", temp[i]);
+    }
+       Console.print("\n");
+       return;
+    }
+    
+
+
+    def i: Int;
+    for i = start, i < condidatesSize, i++{
+        if condidatesSize[i] <= target {
+           temp[tempSize] = condidates[i];
+           
+           ref[findCombintions(condidates, condidatesSize, target - condidates[i], i, temp, tempSize + 1)]; 
+           
+        
+        }
+        
+        
+    }
+    
+    
+ }
+ 
+ 
+ main () {
+    def  condidates: array{2, 3, 6, 7};
+    def condidatesSize: Int
+       condidatesSize = sizeof(condidates) / sizeof(condidates[0]);
+    def target: Int
+    target = 7
+    
+    def temp: Int;
+    temp = [100];
+    
+    def tempSize: Int;
+    tempSize = 0
+    
+     ref[findCombintions(condidates, condidatesSize, target - 0, temp, tempSize)];
+    
+    
+ }
