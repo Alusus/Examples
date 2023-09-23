@@ -1,0 +1,19 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+func main() {
+    def a: Array[Int]({1, 2, 3, 4, 5});
+
+    def sum: Int = 0;
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        sum += a(i);
+    }
+
+    Console.print("Sum of the array is %d\n", sum);
+}
+
+main();
