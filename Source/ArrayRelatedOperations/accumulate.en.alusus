@@ -1,0 +1,28 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+func f(previousValue: Int, currentValue: Int): Int {
+    return previousValue + currentValue; 
+}
+
+func main() {
+    def a: Array[Int]({1, 2, 3, 4, 5});
+
+	def size: Int = a.getLength();
+    def result: Array[Int];
+
+    def i: Int;
+
+    result.add(a(0));
+    for i = 1 , i < a.getLength() , i++ {
+        result.add(f(result(i-1), a(i)));
+    }
+
+    for i = 0 , i < result.getLength() , i++ {
+        Console.print("%d ", result(i));
+    }
+}
+
+main();
