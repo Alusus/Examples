@@ -1,0 +1,25 @@
+import "Srl/Console";
+import "Srl/Array";
+import "Srl/String";
+
+use Srl;
+
+func f(previousValue: ref[String], currentValue: ref[String]) {
+    previousValue += currentValue; 
+}
+
+func main() {
+    def a: Array[String]({String("Hello"), String(" "), String("World"), String("!")});
+
+    def result: String = "";
+
+    def i: Int;
+
+    for i = 0 , i < a.getLength() , i++ {
+        f(result, a(i));
+    }
+
+    Console.print("%s\n", result.buf);
+}
+
+main();
