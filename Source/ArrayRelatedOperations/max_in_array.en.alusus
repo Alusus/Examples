@@ -9,7 +9,7 @@ func main() {
     def max: Int = a(0);
 
     def i: Int;
-    for i = 1 , i < 6 , i++ {
+    for i = 1 , i < a.getLength() , i++ {
         if a(i) > max {
             max = a(i);
         }
