@@ -1,0 +1,32 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+func main() {
+    def a: Array[Int]({1, 2, 3, 4, 5});
+
+    def i: Int;
+    Console.print("Original array: ");
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+
+    def start: Int = 0;
+    def end: Int = a.getLength() - 1;
+
+    while start < end {
+        def temp: Int = a(start);
+        a(start) = a(end);
+        a(end) = temp;
+        start++;
+        end--;
+    }
+
+    Console.print("\nInverted array: ");
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+}
+
+main();
