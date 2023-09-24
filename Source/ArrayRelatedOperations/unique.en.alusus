@@ -1,0 +1,27 @@
+import "Srl/Console";
+import "Srl/Array";
+import "Srl/Map";
+
+use Srl;
+
+func main() {
+    def a: Array[Int]({1, 2, 2, 3, 4, 4, 5});
+    def hash: Map[Int, Bool];
+
+    def result: Array[Int];
+
+    def i: Int;
+
+    for i = 0 , i < a.getLength() , i++ {
+        if hash.findPos(a(i)) == -1 {
+            result.add(a(i));
+            hash.set(a(i), true);
+        }
+    }
+
+    for i = 0 , i < result.getLength() , i++ {
+        Console.print("%d ", result(i));
+    }
+}
+
+main();
