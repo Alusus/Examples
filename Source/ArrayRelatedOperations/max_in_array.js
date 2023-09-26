@@ -1,3 +1,9 @@
-let a = [4, 2, 9, 6, 1, 5];
-let max = Math.max(...a);
-console.log(`The maximum value in the array is ${max}`);
+function max(a) {
+    let result = a[0];
+    for (let i = 1 ; i < a.length ; i++) {
+        if (result < a[i]) {
+            result = a[i];
+        }
+    }
+    return result;
+}

@@ -1,4 +1,13 @@
-let a = [1, 2, 2, 3, 4, 4, 5];
-let b = [...new Set(a)];
+function unique(a) {
+    const hash = new Map();
+    let result = [];
 
-console.log("Unique elements in array are: ", b);
+    for (let i = 0; i < a.length; i++) {
+        if (!hash.has(a[i])) {
+            hash.set(a[i], true);
+            result.push(a[i]);
+        }
+    }
+
+    return result;
+}

@@ -1,10 +1,9 @@
-let a = ["Hello", " ", "World", "!"]; // your array
+function reduce(a, f) {
+    let result = "";
 
-// your function
-function f(previousValue, currentValue) {
-    return previousValue + currentValue;
+    for (let i = 0; i < a.length; i++) {
+        result = f(result, a[i]);
+    }
+
+    return result;
 }
-
-let result = a.reduce(f);
-
-console.log(result); // prints "Hello World!"

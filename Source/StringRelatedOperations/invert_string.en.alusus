@@ -1,14 +1,10 @@
-import "Srl/Console";
 import "Srl/String";
 
 use Srl;
 
 
-
-func main() {
-    def s: String("Hello, world!");
-
-	def size: Int = s.getLength();
+function invertString(s) {
+    def size: Int = s.getLength();
     def result: String = "";
 
     def i: Int;
@@ -16,7 +12,5 @@ func main() {
         result += s(i);
     }
 
-    Console.print("%s\n", result.buf);
+    return result;
 }
-
-main();

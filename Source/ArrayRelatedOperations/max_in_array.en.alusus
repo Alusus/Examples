@@ -1,21 +1,17 @@
-import "Srl/Console";
 import "Srl/Array";
 
 use Srl;
 
-func main() {
-    def a: Array[Int]({4, 2, 9, 6, 1, 5});
 
-    def max: Int = a(0);
+func max(a: ref[Array[Int]]): Int {
+    def result: Int = a(0);
 
     def i: Int;
     for i = 1 , i < a.getLength() , i++ {
-        if a(i) > max {
-            max = a(i);
+        if a(i) > result {
+            result = a(i);
         }
     }
 
-    Console.print("The maximum value in the array is %d\n", max);
+    return result;
 }
-
-main();

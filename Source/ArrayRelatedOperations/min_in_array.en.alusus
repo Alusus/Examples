@@ -1,21 +1,17 @@
-import "Srl/Console";
 import "Srl/Array";
 
 use Srl;
 
-func main() {
-    def a: Array[Int]({4, 2, 9, 6, 1, 5});
 
-    def min: Int = a(0);
+func min(a: ref[Array[Int]]): Int {
+    def result: Int = a(0);
 
     def i: Int;
     for i = 1 , i < a.getLength() , i++ {
-        if a(i) < min {
-            min = a(i);
+        if a(i) < result {
+            result = a(i);
         }
     }
 
-    Console.print("The minimum value in the array is %d\n", min);
+    return result;
 }
-
-main();

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 
 void invert_string(char* str) {
@@ -8,11 +7,4 @@ void invert_string(char* str) {
         str[i] = str[len - i - 1];
         str[len - i - 1] = temp;
     }
-}
-
-int main() {
-    char s[] = "Hello, World!";
-    invert_string(s);
-    printf("%s\n", s);
-    return 0;
 }

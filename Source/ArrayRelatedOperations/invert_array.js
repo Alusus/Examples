@@ -1,7 +1,13 @@
-let a = [1, 2, 3, 4, 5];
+function reverseArray(a) {
+    let start = 0;
+    let end = a.length - 1;
 
-console.log("Original array: ", a);
+    while (start < end) {
+        let temp = a[start];
+        a[start] = a[end];
+        a[end] = temp;
 
-a.reverse();
-
-console.log("Inverted array: ", a);
+        start++;
+        end--;
+    }
+}

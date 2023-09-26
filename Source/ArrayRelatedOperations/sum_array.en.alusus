@@ -1,11 +1,8 @@
-import "Srl/Console";
 import "Srl/Array";
 
 use Srl;
 
-func main() {
-    def a: Array[Int]({1, 2, 3, 4, 5});
-
+func sum(a: ref[Array[Int]]): Int {
     def sum: Int = 0;
 
     def i: Int;
@@ -13,7 +10,5 @@ func main() {
         sum += a(i);
     }
 
-    Console.print("Sum of the array is %d\n", sum);
+    return sum;
 }
-
-main();

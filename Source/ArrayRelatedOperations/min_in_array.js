@@ -1,3 +1,9 @@
-let a = [4, 2, 9, 6, 1, 5];
-let min = Math.min(...a);
-console.log(`The minimum value in the array is ${min}`);
+function min(a) {
+    let result = a[0];
+    for (let i = 1 ; i < a.length ; i++) {
+        if (result > a[i]) {
+            result = a[i];
+        }
+    }
+    return result;
+}
