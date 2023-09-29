@@ -1,16 +1,12 @@
-void findUniqueElements(int arr[], int n) {
-    // الجرد لحفظ العناصر الفريدة
-    int uniqueElements[n];
-    int uniqueCount = 0;
-
-    // الجرد للتحقق من تكرار العناصر
+void findUniqueElements(int arr[], int n, int uniqueElements[], int *uniqueCount) {
+    // a flag used to indicate whether the element is unique or not
     int isUnique;
 
-    // تمرير عبر المصفوفة
+    // loop through the array
     for (int i = 0; i < n; i++) {
         isUnique = 1;
 
-        // التحقق من تكرار العنصر في الجزء السابق من المصفوفة
+        // check if the element is occurred before
         for (int j = 0; j < i; j++) {
             if (arr[i] == arr[j]) {
                 isUnique = 0;
@@ -18,16 +14,9 @@ void findUniqueElements(int arr[], int n) {
             }
         }
 
-        // إذا كان العنصر فريدًا ، قم بإضافته إلى الجرد
+        // if the element is unique add it to array
         if (isUnique) {
-            uniqueElements[uniqueCount++] = arr[i];
+            uniqueElements[(*uniqueCount)++] = arr[i];
         }
     }
-
-    // طباعة العناصر الفريدة
-    printf("العناصر الفريدة في المصفوفة:\n");
-    for (int i = 0; i < uniqueCount; i++) {
-        printf("%d ", uniqueElements[i]);
-    }
-    printf("\n");
 }
