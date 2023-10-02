@@ -1,0 +1,13 @@
+import "Srl/Array";
+import "closure";
+
+use Srl;
+
+
+func foreach(a: ref[Array[Int]], f: closure(element: Int): Int) {
+    def i: Int;
+    
+    for i = 0 , i < a.getLength() , i++ {
+        a(i) = f(a(i));
+    }
+}

@@ -1,0 +1,17 @@
+import "Srl/Array";
+
+use Srl;
+
+
+func min(a: ref[Array[Int]]): Int {
+    def result: Int = a(0);
+
+    def i: Int;
+    for i = 1 , i < a.getLength() , i++ {
+        if a(i) < result {
+            result = a(i);
+        }
+    }
+
+    return result;
+}

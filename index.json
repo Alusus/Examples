@@ -1,0 +1,82 @@
+[
+    {
+        "enPrompt": "Write DFS algorithm",
+        "arPrompt": "اكتب خوارزمية البحث بالعمق",
+        "cAnswer": "Source/GraphAlgorithms/dfs.c",
+        "jsAnswer": "Source/GraphAlgorithms/dfs.js",
+        "enAlususAnswer": "Source/GraphAlgorithms/dfs.en.alusus",
+        "arAlususAnswer": "Source/GraphAlgorithms/dfs.ar.alusus"
+    },
+    {
+        "enPrompt": "Find the minimum in array `a`",
+        "arPrompt": "أوجد أصغر عدد في المصفوفة م",
+        "cAnswer": "Source/ArrayRelatedOperations/min_in_array.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/min_in_array.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/min_in_array.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/min_in_array.ar.alusus"
+    },
+    {
+        "enPrompt": "Find the maximum in array `a`",
+        "arPrompt": "أوجد أكبر عدد في المصفوفة م",
+        "cAnswer": "Source/ArrayRelatedOperations/max_in_array.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/max_in_array.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/max_in_array.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/max_in_array.ar.alusus"
+    },
+    {
+        "enPrompt": "Invert the string `s`",
+        "arPrompt": "اعكس السلسلة النصية س",
+        "cAnswer": "Source/StringRelatedOperations/invert_string.c",
+        "jsAnswer": "Source/StringRelatedOperations/invert_string.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/invert_string.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/invert_string.ar.alusus"
+    },
+    {
+        "enPrompt": "Invert the array `a`",
+        "arPrompt": "اعكس المصفوفة م",
+        "cAnswer": "Source/ArrayRelatedOperations/invert_array.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/invert_array.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/invert_array.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/invert_array.ar.alusus"
+    },
+    {
+        "enPrompt": "Find the sum of the array `a`",
+        "arPrompt": "أوجد ناتج جمع عناصر المصفوفة م",
+        "cAnswer": "Source/ArrayRelatedOperations/sum_array.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/sum_array.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/sum_array.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/sum_array.ar.alusus"
+    },
+    {
+        "enPrompt": "apply the function `f` on each element of the array `a`",
+        "arPrompt": "طبق الدالة د على كل عنصر من عناصر المصفوفة م",
+        "cAnswer": "Source/ArrayRelatedOperations/for_each.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/for_each.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/for_each.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/for_each.ar.alusus"
+    },
+    {
+        "enPrompt": "reduce the array `a` using the function `f`",
+        "arPrompt": "اختصر المصفوفة م باستعمال الدالة د",
+        "cAnswer": "Source/ArrayRelatedOperations/reduce.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/reduce.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/reduce.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/reduce.ar.alusus"
+    },
+    {
+        "enPrompt": "accumulate the array `a` using the function `f` and keep the partial results",
+        "arPrompt": "راكم المصفوفة م باستعمال الدالة د و احتفط بكل النتائج الجزئية",
+        "cAnswer": "Source/ArrayRelatedOperations/accumulate.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/accumulate.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/accumulate.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/accumulate.ar.alusus"
+    },
+    {
+        "enPrompt": "extract unique elements in the array",
+        "arPrompt": "استخرج العناصر الفريدة من المصفوفة",
+        "cAnswer": "Source/ArrayRelatedOperations/unique.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/unique.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/unique.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/unique.ar.alusus"
+    }
+]

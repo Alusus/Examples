@@ -1,0 +1,17 @@
+import "Srl/Array";
+
+use Srl;
+
+
+func invertArray(a: ref[Array[Int]]) {
+    def start: Int = 0;
+    def end: Int = a.getLength() - 1;
+
+    while start < end {
+        def temp: Int = a(start);
+        a(start) = a(end);
+        a(end) = temp;
+        start++;
+        end--;
+    }
+}

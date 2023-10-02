@@ -1,0 +1,17 @@
+import "Srl/Array";
+import "Srl/String";
+import "closure";
+
+use Srl;
+
+
+func reduce(a: ref[Array[String]], f: closure(previousValue: ref[String], currentValue: ref[String])): String {
+    def result: String = "";
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        f(result, a(i));
+    }
+
+    return result;
+}

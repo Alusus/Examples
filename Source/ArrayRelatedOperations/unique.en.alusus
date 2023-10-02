@@ -1,0 +1,19 @@
+import "Srl/Array";
+import "Srl/Map";
+
+use Srl;
+
+func unique(a: ref[Array[Int]]): Array[Int] {
+    def hash: Map[Int, Bool];
+    def result: Array[Int];
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        if hash.findPos(a(i)) == -1 {
+            result.add(a(i));
+            hash.set(a(i), true);
+        }
+    }
+
+    return result;
+}

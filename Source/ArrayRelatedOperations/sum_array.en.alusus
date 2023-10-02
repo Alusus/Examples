@@ -1,0 +1,14 @@
+import "Srl/Array";
+
+use Srl;
+
+func sum(a: ref[Array[Int]]): Int {
+    def sum: Int = 0;
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        sum += a(i);
+    }
+
+    return sum;
+}

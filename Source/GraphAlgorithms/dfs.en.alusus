@@ -1,0 +1,16 @@
+import "Srl/Array";
+
+use Srl;
+
+func dfs(node: Int, visited: ref[Array[Bool]], graph: ref[Array[Array[Int]]]) {
+    visited(node) = true;
+    Console.print("%d ", node);
+
+    def i: Int;
+    for i = 0 , i < graph(node).getLength(), i++ {
+        def childNode: Int = graph(node)(i);
+        if !visited(childNode) {
+            dfs(childNode, visited, graph);
+        }
+    }
+}
