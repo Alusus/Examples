@@ -1,0 +1,28 @@
+import "Srl/Array";
+import "Srl/Console";
+import "Srl/Math";
+
+
+use Srl;
+
+
+func std(a: ref[Array[Int]], mean: Float): Float {
+    def size: Int = a.getLength();
+    def variance: Float = 0;
+
+    def i: Int;
+    for i = 0 , i < size , i++ {
+        variance += (a(i) - mean) * ( a(i) - mean);
+    }
+
+    return Math.sqrt(variance / size);
+}
+
+func main() {
+    def a: Array[Int]({1, 2, 3, 4, 5});
+
+    Console.print(std(a, 3));
+}
+
+
+main();
