@@ -1,0 +1,53 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func floydWarshall(graph: ref[Array[Array[Int]]], dist: ref[Array[Array[Int]]]) {
+    def n: Int = graph.getLength();
+    def i: Int;
+    def j: Int;
+    def k: Int;
+
+    for i = 0 , i < n , i++ {
+        dist.add(graph(i));
+    }
+
+    for k = 0 , k < n , k++ {
+        for i = 0 , i < n , i++ {
+            for j = 0 , j < n , j++ {
+                if dist(i)(k) + dist(k)(j) < dist(i)(j) {
+                    dist(i)(j) = dist(i)(k) + dist(k)(j);
+                }
+            }
+        }
+    }
+}
+
+func main() {
+    def graph: Array[Array[Int]]({
+        Array[Int]({0, 1, 3, 1}),
+        Array[Int]({1, 0, 1, 3}),
+        Array[Int]({3, 1, 0, 1}),
+        Array[Int]({1, 3, 1, 0}),
+    });
+
+    def dist: Array[Array[Int]];
+
+	floydWarshall(graph, dist);
+
+    def n: Int = graph.getLength();
+    def i: Int;
+    def j: Int;
+    for i = 0 , i < n , i++ {
+        for j = 0 , j < n , j++ {
+            Console.print("%d ", dist(i)(j));
+        }
+        Console.print("\n");
+    }
+}
+
+
+main();
