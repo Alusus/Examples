@@ -1,0 +1,32 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func insert(a: ref[Array[Int]], pos: Int, val: Int) {
+    def size: Int = a.getLength();
+	a.add(0);  // increase the size by 1
+
+    def i: Int;
+    for i = size , i >= pos , i-- {
+        a(i) = a(i - 1);
+    }
+
+    a(pos - 1) = val;
+}
+
+func main() {
+    def a: Array[Int]({1, 2, 4, 5});
+
+    insert(a, 3, 3);
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+}
+
+
+main();
