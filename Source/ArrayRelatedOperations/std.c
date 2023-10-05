@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <math.h>
 
 double std(int data[], int n, float mean)

@@ -5,8 +5,3 @@ function printArray(a, size) {
     }
     console.log(output);
 }
-
-var a = [1, 2, 3, 4, 5];
-var size = a.length;
-
-printArray(a, size);

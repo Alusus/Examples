@@ -5,6 +5,3 @@ function calculateMean(arr) {
     }
     return sum / arr.length;
 }
-
-var arr = [1, 2, 3, 4, 5];
-console.log("Mean = " + calculateMean(arr));
