@@ -1,0 +1,30 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func exists(a: ref[Array[Int]], val: Int): Bool {
+    def i: Int;
+    for i = 0, i < a.getLength(), i++ {
+        if a(i) == val {
+            return true;
+        }
+    }
+    return false;
+}
+
+func main() {
+    def a: Array[Int]({1, 2, 3, 4, 4, 5});
+
+	if exists(a, 4) {
+		Console.print("true");
+	}
+	else {
+		Console.print("false");
+	}
+}
+
+
+main();
