@@ -4,7 +4,7 @@ import "Srl/Console";
 use Srl;
 
 
-func is_alpha(c: Char): Bool {
+func is_digit(c: Char): Bool {
     return (c >= '0' && c <= '9');
 }
 
@@ -12,7 +12,7 @@ func is_alpha(c: Char): Bool {
 func main() {
     def c1: Char = 'f';
 
-	if is_alpha(c1) {
+	if is_digit(c1) {
     	Console.print("true\n");
 	}
 	else {
@@ -20,7 +20,7 @@ func main() {
 	}
 
     def c2: Char = '5';
-    if is_alpha(c2) {
+    if is_digit(c2) {
     	Console.print("true\n");
 	}
 	else {
