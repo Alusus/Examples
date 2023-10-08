@@ -1,0 +1,34 @@
+import "Srl/Console";
+import "Srl/String";
+
+
+use Srl;
+
+
+func toLowerCase(s: ref[String]): String {
+	def result: String = "";
+    def i: Int;
+	def c: Char;
+	for i = 0 , i < s.getLength() , i++ {
+		if (s(i) >= 'A' && s(i) <= 'Z') {
+			c = s(i) - 'A' + 'a';
+		}
+		else {
+			c = s(i);
+		}
+		result += c;
+	}
+	return result;
+}
+
+
+func main() {
+    def s: String("Hello World!");
+
+    s = toLowerCase(s);
+
+	Console.print("%s\n", s.buf);
+}
+
+
+main();
