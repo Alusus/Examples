@@ -1,0 +1,38 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+
+func selectionSort(a: ref[Array[Int]]) {
+    def i: Int;
+    def j: Int;
+    def temp: Int;
+    def min_idx: Int;
+
+    for i = 0 , i < a.getLength() - 1 , i++ {
+        min_idx = i;
+        for j = i + 1 , j < a.getLength() , j++ {
+            if a(j)  < a(min_idx) {
+                min_idx = j;
+            }
+        }
+
+        temp = a(min_idx);
+        a(min_idx) = a(i);
+        a(i) = temp;
+    }
+}
+
+func main() {
+    def a: Array[Int]({3, 4, 2, 5, 1});
+
+    selectionSort(a);
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+}
+
+main();
