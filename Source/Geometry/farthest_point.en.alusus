@@ -50,8 +50,8 @@ func main() {
     p4.x = 4;
     p4.y = 4;
     def p5: Point;
-    p4.x = 5;
-    p4.y = 5;
+    p5.x = 5;
+    p5.y = 5;
     def points: Array[Point]({p1, p2, p3, p4, p5});
 
     def farthestPoint: Point = findFarthestPoint(givenPoint, points);
