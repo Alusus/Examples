@@ -1,0 +1,37 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+def MAX: Int = 100000;
+
+
+func findFrequency(a: ref[Array[Int]], freq: ref[Array[Int]]) {
+    def i: Int;
+    for i = 0 , i < MAX , i++ {
+        freq.add(0);
+    }
+
+    for i = 0 , i < a.getLength() , i++ {
+        freq(a(i))++;
+    }
+}
+
+func main() {
+    def a: Array[Int]({1, 2, 2, 3, 3, 3, 4, 4, 4, 4});
+    def freq: Array[Int];
+
+    findFrequency(a, freq);
+
+    def i: Int;
+    for i = 0 , i < MAX , i++ {
+        if freq(i) != 0 {
+            Console.print("Element %d occurs %d times\n", i, freq(i));
+        }
+    }
+}
+
+
+main();
