@@ -1,0 +1,75 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+
+func merge(a: ref[Array[Int]], l: Int, m: Int, r: Int) {
+    def i: Int;
+    def j: Int;
+    def k: Int;
+
+    def n1: Int = m - l + 1;
+    def n2: Int = r - m;
+
+    def L: Array[Int];
+    def R: Array[Int];
+
+    for i = 0 , i < n1 , i++ {
+        L.add(a(l+i));
+    }
+    for i = 0 , i < n2 , i++ {
+        R.add(a(m + 1 + i));
+    }
+
+    i = 0;
+    j = 0;
+    k = l;
+    while i < n1 && j < n2 {
+        if L(i) <= R(j) {
+            a(k) = L(i);
+            i++;
+        }
+        else {
+            a(k) = R(j);
+            j++;
+        }
+        k++;
+    }
+
+    while i < n1 {
+        a(k) = L(i);
+        i++;
+        k++;
+    }
+
+    while j < n2 {
+        a(k) = R(j);
+        j++;
+        k++;
+    }
+}
+
+func mergeSort(a: ref[Array[Int]], l: Int, r: Int) {
+     if l < r {
+        def m: Int = l + (r - l) / 2;
+
+        mergeSort(a, l, m);
+        mergeSort(a, m + 1, r);
+
+        merge(a, l, m, r);
+     }
+}
+
+func main() {
+    def a: Array[Int]({3, 4, 2, 5, 1});
+
+    mergeSort(a, 0, a.getLength() - 1);
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+}
+
+main();
