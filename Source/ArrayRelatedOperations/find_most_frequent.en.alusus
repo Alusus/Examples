@@ -1,0 +1,41 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func find_most_frequent(a: ref[Array[Int]]): Int {
+    def max_count: Int = 0;
+    def res: Int = -1;
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        def count: Int = 1;
+        
+        def j: Int;
+        for j = i + 1 , j < a.getLength() , j++ {
+            if a(j) == a(i) {
+                count++;
+            }
+        }
+
+        if count > max_count {
+            max_count = count;
+            res = a(i);
+        }
+    }
+
+    return res;
+}
+
+func main() {
+    def a: Array[Int]({1, 2, 2, 3, 3, 3, 4, 4, 4, 4});
+
+    def result: Int = find_most_frequent(a);
+
+    Console.print("The most frequent item is: %d\n", result);
+}
+
+
+main();
