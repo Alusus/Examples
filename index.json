@@ -9,7 +9,7 @@
     },
     {
         "enPrompt": "Find the minimum in array `a`",
-        "arPrompt": "أوجد أصغر عدد في المصفوفة م",
+        "arPrompt": "جد أصغر عدد في المصفوفة م",
         "cAnswer": "Source/ArrayRelatedOperations/min_in_array.c",
         "jsAnswer": "Source/ArrayRelatedOperations/min_in_array.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/min_in_array.en.alusus",
@@ -17,7 +17,7 @@
     },
     {
         "enPrompt": "Find the maximum in array `a`",
-        "arPrompt": "أوجد أكبر عدد في المصفوفة م",
+        "arPrompt": "جد أكبر عدد في المصفوفة م",
         "cAnswer": "Source/ArrayRelatedOperations/max_in_array.c",
         "jsAnswer": "Source/ArrayRelatedOperations/max_in_array.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/max_in_array.en.alusus",
@@ -41,7 +41,7 @@
     },
     {
         "enPrompt": "Find the sum of the array `a`",
-        "arPrompt": "أوجد ناتج جمع عناصر المصفوفة م",
+        "arPrompt": "جد ناتج جمع عناصر المصفوفة م",
         "cAnswer": "Source/ArrayRelatedOperations/sum_array.c",
         "jsAnswer": "Source/ArrayRelatedOperations/sum_array.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/sum_array.en.alusus",
@@ -79,7 +79,6 @@
         "enAlususAnswer": "Source/ArrayRelatedOperations/unique.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/unique.ar.alusus"
     },
-    //////////////////////////////////////////////////////
     {
         "enPrompt": "filter the array based on the function `f`",
         "arPrompt": "قم بتصفية المصفوفة بناءً على الدالة د",
@@ -122,7 +121,7 @@
     },
     {
         "enPrompt": "calculate the sum of the array in a given range",
-        "arPrompt": "احسن مجموع عناصر مصفوفة في مجال معطى",
+        "arPrompt": "احسب مجموع عناصر مصفوفة في مجال معطى",
         "cAnswer": "Source/ArrayRelatedOperations/sum_range_array.c",
         "jsAnswer": "Source/ArrayRelatedOperations/sum_range_array.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/sum_range_array.en.alusus",
@@ -130,7 +129,7 @@
     },
     {
         "enPrompt": "Find the position of a given element in the array starting from its end",
-        "arPrompt": "أوجد موقع عنصر معطى في مصفوفة بدءاً من نهايتها",
+        "arPrompt": "جد موقع عنصر معطى في مصفوفة بدءاً من نهايتها",
         "cAnswer": "Source/ArrayRelatedOperations/rfind.c",
         "jsAnswer": "Source/ArrayRelatedOperations/rfind.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/rfind.en.alusus",
@@ -138,7 +137,7 @@
     },
     {
         "enPrompt": "Insert an element at a given position in the array",
-        "arPrompt": "احشر عنصر في موقع معطى ضمن المصفوفة",
+        "arPrompt": "احشر عنصرا في موقع معطى ضمن المصفوفة",
         "cAnswer": "Source/ArrayRelatedOperations/insert.c",
         "jsAnswer": "Source/ArrayRelatedOperations/insert.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/insert.en.alusus",
@@ -146,7 +145,7 @@
     },
     {
         "enPrompt": "Delete an element at a given position in the array",
-        "arPrompt": "احذف عنصر من موقع معطى ضمن المصفوفة",
+        "arPrompt": "احذف عنصرا من موقع معطى ضمن المصفوفة",
         "cAnswer": "Source/ArrayRelatedOperations/erase.c",
         "jsAnswer": "Source/ArrayRelatedOperations/erase.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/erase.en.alusus",
@@ -170,14 +169,14 @@
     },
     {
         "enPrompt": "check if a character is a digit",
-        "arPrompt": "اختبر فيما إذا كان محرف هو رقم بين 0 و 9",
+        "arPrompt": "اختبر فيما إذا كان المحرف رقما بين 0 و 9",
         "cAnswer": "Source/StringRelatedOperations/is_digit.c",
         "jsAnswer": "Source/StringRelatedOperations/is_digit.js",
         "enAlususAnswer": "Source/StringRelatedOperations/is_digit.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/is_digit.ar.alusus"
     },
     {
-        "enPrompt": "check if a string is alphanumeric",
+        "enPrompt": "check if all characters of a string are alphanumeric",
         "arPrompt": "اختبر فيما إذا كانت كل محارف سلسلة نصية من الأبجدية أو الأرقام",
         "cAnswer": "Source/StringRelatedOperations/is_string_alphanumeric.c",
         "jsAnswer": "Source/StringRelatedOperations/is_string_alphanumeric.js",
@@ -186,7 +185,7 @@
     },
     {
         "enPrompt": "check if a string contains a given char",
-        "arPrompt": "اختبر فيما إذا كانت سلسلة نصية تحتوي محرف معطى",
+        "arPrompt": "اختبر فيما إذا كانت سلسلة نصية تحتوي محرفا معطى",
         "cAnswer": "Source/StringRelatedOperations/char_exists.c",
         "jsAnswer": "Source/StringRelatedOperations/char_exists.js",
         "enAlususAnswer": "Source/StringRelatedOperations/char_exists.en.alusus",
@@ -202,7 +201,7 @@
     },
     {
         "enPrompt": "find the position of a given char in a string",
-        "arPrompt": "أوجد موقع محرف معطى ضمن سلسلة نصية",
+        "arPrompt": "جد موقع محرف معطى ضمن سلسلة نصية",
         "cAnswer": "Source/StringRelatedOperations/find_char.c",
         "jsAnswer": "Source/StringRelatedOperations/find_char.js",
         "enAlususAnswer": "Source/StringRelatedOperations/find_char.en.alusus",
@@ -210,7 +209,7 @@
     },
     {
         "enPrompt": "find the position of a given char in a string starting from its end",
-        "arPrompt": "أوجد موقع محرف معطى ضمن سلسلة نصية بدءاً من نهايتها",
+        "arPrompt": "جد موقع محرف معطى ضمن سلسلة نصية بدءاً من نهايتها",
         "cAnswer": "Source/StringRelatedOperations/rfind_char.c",
         "jsAnswer": "Source/StringRelatedOperations/rfind_char.js",
         "enAlususAnswer": "Source/StringRelatedOperations/rfind_char.en.alusus",
@@ -290,7 +289,7 @@
     },
     {
         "enPrompt": "find the farthest point to a given point from a set of points",
-        "arPrompt": "أوجد أبعد نقطة من بين مجموعة من النقاط عن نقطة معطاة",
+        "arPrompt": "جد أبعد نقطة من بين مجموعة من النقاط عن نقطة معطاة",
         "cAnswer": "Source/Geometry/farthest_point.c",
         "jsAnswer": "Source/Geometry/farthest_point.js",
         "enAlususAnswer": "Source/Geometry/farthest_point.en.alusus",
@@ -298,7 +297,7 @@
     },
     {
         "enPrompt": "find the closest point to a given point from a set of points",
-        "arPrompt": "أوجد أقرب نقطة من بين مجموعة من النقاط عن نقطة معطاة",
+        "arPrompt": "جد أقرب نقطة من بين مجموعة من النقاط عن نقطة معطاة",
         "cAnswer": "Source/Geometry/closest_point.c",
         "jsAnswer": "Source/Geometry/closest_point.js",
         "enAlususAnswer": "Source/Geometry/closest_point.en.alusus",
@@ -314,7 +313,7 @@
     },
     {
         "enPrompt": "find the most frequent item in the array",
-        "arPrompt": "أوجد أكثر عنصر مكرر في المصفوفة",
+        "arPrompt": "جد أكثر عنصر مكرر في المصفوفة",
         "cAnswer": "Source/ArrayRelatedOperations/find_most_frequent.c",
         "jsAnswer": "Source/ArrayRelatedOperations/find_most_frequent.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/find_most_frequent.en.alusus",

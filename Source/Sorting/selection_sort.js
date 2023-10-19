@@ -8,13 +8,11 @@ function selectionSort(arr) {
             if(arr[j] < arr[min]) {
                 min=j; 
             }
-         }
-         if (min != i) {
-             // Swapping the elements
-             let tmp = arr[i]; 
-             arr[i] = arr[min];
-             arr[min] = tmp;      
         }
+        // Swapping the elements
+        let tmp = arr[i]; 
+        arr[i] = arr[min];
+        arr[min] = tmp;      
     }
     return arr;
 }

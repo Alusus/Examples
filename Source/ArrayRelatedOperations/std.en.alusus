@@ -21,7 +21,7 @@ func std(a: ref[Array[Int]], mean: Float): Float {
 func main() {
     def a: Array[Int]({1, 2, 3, 4, 5});
 
-    Console.print(std(a));
+    Console.print(std(a, 3));
 }
 
 
