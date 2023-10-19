@@ -6,22 +6,22 @@ import "Srl/Math";
 use Srl;
 
 
-func std(a: ref[Array[Int]], mean: Float): Float {
+func mean(a: ref[Array[Int]]): Float {
     def size: Int = a.getLength();
-    def variance: Float = 0;
+    def sum: Int = 0;
 
     def i: Int;
     for i = 0 , i < size , i++ {
-        variance += (a(i) - mean) * ( a(i) - mean);
+        sum += a(i);
     }
 
-    return Math.sqrt(variance / size);
+    return sum~cast[Float] / size;
 }
 
 func main() {
-    def a: Array[Int]({1, 2, 3, 4, 5});
+    def a: Array[Int]({1, 2, 3, 4, 5, 6});
 
-    Console.print(std(a, 3));
+    Console.print(mean(a));
 }
 
 
