@@ -217,7 +217,7 @@
     },
     {
         "enPrompt": "calculate the area of a traingle from its points",
-        "arPrompt": "احسب مساحة مثلت من نقاطه",
+        "arPrompt": "احسب مساحة مثلت من إحداثيات نقاطه",
         "cAnswer": "Source/Geometry/traingle_area.c",
         "jsAnswer": "Source/Geometry/traingle_area.js",
         "enAlususAnswer": "Source/Geometry/triangle_area.en.alusus",
@@ -225,7 +225,7 @@
     },
     {
         "enPrompt": "calculate the area of polygon given its vertices",
-        "arPrompt": "احسب مساحة مضلع من رؤوسه",
+        "arPrompt": "احسب مساحة مضلع من إحداثيات رؤوسه",
         "cAnswer": "Source/Geometry/polygon_area.c",
         "jsAnswer": "Source/Geometry/polygon_area.js",
         "enAlususAnswer": "Source/Geometry/polygon_area.en.alusus",
