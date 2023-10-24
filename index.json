@@ -1,231 +1,231 @@
 [
     {
-        "enPrompt": "Write DFS algorithm",
-        "arPrompt": "اكتب خوارزمية البحث بالعمق",
+        "enPrompt": "Write DFS algorithm for the given graph",
+        "arPrompt": "اكتب خوارزمية البحث بالعمق للبيان المعطى",
         "cAnswer": "Source/GraphAlgorithms/dfs.c",
         "jsAnswer": "Source/GraphAlgorithms/dfs.js",
         "enAlususAnswer": "Source/GraphAlgorithms/dfs.en.alusus",
         "arAlususAnswer": "Source/GraphAlgorithms/dfs.ar.alusus"
     },
     {
-        "enPrompt": "Find the minimum in array `a`",
-        "arPrompt": "جد أصغر عدد في المصفوفة م",
+        "enPrompt": "Find and return the minimum in the given array `a`",
+        "arPrompt": "جد و أرجع أصغر عدد في المصفوفة المعطاة م",
         "cAnswer": "Source/ArrayRelatedOperations/min_in_array.c",
         "jsAnswer": "Source/ArrayRelatedOperations/min_in_array.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/min_in_array.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/min_in_array.ar.alusus"
     },
     {
-        "enPrompt": "Find the maximum in array `a`",
-        "arPrompt": "جد أكبر عدد في المصفوفة م",
+        "enPrompt": "Find and return the maximum in the given array `a`",
+        "arPrompt": "جد و أرجع أكبر عدد في المصفوفة المعطاة م",
         "cAnswer": "Source/ArrayRelatedOperations/max_in_array.c",
         "jsAnswer": "Source/ArrayRelatedOperations/max_in_array.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/max_in_array.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/max_in_array.ar.alusus"
     },
     {
-        "enPrompt": "Invert the string `s`",
-        "arPrompt": "اعكس السلسلة النصية س",
+        "enPrompt": "Invert the given string `s` and return the result",
+        "arPrompt": "اعكس السلسلة النصية المعطاة س و أرجع النتيجة",
         "cAnswer": "Source/StringRelatedOperations/invert_string.c",
         "jsAnswer": "Source/StringRelatedOperations/invert_string.js",
         "enAlususAnswer": "Source/StringRelatedOperations/invert_string.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/invert_string.ar.alusus"
     },
     {
-        "enPrompt": "Invert the array `a`",
-        "arPrompt": "اعكس المصفوفة م",
+        "enPrompt": "Invert the given array `a` and return the result",
+        "arPrompt": "اعكس المصفوفة المعطاة م و أرجع النتيجة",
         "cAnswer": "Source/ArrayRelatedOperations/invert_array.c",
         "jsAnswer": "Source/ArrayRelatedOperations/invert_array.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/invert_array.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/invert_array.ar.alusus"
     },
     {
-        "enPrompt": "Find the sum of the array `a`",
-        "arPrompt": "جد ناتج جمع عناصر المصفوفة م",
+        "enPrompt": "Find and return the sum of the given array `a`",
+        "arPrompt": "جد و أرجع ناتج جمع عناصر المصفوفة المعطاة م",
         "cAnswer": "Source/ArrayRelatedOperations/sum_array.c",
         "jsAnswer": "Source/ArrayRelatedOperations/sum_array.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/sum_array.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/sum_array.ar.alusus"
     },
     {
-        "enPrompt": "apply the function `f` on each element of the array `a`",
-        "arPrompt": "طبق الدالة د على كل عنصر من عناصر المصفوفة م",
+        "enPrompt": "apply the given function `f` on each element of the given array `a` and return the result",
+        "arPrompt": "طبق الدالة المعطاة د على كل عنصر من عناصر المصفوفة المعطاة م و أرجع النتيجة",
         "cAnswer": "Source/ArrayRelatedOperations/for_each.c",
         "jsAnswer": "Source/ArrayRelatedOperations/for_each.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/for_each.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/for_each.ar.alusus"
     },
     {
-        "enPrompt": "reduce the array `a` using the function `f`",
-        "arPrompt": "اختصر المصفوفة م باستعمال الدالة د",
+        "enPrompt": "reduce the given array `a` using the given function `f` and return the result",
+        "arPrompt": "اختصر المصفوفة المعطاة م باستعمال الدالة المعطاة د و أرجع النتيجة",
         "cAnswer": "Source/ArrayRelatedOperations/reduce.c",
         "jsAnswer": "Source/ArrayRelatedOperations/reduce.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/reduce.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/reduce.ar.alusus"
     },
     {
-        "enPrompt": "accumulate the array `a` using the function `f` and keep the partial results",
-        "arPrompt": "راكم المصفوفة م باستعمال الدالة د و احتفط بكل النتائج الجزئية",
+        "enPrompt": "accumulate the given array `a` using the given function `f` and keep the partial results and return them",
+        "arPrompt": "راكم المصفوفة المعطاة م باستعمال الدالة المعطاة د و احتفط بكل النتائج الجزئية و أرجعهم",
         "cAnswer": "Source/ArrayRelatedOperations/accumulate.c",
         "jsAnswer": "Source/ArrayRelatedOperations/accumulate.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/accumulate.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/accumulate.ar.alusus"
     },
     {
-        "enPrompt": "extract unique elements in the array",
-        "arPrompt": "استخرج العناصر الفريدة من المصفوفة",
+        "enPrompt": "extract unique elements in the given array and return the result",
+        "arPrompt": "استخرج العناصر الفريدة من المصفوفة المعطاة و أرجع النتيجة",
         "cAnswer": "Source/ArrayRelatedOperations/unique.c",
         "jsAnswer": "Source/ArrayRelatedOperations/unique.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/unique.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/unique.ar.alusus"
     },
     {
-        "enPrompt": "filter the array based on the function `f`",
-        "arPrompt": "قم بتصفية المصفوفة بناءً على الدالة د",
+        "enPrompt": "filter the given array based on the given function `f` and return the result",
+        "arPrompt": "قم بتصفية المصفوفة المعطاة بناءً على الدالة المعطاة د و أرجع النتيجة",
         "cAnswer": "Source/ArrayRelatedOperations/filter.c",
         "jsAnswer": "Source/ArrayRelatedOperations/filter.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/filter.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/filter.ar.alusus"
     },
     {
-        "enPrompt": "calculate the mean of the array",
-        "arPrompt": "احسب المتوسط الحسابي للمصفوفة",
+        "enPrompt": "calculate and return the mean of the given array",
+        "arPrompt": "احسب و أرجع المتوسط الحسابي للمصفوفة المعطاة",
         "cAnswer": "Source/ArrayRelatedOperations/mean.c",
         "jsAnswer": "Source/ArrayRelatedOperations/mean.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/mean.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/mean.ar.alusus"
     },
     {
-        "enPrompt": "calculate the standard deviation of the array",
-        "arPrompt": "احسب الانحراف المعياري للمصفوفة",
+        "enPrompt": "calculate and return the standard deviation of the given array",
+        "arPrompt": "احسب الانحراف المعياري للمصفوفة المعطاة",
         "cAnswer": "Source/ArrayRelatedOperations/std.c",
         "jsAnswer": "Source/ArrayRelatedOperations/std.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/std.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/std.ar.alusus"
     },
     {
-        "enPrompt": "print the array",
-        "arPrompt": "اطبع المصفوفة",
+        "enPrompt": "print the given array",
+        "arPrompt": "اطبع المصفوفة المعطاة",
         "cAnswer": "Source/ArrayRelatedOperations/print.c",
         "jsAnswer": "Source/ArrayRelatedOperations/print.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/print.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/print.ar.alusus"
     },
     {
-        "enPrompt": "rotate the array counterclockwise",
-        "arPrompt": "دور المصفوفة بعكس اتجاه عقارب الساعة",
+        "enPrompt": "rotate the given array counterclockwise and return the result",
+        "arPrompt": "دور المصفوفة المعطاة بعكس اتجاه عقارب الساعة و أرجع النتيجة",
         "cAnswer": "Source/ArrayRelatedOperations/rotate.c",
         "jsAnswer": "Source/ArrayRelatedOperations/rotate.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/rotate.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/rotate.ar.alusus"
     },
     {
-        "enPrompt": "calculate the sum of the array in a given range",
-        "arPrompt": "احسب مجموع عناصر مصفوفة في مجال معطى",
+        "enPrompt": "calculate and return the sum of the given array in a given range",
+        "arPrompt": "احسب و أرجع مجموع عناصر مصفوفة معطاة في مجال معطى",
         "cAnswer": "Source/ArrayRelatedOperations/sum_range_array.c",
         "jsAnswer": "Source/ArrayRelatedOperations/sum_range_array.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/sum_range_array.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/sum_range_array.ar.alusus"
     },
     {
-        "enPrompt": "Find the position of a given element in the array starting from its end",
-        "arPrompt": "جد موقع عنصر معطى في مصفوفة بدءاً من نهايتها",
+        "enPrompt": "Find and return the position of a given element in the given array starting from its end",
+        "arPrompt": "جد و أرجع موقع عنصر معطى في مصفوفة معطاة بدءاً من نهايتها",
         "cAnswer": "Source/ArrayRelatedOperations/rfind.c",
         "jsAnswer": "Source/ArrayRelatedOperations/rfind.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/rfind.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/rfind.ar.alusus"
     },
     {
-        "enPrompt": "Insert an element at a given position in the array",
-        "arPrompt": "احشر عنصرا في موقع معطى ضمن المصفوفة",
+        "enPrompt": "Insert an element at a given position in the given array",
+        "arPrompt": "احشر عنصرا في موقع معطى ضمن المصفوفة المعطى",
         "cAnswer": "Source/ArrayRelatedOperations/insert.c",
         "jsAnswer": "Source/ArrayRelatedOperations/insert.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/insert.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/insert.ar.alusus"
     },
     {
-        "enPrompt": "Delete an element at a given position in the array",
-        "arPrompt": "احذف عنصرا من موقع معطى ضمن المصفوفة",
+        "enPrompt": "Delete an element at a given position in the given array",
+        "arPrompt": "احذف عنصرا من موقع معطى ضمن المصفوفة المعطى",
         "cAnswer": "Source/ArrayRelatedOperations/erase.c",
         "jsAnswer": "Source/ArrayRelatedOperations/erase.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/erase.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/erase.ar.alusus"
     },
     {
-        "enPrompt": "Write Floyd Warshall algorithm",
-        "arPrompt": "اكتب خوارزمية Floyd Warshall",
+        "enPrompt": "Write Floyd Warshall algorithm for a given graph",
+        "arPrompt": "اكتب خوارزمية Floyd Warshall لبيان معطى",
         "cAnswer": "Source/GraphAlgorithms/floyd_warshall.c",
         "jsAnswer": "Source/GraphAlgorithms/floyd_warshall.js",
         "enAlususAnswer": "Source/GraphAlgorithms/floyd_warshall.en.alusus",
         "arAlususAnswer": "Source/GraphAlgorithms/floyd_warshall.ar.alusus"
     },
     {
-        "enPrompt": "check if a character is from the alphabet",
-        "arPrompt": "اختبر فيما إذا كان محرف من الأبجدية",
+        "enPrompt": "check if a given character is from the alphabet",
+        "arPrompt": "اختبر فيما إذا كان محرف معطى من الأبجدية",
         "cAnswer": "Source/StringRelatedOperations/is_alpha.c",
         "jsAnswer": "Source/StringRelatedOperations/is_alpha.js",
         "enAlususAnswer": "Source/StringRelatedOperations/is_alpha.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/is_alpha.ar.alusus"
     },
     {
-        "enPrompt": "check if a character is a digit",
-        "arPrompt": "اختبر فيما إذا كان المحرف رقما بين 0 و 9",
+        "enPrompt": "check if a given character is a digit",
+        "arPrompt": "اختبر فيما إذا كان المحرف المعطى رقما بين 0 و 9",
         "cAnswer": "Source/StringRelatedOperations/is_digit.c",
         "jsAnswer": "Source/StringRelatedOperations/is_digit.js",
         "enAlususAnswer": "Source/StringRelatedOperations/is_digit.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/is_digit.ar.alusus"
     },
     {
-        "enPrompt": "check if all characters of a string are alphanumeric",
-        "arPrompt": "اختبر فيما إذا كانت كل محارف سلسلة نصية من الأبجدية أو الأرقام",
+        "enPrompt": "check if all characters of a given string are alphanumeric",
+        "arPrompt": "اختبر فيما إذا كانت كل محارف سلسلة نصية معطاة من الأبجدية أو الأرقام",
         "cAnswer": "Source/StringRelatedOperations/is_string_alphanumeric.c",
         "jsAnswer": "Source/StringRelatedOperations/is_string_alphanumeric.js",
         "enAlususAnswer": "Source/StringRelatedOperations/is_string_alphanumeric.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/is_string_alphanumeric.ar.alusus"
     },
     {
-        "enPrompt": "check if a string contains a given char",
-        "arPrompt": "اختبر فيما إذا كانت سلسلة نصية تحتوي محرفا معطى",
+        "enPrompt": "check if a given string contains a given char",
+        "arPrompt": "اختبر فيما إذا كانت سلسلة نصية معطاة تحتوي محرفا معطى",
         "cAnswer": "Source/StringRelatedOperations/char_exists.c",
         "jsAnswer": "Source/StringRelatedOperations/char_exists.js",
         "enAlususAnswer": "Source/StringRelatedOperations/char_exists.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/char_exists.ar.alusus"
     },
     {
-        "enPrompt": "check if an array contains a given element",
-        "arPrompt": "اختبر فيما إذا كانت مصفوفة تحتوي على عنصر معطى",
+        "enPrompt": "check if a given array contains a given element",
+        "arPrompt": "اختبر فيما إذا كانت مصفوفة معطاة تحتوي على عنصر معطى",
         "cAnswer": "Source/ArrayRelatedOperations/exists.c",
         "jsAnswer": "Source/ArrayRelatedOperations/exists.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/exists.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/exists.ar.alusus"
     },
     {
-        "enPrompt": "find the position of a given char in a string",
-        "arPrompt": "جد موقع محرف معطى ضمن سلسلة نصية",
+        "enPrompt": "find and return the position of a given char in a given string",
+        "arPrompt": "جد و أرجع موقع محرف معطى ضمن سلسلة نصية معطاة",
         "cAnswer": "Source/StringRelatedOperations/find_char.c",
         "jsAnswer": "Source/StringRelatedOperations/find_char.js",
         "enAlususAnswer": "Source/StringRelatedOperations/find_char.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/find_char.ar.alusus"
     },
     {
-        "enPrompt": "find the position of a given char in a string starting from its end",
-        "arPrompt": "جد موقع محرف معطى ضمن سلسلة نصية بدءاً من نهايتها",
+        "enPrompt": "find and return the position of a given char in a given string starting from its end",
+        "arPrompt": "جد و أرجع موقع محرف معطى ضمن سلسلة نصية معطاة بدءاً من نهايتها",
         "cAnswer": "Source/StringRelatedOperations/rfind_char.c",
         "jsAnswer": "Source/StringRelatedOperations/rfind_char.js",
         "enAlususAnswer": "Source/StringRelatedOperations/rfind_char.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/rfind_char.ar.alusus"
     },
     {
-        "enPrompt": "calculate the area of a traingle from its points",
-        "arPrompt": "احسب مساحة مثلت من إحداثيات نقاطه",
+        "enPrompt": "calculate and return the area of a traingle from its points",
+        "arPrompt": "احسب و أرجع مساحة مثلت من إحداثيات نقاطه",
         "cAnswer": "Source/Geometry/traingle_area.c",
         "jsAnswer": "Source/Geometry/traingle_area.js",
         "enAlususAnswer": "Source/Geometry/triangle_area.en.alusus",
         "arAlususAnswer": "Source/Geometry/triangle_area.ar.alusus"
     },
     {
-        "enPrompt": "calculate the area of polygon given its vertices",
-        "arPrompt": "احسب مساحة مضلع من إحداثيات رؤوسه",
+        "enPrompt": "calculate and return the area of polygon given its vertices",
+        "arPrompt": "احسب و أرجع مساحة مضلع من إحداثيات رؤوسه",
         "cAnswer": "Source/Geometry/polygon_area.c",
         "jsAnswer": "Source/Geometry/polygon_area.js",
         "enAlususAnswer": "Source/Geometry/polygon_area.en.alusus",
@@ -240,80 +240,80 @@
         "arAlususAnswer": "Source/Geometry/are_collinear.ar.alusus"
     },
     {
-        "enPrompt": "convert string to lowercase",
-        "arPrompt": "حول حالة محارف سلسلة نصية إلى أحرف صغيرة",
+        "enPrompt": "convert string to lowercase and return the result",
+        "arPrompt": "حول حالة محارف سلسلة نصية إلى أحرف صغيرة و أرجع النتيجة",
         "cAnswer": "Source/StringRelatedOperations/to_lower.c",
         "jsAnswer": "Source/StringRelatedOperations/to_lower.js",
         "enAlususAnswer": "Source/StringRelatedOperations/to_lower.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/to_lower.ar.alusus"
     },
     {
-        "enPrompt": "convert string to uppercase",
-        "arPrompt": "حول حالة محارف سلسلة نصية إلى أحرف كبيرة",
+        "enPrompt": "convert string to uppercase and return the result",
+        "arPrompt": "حول حالة محارف سلسلة نصية إلى أحرف كبيرة و أرجع النتيجة",
         "cAnswer": "Source/StringRelatedOperations/to_upper.c",
         "jsAnswer": "Source/StringRelatedOperations/to_upper.js",
         "enAlususAnswer": "Source/StringRelatedOperations/to_upper.en.alusus",
         "arAlususAnswer": "Source/StringRelatedOperations/to_upper.ar.alusus"
     },
     {
-        "enPrompt": "write the insertion sort algorithm",
-        "arPrompt": "اكتب خوارزمية الفرز بالحشر",
+        "enPrompt": "write the insertion sort algorithm for a given array",
+        "arPrompt": "اكتب خوارزمية الفرز بالحشر لمصفوفة معطاة",
         "cAnswer": "Source/Sorting/insertion_sort.c",
         "jsAnswer": "Source/Sorting/insertion_sort.js",
         "enAlususAnswer": "Source/Sorting/insertion_sort.en.alusus",
         "arAlususAnswer": "Source/Sorting/insertion_sort.ar.alusus"
     },
     {
-        "enPrompt": "write the selection sort algorithm",
-        "arPrompt": "اكتب خوارزمية الفرز بالاختيار",
+        "enPrompt": "write the selection sort algorithm for a given array",
+        "arPrompt": "اكتب خوارزمية الفرز بالاختيار لمصفوفة معطاة",
         "cAnswer": "Source/Sorting/selection_sort.c",
         "jsAnswer": "Source/Sorting/selection_sort.js",
         "enAlususAnswer": "Source/Sorting/selection_sort.en.alusus",
         "arAlususAnswer": "Source/Sorting/selection_sort.ar.alusus"
     },
     {
-        "enPrompt": "write the counting sort algorithm",
-        "arPrompt": "اكتب خوارزمية الفرز بالعد",
+        "enPrompt": "write the counting sort algorithm for a given array",
+        "arPrompt": "اكتب خوارزمية الفرز بالعد لمصفوفة معطاة",
         "cAnswer": "Source/Sorting/counting_sort.c",
         "jsAnswer": "Source/Sorting/counting_sort.js",
         "enAlususAnswer": "Source/Sorting/counting_sort.en.alusus",
         "arAlususAnswer": "Source/Sorting/counting_sort.ar.alusus"
     },
     {
-        "enPrompt": "write the merge sort algorithm",
-        "arPrompt": "اكتب خوارزمية الفرز بالدمج",
+        "enPrompt": "write the merge sort algorithm for a given array",
+        "arPrompt": "اكتب خوارزمية الفرز بالدمج لمصفوفة معطاة",
         "cAnswer": "Source/Sorting/merge_sort.c",
         "jsAnswer": "Source/Sorting/merge_sort.js",
         "enAlususAnswer": "Source/Sorting/merge_sort.en.alusus",
         "arAlususAnswer": "Source/Sorting/merge_sort.ar.alusus"
     },
     {
-        "enPrompt": "find the farthest point to a given point from a set of points",
-        "arPrompt": "جد أبعد نقطة من بين مجموعة من النقاط عن نقطة معطاة",
+        "enPrompt": "find  and return the farthest point to a given point from a given set of points",
+        "arPrompt": "جد و أرجع أبعد نقطة من بين مجموعة من النقاط المعطاة عن نقطة معطاة",
         "cAnswer": "Source/Geometry/farthest_point.c",
         "jsAnswer": "Source/Geometry/farthest_point.js",
         "enAlususAnswer": "Source/Geometry/farthest_point.en.alusus",
         "arAlususAnswer": "Source/Geometry/farthest_point.ar.alusus"
     },
     {
-        "enPrompt": "find the closest point to a given point from a set of points",
-        "arPrompt": "جد أقرب نقطة من بين مجموعة من النقاط عن نقطة معطاة",
+        "enPrompt": "find and return the closest point to a given point from a given set of points",
+        "arPrompt": "جد و أرجع أقرب نقطة من بين مجموعة من النقاط المعطاة عن نقطة معطاة",
         "cAnswer": "Source/Geometry/closest_point.c",
         "jsAnswer": "Source/Geometry/closest_point.js",
         "enAlususAnswer": "Source/Geometry/closest_point.en.alusus",
         "arAlususAnswer": "Source/Geometry/closest_point.ar.alusus"
     },
     {
-        "enPrompt": "calculate the frequency of each element in the array",
-        "arPrompt": "احسب تكرار كل عنصر في المصفوفة",
+        "enPrompt": "calculate and return the frequency of each element in the given array",
+        "arPrompt": "احسب و أرجع تكرار كل عنصر في المصفوفة المعطاة",
         "cAnswer": "Source/ArrayRelatedOperations/frequency.c",
         "jsAnswer": "Source/ArrayRelatedOperations/frequency.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/frequency.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/frequency.ar.alusus"
     },
     {
-        "enPrompt": "find the most frequent item in the array",
-        "arPrompt": "جد أكثر عنصر مكرر في المصفوفة",
+        "enPrompt": "find and return the most frequent item in a given array",
+        "arPrompt": "جد و أرجع أكثر عنصر مكرر في المصفوفة المعطاة",
         "cAnswer": "Source/ArrayRelatedOperations/find_most_frequent.c",
         "jsAnswer": "Source/ArrayRelatedOperations/find_most_frequent.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/find_most_frequent.en.alusus",
