@@ -10,11 +10,11 @@ func insert(a: ref[Array[Int]], pos: Int, val: Int) {
 	a.add(0);  // increase the size by 1
 
     def i: Int;
-    for i = size , i >= pos , i-- {
+    for i = size , i > pos , i-- {
         a(i) = a(i - 1);
     }
 
-    a(pos - 1) = val;
+    a(pos) = val;
 }
 
 func main() {
