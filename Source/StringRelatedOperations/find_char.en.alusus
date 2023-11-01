@@ -1,0 +1,27 @@
+import "Srl/Console";
+import "Srl/String";
+
+
+use Srl;
+
+
+func find_char(s: ref[String], c: Char): Int {
+    def i: Int;
+	for i = 0 , i < s.getLength() , i++ {
+		if (s(i) == c) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+
+func main() {
+    def s: String = "abcde1324";
+
+	Console.print("%d\n", find_char(s, 'c'));
+	Console.print("%d\n", find_char(s, '0'));
+}
+
+
+main();

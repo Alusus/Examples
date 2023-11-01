@@ -1,0 +1,25 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func rfind(a: ref[Array[Int]], val: Int): Int {
+    def i: Int;
+    for i = a.getLength() - 1 , i != 0 , i-- {
+        if a(i) == val {
+            return i;
+        }
+    }
+    return -1;
+}
+
+func main() {
+    def a: Array[Int]({1, 2, 3, 4, 4, 5});
+
+    Console.print("%d ", rfind(a, 4));
+}
+
+
+main();

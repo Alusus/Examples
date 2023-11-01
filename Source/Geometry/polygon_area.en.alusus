@@ -1,0 +1,49 @@
+import "Srl/Console";
+import "Srl/Math";
+import "Srl/Array";
+
+
+
+use Srl;
+
+class Point {
+    def x : Float;
+    def y : Float;
+};
+
+func calculatePolygonArea(vertices: ref[Array[Point]]): Float {
+    def area: Float = 0;
+    def numVertices: Int = vertices.getLength();
+    def j: Int = numVertices - 1;
+
+    def i: Int;
+    for i = 0 , i < numVertices , i++ {
+        area += (vertices(j).x + vertices(i).x) * (vertices(j).y - vertices(i).y);
+        j = i;
+    }
+    return Math.abs(area / 2.0);
+}
+
+
+func main() {
+    def p1: Point;
+    p1.x = 4;
+    p1.y = 10;
+    def p2: Point;
+    p2.x = 9;
+    p2.y = 7;
+    def p3: Point;
+    p3.x = 11;
+    p3.y = 2;
+    def p4: Point;
+    p4.x = 2;
+    p4.y = 2;
+    def vertices: Array[Point]({p1, p2, p3, p4});
+
+    def area: Float = calculatePolygonArea(vertices);
+
+    Console.print("The area of the polygon is: %.2f\n", area~cast[Float[64]]);
+}
+
+
+main();

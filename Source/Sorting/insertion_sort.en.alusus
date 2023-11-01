@@ -1,0 +1,35 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+
+func insertionSort(a: ref[Array[Int]]) {
+    def i: Int;
+    def key: Int;
+    def j: Int;
+
+    for i = 1 , i < a.getLength() , i++ {
+        key = a(i);
+        j = i - 1;
+
+        while j >= 0 && a(j) > key {
+            a(j + 1) = a(j);
+            j = j - 1;
+        }
+        a(j + 1) = key;
+    }
+}
+
+func main() {
+    def a: Array[Int]({3, 4, 2, 5, 1});
+
+    insertionSort(a);
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+}
+
+main();

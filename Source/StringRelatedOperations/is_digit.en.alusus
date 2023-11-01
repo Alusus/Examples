@@ -1,0 +1,32 @@
+import "Srl/Console";
+
+
+use Srl;
+
+
+func is_digit(c: Char): Bool {
+    return (c >= '0' && c <= '9');
+}
+
+
+func main() {
+    def c1: Char = 'f';
+
+	if is_digit(c1) {
+    	Console.print("true\n");
+	}
+	else {
+		Console.print("false\n");
+	}
+
+    def c2: Char = '5';
+    if is_digit(c2) {
+    	Console.print("true\n");
+	}
+	else {
+		Console.print("false\n");
+	}
+}
+
+
+main();

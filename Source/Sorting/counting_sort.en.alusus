@@ -1,0 +1,41 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+
+def MAX_VALUE: Int = 100000;
+
+func countingSort(a: ref[Array[Int]]) {
+    def i: Int;
+    def j: Int;
+    def idx: Int;
+
+    def count: Array[Int];
+    for i = 0 , i < MAX_VALUE , i++ {
+        count.add(0);
+    }
+
+    for i = 0 , i < a.getLength() , i++ {
+        count(a(i))++;
+    }
+
+    for i = 0 , i < MAX_VALUE , i++ {
+        for j = 0 , j < count(i) , j++ {
+            a(idx++) = i;
+        }
+    }
+}
+
+func main() {
+    def a: Array[Int]({3, 4, 2, 5, 1});
+
+    countingSort(a);
+
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+}
+
+main();

@@ -1,0 +1,33 @@
+import "Srl/Console";
+import "Srl/Math";
+
+
+
+use Srl;
+
+class Point {
+    def x : Float;
+    def y : Float;
+};
+
+func triangleArea(p1: Point, p2: Point, p3: Point): Float {
+    return Math.abs(p1.x*(p2.y-p3.y) + p2.x*(p3.y-p1.y) + p3.x*(p1.y-p2.y)) / 2.0;
+}
+
+
+func main() {
+    def p1: Point;
+	p1.x = 0;
+	p1.y = 0;
+    def p2: Point;
+	p2.x = 5;
+	p2.y = 0;
+    def p3: Point;
+	p3.x = 0;
+	p3.y = 5;
+
+    Console.print("Area of the triangle is: %f\n", triangleArea(p1, p2, p3)~cast[Float[64]]);
+}
+
+
+main();
