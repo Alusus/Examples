@@ -1,0 +1,29 @@
+import "Srl/Console";
+import "Srl/String";
+
+
+use Srl;
+
+
+func ends_with(s: ref[String], suffix: ref[String]): Bool {
+    def i: Int;
+	for i = 1 , i <= suffix.getLength() , i++ {
+		if (suffix(suffix.getLength() - i) != s(s.getLength() - i)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
+func main() {
+    def s: String = "abccde1324";
+
+    def suffix: String = "1324";
+	Console.print("%d\n", ends_with(s, suffix));
+    suffix = "1234";
+	Console.print("%d\n", ends_with(s, suffix));
+}
+
+
+main();

@@ -318,5 +318,341 @@
         "jsAnswer": "Source/ArrayRelatedOperations/find_most_frequent.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/find_most_frequent.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/find_most_frequent.ar.alusus"
+    },
+    {
+        "enPrompt": "check if a given string starts with another given string",
+        "arPrompt": "تحقق فيما إذا كانت سلسلة نصية معطاة تبدأ بسلسلة نصية أخرى معطاة",
+        "cAnswer": "Source/StringRelatedOperations/starts_with.c",
+        "jsAnswer": "Source/StringRelatedOperations/starts_with.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/starts_with.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/starts_with.ar.alusus"
+    },
+    {
+        "enPrompt": "check if a given string ends with another given string",
+        "arPrompt": "تحقق فيما إذا كانت سلسلة نصية معطاة تنتهي بسلسلة نصية أخرى معطاة",
+        "cAnswer": "Source/StringRelatedOperations/ends_with.c",
+        "jsAnswer": "Source/StringRelatedOperations/ends_with.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/ends_with.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/ends_with.ar.alusus"
+    },
+    {
+        "enPrompt": "Remove any whitespace character from both ends of a given string",
+        "arPrompt": "أزل أي محرف فراغ من كلتا نهايتي سلسلة نصية معطاة",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "Find the first index at which the two given arrays differ, return -1 if not found",
+        "arPrompt": "جد أول دليل تختلف عنده المصفوفتان المعطاتان، ارجع -1 إذا لم يوجد هكذا دليل",
+        "cAnswer": "Source/ArrayRelatedOperations/find_diff_index.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/find_diff_index.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/find_diff_index.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/find_diff_index.ar.alusus"
+    },
+    {
+        "enPrompt": "Slice a given array within a given range",
+        "arPrompt": "اجتزئ مصفوفة معطاة ضمن مجال معطى",
+        "cAnswer": "Source/ArrayRelatedOperations/array_slice.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/array_slice.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/array_slice.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/array_slice.ar.alusus"
+    },
+    {
+        "enPrompt": "Slice a given string within a given range and return the result",
+        "arPrompt": "اجتزئ سلسلة نصية معطاة ضمن مجال معطى و ارجع النتيجة",
+        "cAnswer": "Source/StringRelatedOperations/string_slice.c",
+        "jsAnswer": "Source/StringRelatedOperations/string_slice.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/string_slice.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/string_slice.ar.alusus"
+    },
+    {
+        "enPrompt": "Replace a given char with another given char in a given string and return the new string",
+        "arPrompt": "استبدل محرف معطى بآخر معطى في سلسلة نصية معطاة و ارجع السلسلة النصية الجديدة",
+        "cAnswer": "Source/StringRelatedOperations/replace.c",
+        "jsAnswer": "Source/StringRelatedOperations/replace.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/replace.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/replace.ar.alusus"
+    },
+    {
+        "enPrompt": "Replace a given value with another given value in a given array",
+        "arPrompt": "استبدل قيمة معطاة بآخرى معطاة في مصفوفة معطاة",
+        "cAnswer": "Source/ArrayRelatedOperations/replace.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/replace.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/replace.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/replace.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "",
+        "arPrompt": "",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
     }
 ]

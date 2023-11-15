@@ -1,0 +1,28 @@
+import "Srl/String";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func slice(s: ref[String], start: Int, end: Int): String {
+    def result: String = "";
+
+    def i: Int;
+    for i = start , i <= end , i++ {
+        result.append(s(i));
+    }
+
+    return result;
+}
+
+func main() {
+    def s: String = "Hello, World!";
+
+    def result: String = slice(s, 7, 12);
+
+    Console.print("%s\n", result.buf);
+}
+
+
+main();
