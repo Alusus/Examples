@@ -384,12 +384,12 @@
         "arAlususAnswer": "Source/ArrayRelatedOperations/replace.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Check if a given array is ordered and return 1 in case of Ascending order, -1 in case of Descending order, 0 otherwise",
+        "arPrompt": "تحقق فيما إذا كانت مصفوفة معطاة مرتبة و ارجع 1 في حال كانت مرتبة تصاعديًا، -1 في حال كانت مرتبة تنازليًا، 0 في حال كانت غير مرتبة",
+        "cAnswer": "Source/ArrayRelatedOperations/check_order.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/check_order.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/check_order.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/check_order.ar.alusus"
     },
     {
         "enPrompt": "",
