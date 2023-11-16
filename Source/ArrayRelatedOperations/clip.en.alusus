@@ -1,0 +1,32 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func clip(a: ref[Array[Int]], lower: Int, upper: Int) {
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        if a(i) < lower {
+            a(i) = lower;
+        }
+        else if a(i) > upper {
+            a(i) = upper;
+        }
+    }
+}
+
+func main() {
+    def a: Array[Int]({1, -1, 7, 4, 5, 6, 7, 8, 9});
+
+
+    clip(a, 0, 5);
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+}
+
+
+main();

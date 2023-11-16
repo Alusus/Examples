@@ -392,12 +392,12 @@
         "arAlususAnswer": "Source/ArrayRelatedOperations/check_order.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Clip the values of a given array within a given range",
+        "arPrompt": "اقتطع قيم مصفوفة معطاة ضمن مجال معطى",
+        "cAnswer": "Source/ArrayRelatedOperations/clip.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/clip.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/clip.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/clip.ar.alusus"
     },
     {
         "enPrompt": "",
