@@ -456,12 +456,12 @@
         "arAlususAnswer": "Source/FileHandling/read_file.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Read the lines of a text file given its path into an array and return it",
+        "arPrompt": "اقرأ أسطر ملف نصي معطى مساره إلى مصفوفة و ارجعها",
+        "cAnswer": "Source/FileHandling/read_file_to_array.c",
+        "jsAnswer": "Source/FileHandling/read_fread_file_to_arrayile.js",
+        "enAlususAnswer": "Source/FileHandling/read_file_to_array.en.alusus",
+        "arAlususAnswer": "Source/FileHandling/read_file_to_array.ar.alusus"
     },
     {
         "enPrompt": "",
