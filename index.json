@@ -424,12 +424,12 @@
         "arAlususAnswer": "Source/ArrayRelatedOperations/check_all.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Check if any element in a given array satisfy a criteria defined by a function with boolean return value",
+        "arPrompt": "تفحص فيما إذا كان أي عنصر في مصفوفة معطاة يحقق معيار معرف بدالة تعيد قيمة ثـنائية",
+        "cAnswer": "Source/ArrayRelatedOperations/check_any.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/check_any.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/check_any.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/check_any.ar.alusus"
     },
     {
         "enPrompt": "",
