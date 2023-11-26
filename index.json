@@ -400,12 +400,12 @@
         "arAlususAnswer": "Source/ArrayRelatedOperations/clip.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Initialize a given array with a given size by a given value",
+        "arPrompt": "هيئ مصفوفة معطاة لها حجم معطى بقيمة معطاة",
+        "cAnswer": "Source/ArrayRelatedOperations/init_array.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/init_array.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/init_array.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/init_array.ar.alusus"
     },
     {
         "enPrompt": "",

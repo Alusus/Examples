@@ -1,0 +1,27 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func initializeArray(a: ref[Array[Int]], size: Int, val: Int) {
+    def i: Int;
+    for i = 0, i < size, i++ {
+        a.add(val);
+    }
+}
+
+func main() {
+    def a: Array[Int];
+
+	initializeArray(a, 5, 10);
+
+    def i: Int;
+    for i = 0 , i < a.getLength(), i++ {
+        Console.print("%d ", a(i));
+    }
+}
+
+
+main();
