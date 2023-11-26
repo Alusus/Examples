@@ -1,0 +1,53 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func is_permutation(a1: ref[Array[Int]], a2: ref[Array[Int]]): Bool {
+    if a1.getLength() != a2.getLength() {
+        return false;
+    }
+
+    def visited: Array[Bool];
+    def i: Int;
+    for i = 0 , i < a2.getLength() , i++ {
+        visited.add(false);
+    }
+
+    def j: Int;
+    for i = 0 , i < a1.getLength() , i++ {
+        def found: Bool = false;
+        for j = 0 , j < a2.getLength() , j++ {
+            if a1(i) == a2(j) && !visited(j) {
+                found = true;
+                visited(j) = true;
+                break;
+            }
+        }
+        if !found {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+func main() {
+    def a1: Array[Int]({1, 2, 3, 4, 5});
+    def a2: Array[Int]({5, 4, 3, 2, 1});
+
+
+    def result: Bool = is_permutation(a1, a2);
+
+    if result {
+        Console.print("arr2 is a permutation of arr1.\n");
+    }
+    else {
+        Console.print("arr2 is not a permutation of arr1.\n");
+    }
+}
+
+
+main();

@@ -432,12 +432,12 @@
         "arAlususAnswer": "Source/ArrayRelatedOperations/check_any.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Check whether a given array is a permutation for another given array",
+        "arPrompt": "تحقق فيما إذا كانت مصفوفة معطاة هي تباديل لمصفوفة أخرى معطاة",
+        "cAnswer": "Source/ArrayRelatedOperations/is_permutation.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/is_permutation.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/is_permutation.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/is_permutation.ar.alusus"
     },
     {
         "enPrompt": "",
