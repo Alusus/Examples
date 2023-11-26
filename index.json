@@ -440,12 +440,12 @@
         "arAlususAnswer": "Source/ArrayRelatedOperations/is_permutation.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Read the nth line of a text file given its path and return the result",
+        "arPrompt": "اقرأ السطر ن لملف نصي معطى مساره و ارجع النتيجة",
+        "cAnswer": "Source/FileHandling/read_nth_line.c",
+        "jsAnswer": "Source/FileHandling/read_nth_line.js",
+        "enAlususAnswer": "Source/FileHandling/read_nth_line.en.alusus",
+        "arAlususAnswer": "Source/FileHandling/read_nth_line.ar.alusus"
     },
     {
         "enPrompt": "",

@@ -1,0 +1,32 @@
+import "Srl/Console";
+import "Srl/Fs";
+import "Srl/String";
+
+use Srl;
+
+
+func read_nth_line(file_path: ref[String], n: Int): String {
+    def file: ptr[Fs.File] = Fs.openFile(file_path.buf, "r");
+
+    def nth_line: String;
+    def i: Int;
+    for i = 0 , i < n , i++ {
+        nth_line = "";
+        def temp: Char = ' ';
+        while temp != '\n' {
+            Fs.read(temp~ptr, 1, 1, file);
+            nth_line.append(temp);
+        }
+    }
+
+    return nth_line;
+}
+
+func main() {
+    def file_path: String = "example_text.txt";
+    def result: String = read_nth_line(file_path, 5);
+    
+    Console.print("%s", result.buf);
+}
+
+main();
