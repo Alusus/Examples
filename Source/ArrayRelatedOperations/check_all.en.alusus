@@ -1,0 +1,38 @@
+import "Srl/Array";
+import "Srl/Console";
+import "closure";
+
+
+use Srl;
+
+
+func check_all(a: ref[Array[Int]], f: closure (num: Int): Bool): Bool {
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        if !f(a(i)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+func main() {
+    def a: Array[Int]({1, 2, 3, 4, 5});
+
+
+    def result: Bool = check_all(a, closure(num: Int): Bool {
+        return num > 0;
+    });
+
+    if result {
+        Console.print("All elements in the array are positive.\n");
+    }
+    else {
+        Console.print("Not all elements in the array are positive.\n");
+    }
+
+}
+
+
+main();
