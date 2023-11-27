@@ -466,10 +466,10 @@
     {
         "enPrompt": "",
         "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "cAnswer": "Source/is_prime.c",
+        "jsAnswer": "Source/is_prime.js",
+        "enAlususAnswer": "Source/is_prime.en.alusus",
+        "arAlususAnswer": "Source/is_prime.ar.alusus"
     },
     {
         "enPrompt": "",
