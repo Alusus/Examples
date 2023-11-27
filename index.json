@@ -464,8 +464,8 @@
         "arAlususAnswer": "Source/FileHandling/read_file_to_array.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
+        "enPrompt": "Check whether a given number is prime or not and return that result",
+        "arPrompt": "تحقق فيما إذا كان عدد معطى أولي أم لا و ارجع تلك النتيجة",
         "cAnswer": "Source/is_prime.c",
         "jsAnswer": "Source/is_prime.js",
         "enAlususAnswer": "Source/is_prime.en.alusus",
