@@ -1,0 +1,28 @@
+import "Srl/Console";
+import "Srl/Array";
+import "Srl/Math";
+
+use Srl;
+
+
+func vectorNorm(vector: ref[Array[Float[64]]]): Float[64] {
+    def sum: Float[64] = 0;
+
+    def i: Int;
+    for i = 0 , i < vector.getLength() , i++ {
+        sum += vector(i) * vector(i);
+    }
+
+    return Math.sqrt(sum);
+}
+
+
+func main() {
+    def vector: Array[Float[64]]({3.0, 4.0});
+
+    def norm: Float[64] = vectorNorm(vector);
+
+    Console.print("%.2f", norm);
+}
+
+main();

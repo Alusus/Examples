@@ -472,12 +472,12 @@
         "arAlususAnswer": "Source/is_prime.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Calculate the norm of a given vector which is represented by an array and return the result",
+        "arPrompt": "احسب طويلة شعاع معطى ممثل على شكل مصفوفة و ارجع النتيجة",
+        "cAnswer": "Source/Geometry/vector_norm.c",
+        "jsAnswer": "Source/Geometry/vector_norm.js",
+        "enAlususAnswer": "Source/Geometry/vector_norm.en.alusus",
+        "arAlususAnswer": "Source/Geometry/vector_norm.ar.alusus"
     },
     {
         "enPrompt": "",
