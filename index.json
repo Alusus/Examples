@@ -480,12 +480,12 @@
         "arAlususAnswer": "Source/Geometry/vector_norm.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Calculate the dot product of two given vectors each represented by an array and return the result",
+        "arPrompt": "احسب الجداء النقطي لشعاعين معطيين كل منهما ممثل على شكل مصفوفة و ارجع النتيجة",
+        "cAnswer": "Source/Geometry/dot_product.c",
+        "jsAnswer": "Source/Geometry/dot_product.js",
+        "enAlususAnswer": "Source/Geometry/dot_product.en.alusus",
+        "arAlususAnswer": "Source/Geometry/dot_product.ar.alusus"
     },
     {
         "enPrompt": "",
