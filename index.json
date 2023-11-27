@@ -488,12 +488,12 @@
         "arAlususAnswer": "Source/Geometry/dot_product.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Calculate the outer product of two given vectors each represented by an array and return the result",
+        "arPrompt": "احسب الجداء الخارجي لشعاعين معطيين كل منهما ممثل على شكل مصفوفة و ارجع النتيجة",
+        "cAnswer": "Source/Geometry/outer_product.c",
+        "jsAnswer": "Source/Geometry/outer_product.js",
+        "enAlususAnswer": "Source/Geometry/outer_product.en.alusus",
+        "arAlususAnswer": "Source/Geometry/outer_product.ar.alusus"
     },
     {
         "enPrompt": "",
