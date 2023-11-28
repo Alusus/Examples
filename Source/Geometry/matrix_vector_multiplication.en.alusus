@@ -1,0 +1,44 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+def Matrix: alias Array[Array[Float[64]]];
+def Vector: alias Array[Float[64]];
+
+
+func multiply(m: ref[Matrix], v: ref[Vector]): Vector {
+    def rows: Int = m.getLength();
+    def cols: Int = m(0).getLength();
+    
+    def result: Vector;
+
+    def i: Int;
+    def j: Int;
+    for i = 0 , i < rows , i++ {
+        result.add(0);
+        for j = 0 , j < cols , j++ {
+            result(i) += m(i)(j) * v(j);
+        }
+    }
+
+    return result;
+}
+
+
+func main() {
+    def m: Matrix;
+    m.add(Array[Float[64]]({1.0, 2.0, 3.0}));
+    m.add(Array[Float[64]]({4.0, 5.0, 6.0}));
+
+    def v: Vector({7.0, 8.0, 9.0});
+
+    def result: Vector = multiply(m, v);
+
+    def i: Int;
+    for i = 0 , i < result.getLength() , i++ {
+        Console.print("%.2f ", result(i));
+    }
+}
+
+main();
