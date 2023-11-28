@@ -536,12 +536,12 @@
         "arAlususAnswer": "Source/GraphAlgorithms/num_connected_components.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Check if a given undirected graph is tree",
+        "arPrompt": "تحقق فيما إذا كان بيان غير موجه معطى يمثل شجرة",
+        "cAnswer": "Source/GraphAlgorithms/is_tree.c",
+        "jsAnswer": "Source/GraphAlgorithms/is_tree.js",
+        "enAlususAnswer": "Source/GraphAlgorithms/is_tree.en.alusus",
+        "arAlususAnswer": "Source/GraphAlgorithms/is_tree.ar.alusus"
     },
     {
         "enPrompt": "",
