@@ -528,12 +528,12 @@
         "arAlususAnswer": "Source/Geometry/line_intersection.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Find the number of connected components in a given undirected graph",
+        "arPrompt": "جد عدد المكونات المترابطة في بيان غير موجه معطى",
+        "cAnswer": "Source/GraphAlgorithms/num_connected_components.c",
+        "jsAnswer": "Source/GraphAlgorithms/num_connected_components.js",
+        "enAlususAnswer": "Source/GraphAlgorithms/num_connected_components.en.alusus",
+        "arAlususAnswer": "Source/GraphAlgorithms/num_connected_components.ar.alusus"
     },
     {
         "enPrompt": "",
