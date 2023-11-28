@@ -496,12 +496,12 @@
         "arAlususAnswer": "Source/Geometry/outer_product.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Calculate the product of two given matrices represented by a 2D array and return the result",
+        "arPrompt": "احسب جداء مصفوفتين ثنائيتي البعد معطاتان و ممثلتان بمصفوفة ثنائية البعد و ارجع النتيجة",
+        "cAnswer": "Source/Geometry/matrix_matrix_multiplication.c",
+        "jsAnswer": "Source/Geometry/matrix_matrix_multiplication.js",
+        "enAlususAnswer": "Source/Geometry/matrix_matrix_multiplication.en.alusus",
+        "arAlususAnswer": "Source/Geometry/matrix_matrix_multiplication.ar.alusus"
     },
     {
         "enPrompt": "",
