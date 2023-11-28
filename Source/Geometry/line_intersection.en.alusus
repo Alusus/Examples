@@ -1,0 +1,38 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+func findIntersection(a1: Float[64], b1: Float[64], c1: Float[64], a2: Float[64], b2: Float[64], c2: Float[64]): Array[Float[64]] {
+    def result: Array[Float[64]];
+    if a1*b2 - a2*b1 == 0 {
+        return result;
+    }
+
+    result.add((b1*c2 - b2*c1) / (a1*b2 - a2*b1));
+    result.add((a2*c1 - a1*c2) / (a1*b2 - a2*b1));
+
+    return result;
+}
+
+
+func main() {
+    def a1: Float[64] = 1;
+    def b1: Float[64] = -1;
+    def c1: Float[64] = -3;
+
+    def a2: Float[64] = 1;
+    def b2: Float[64] = 1;
+    def c2: Float[64] = -5;
+
+    def result: Array[Float[64]] = findIntersection(a1, b1, c1, a2, b2, c2);
+
+    if result.getLength() != 0 {
+        Console.print("The intersection point is: (%f, %f)\n", result(0), result(1));
+    }
+    else {
+        Console.print("The lines are parallel and do not intersect.\n");
+    }
+}
+
+main();
