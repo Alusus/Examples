@@ -1,0 +1,60 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+func isCyclic(node: Int, visited: ref[Array[Int]], graph: ref[Array[Array[Int]]]): Bool {
+    if visited(node) == 2 {
+        return true;
+    }
+    visited(node) = 1;
+
+    def i: Int;
+    for i = 0 , i < graph(node).getLength(), i++ {
+        def childNode: Int = graph(node)(i);
+        if visited(childNode) == 1 {
+            return true;
+        }
+        else if visited(childNode) == 0 && isCyclic(childNode, visited, graph){
+            return true;
+        }
+    }
+    visited(node) = 2;
+    return false;
+}
+
+
+func isDAG(graph: ref[Array[Array[Int]]]): Bool {
+    def visited: Array[Int];
+    def i: Int;
+
+    for i = 0 , i < graph.getLength() , i++ {
+        def j: Int;
+        for j = 0 , j < graph.getLength() , j++ {
+            visited.add(0);
+        }
+        if isCyclic(i, visited, graph) {
+            return false;
+        }
+        visited.clear();
+    }
+
+    return true;
+}
+
+func main() {
+    def graph: Array[Array[Int]];
+    graph.add(Array[Int]({1}));
+    graph.add(Array[Int]({2}));
+    graph.add(Array[Int]({3}));
+    graph.add(Array[Int]());
+
+    if isDAG(graph) {
+        Console.print("The graph is a DAG\n");
+    }
+    else {
+        Console.print("The graph is not a DAG\n");
+    }
+}
+
+main();

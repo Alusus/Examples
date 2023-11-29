@@ -544,12 +544,12 @@
         "arAlususAnswer": "Source/GraphAlgorithms/is_tree.ar.alusus"
     },
     {
-        "enPrompt": "",
-        "arPrompt": "",
-        "cAnswer": "Source/StringRelatedOperations/trim.c",
-        "jsAnswer": "Source/StringRelatedOperations/trim.js",
-        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
-        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+        "enPrompt": "Check if a given directed graph is a DAG",
+        "arPrompt": "تحقق فيما إذا كان بيان موجه معطى يمثل داغ",
+        "cAnswer": "Source/GraphAlgorithms/is_dag.c",
+        "jsAnswer": "Source/GraphAlgorithms/is_dag.js",
+        "enAlususAnswer": "Source/GraphAlgorithms/is_dag.en.alusus",
+        "arAlususAnswer": "Source/GraphAlgorithms/is_dag.ar.alusus"
     },
     {
         "enPrompt": "",
