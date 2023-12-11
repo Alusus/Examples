@@ -8,15 +8,20 @@ use Srl;
 func read_nth_line(file_path: ref[String], n: Int): String {
     def file: ptr[Fs.File] = Fs.openFile(file_path.buf, "r");
 
-    def nth_line: String;
     def i: Int;
-    for i = 0 , i < n , i++ {
-        nth_line = "";
-        def temp: Char = ' ';
+    def temp: Char = ' ';
+    for i = 0 , i < n - 1 , i++ {
+        temp = ' ';
         while temp != '\n' {
             Fs.read(temp~ptr, 1, 1, file);
-            nth_line.append(temp);
         }
+    }
+
+    def nth_line: String;
+    temp = ' ';
+    while temp != '\n' {
+        Fs.read(temp~ptr, 1, 1, file);
+        nth_line.append(temp);
     }
 
     return nth_line;

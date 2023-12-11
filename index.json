@@ -417,7 +417,7 @@
     },
     {
         "enPrompt": "Check if all elements in a given array satisfy a criteria defined by a function with boolean return value",
-        "arPrompt": "تفحص فيما إذا كان كل عناصر مصفوفة معطاة تحقق معيار معرف بدالة تعيد قيمة ثـنائية",
+        "arPrompt": "تفحص فيما إذا كان كل عناصر مصفوفة معطاة تحقق معيارًا معرفًا بدالة تعيد قيمة ثـنائية",
         "cAnswer": "Source/ArrayRelatedOperations/check_all.c",
         "jsAnswer": "Source/ArrayRelatedOperations/check_all.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/check_all.en.alusus",
@@ -425,7 +425,7 @@
     },
     {
         "enPrompt": "Check if any element in a given array satisfy a criteria defined by a function with boolean return value",
-        "arPrompt": "تفحص فيما إذا كان أي عنصر في مصفوفة معطاة يحقق معيار معرف بدالة تعيد قيمة ثـنائية",
+        "arPrompt": "تفحص فيما إذا كان أي عنصر في مصفوفة معطاة يحقق معيارًا معرفًا بدالة تعيد قيمة ثـنائية",
         "cAnswer": "Source/ArrayRelatedOperations/check_any.c",
         "jsAnswer": "Source/ArrayRelatedOperations/check_any.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/check_any.en.alusus",

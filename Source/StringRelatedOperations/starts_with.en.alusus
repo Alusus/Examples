@@ -6,6 +6,10 @@ use Srl;
 
 
 func starts_with(s: ref[String], prefix: ref[String]): Bool {
+	if s.getLength() < prefix.getLength() {
+		return false;
+	}
+
     def i: Int;
 	for i = 0 , i < prefix.getLength() , i++ {
 		if (prefix(i) != s(i)) {

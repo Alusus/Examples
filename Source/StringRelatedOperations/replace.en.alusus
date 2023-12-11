@@ -9,16 +9,16 @@ func replace(s: ref[String], oldChar: Char, newChar: Char): String {
     def result: String;
 
     def i: Int;
-	for i = 0 , i < s.getLength() , i++ {
-		if (s(i) == oldChar) {
-			result.append(newChar);
-		}
+    for i = 0 , i < s.getLength() , i++ {
+        if (s(i) == oldChar) {
+            result.append(newChar);
+        }
         else {
             result.append(s(i));
         }
-	}
+    }
 
-	return result;
+    return result;
 }
 
 
@@ -26,7 +26,7 @@ func main() {
     def s: String = "Hello, World!";
     def result: String = replace(s, 'o', 'a');
 
-	Console.print("%s\n", result.buf);
+    Console.print("%s\n", result.buf);
 }
 
 

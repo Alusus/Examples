@@ -6,6 +6,10 @@ use Srl;
 
 
 func ends_with(s: ref[String], suffix: ref[String]): Bool {
+	if s.getLength() < suffix.getLength() {
+		return false;
+	}
+
     def i: Int;
 	for i = 1 , i <= suffix.getLength() , i++ {
 		if (suffix(suffix.getLength() - i) != s(s.getLength() - i)) {
