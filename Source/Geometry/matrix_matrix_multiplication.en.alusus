@@ -1,0 +1,56 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+def Matrix: alias Array[Array[Float[64]]];
+
+func multiply(a: ref[Matrix], b: ref[Matrix]): Matrix {
+    def rowsA: Int = a.getLength();
+    def rowsB: Int = b.getLength();
+    def colsA: Int = a(0).getLength();
+    def colsB: Int = b(0).getLength();
+    
+    def result: Matrix;
+
+    def i: Int;
+    def j: Int;
+    def k: Int;
+    for i = 0 , i < rowsA , i++ {
+        def row: Array[Float[64]];
+        for j = 0 , j < colsB , j++ {
+            row.add(0);
+            for k = 0 , k < colsA , k++ {
+                row(j) += a(i)(k) * b(k)(j);
+            }
+        }
+        result.add(row);
+    }
+
+    return result;
+}
+
+
+func main() {
+    def a: Matrix;
+    a.add(Array[Float[64]]({1.0, 2.0, 3.0}));
+    a.add(Array[Float[64]]({4.0, 5.0, 6.0}));
+
+    def b: Matrix;
+    b.add(Array[Float[64]]({7.0, 8.0}));
+    b.add(Array[Float[64]]({9.0, 10.0}));
+    b.add(Array[Float[64]]({11.0, 12.0}));
+
+    def result: Matrix = multiply(a, b);
+
+    def i: Int;
+    def j: Int;
+    for i = 0 , i < result.getLength() , i++ {
+        for j = 0 , j < result(0).getLength() , j++ {
+            Console.print("%.2f ", result(i)(j));
+        }
+        Console.print("\n");
+    }
+}
+
+main();

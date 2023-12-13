@@ -1,0 +1,46 @@
+import "Srl/Console";
+import "Srl/Fs";
+import "Srl/String";
+import "Srl/Array";
+
+use Srl;
+
+
+func readFileToArray(file_path: ref[String]): Array[String] {
+    def file: ptr[Fs.File] = Fs.openFile(file_path.buf, "r");
+    def content: Array[String];
+
+    Fs.seek(file, 0, Fs.Seek.END);
+    def size: Int = Fs.tell(file);
+    Fs.seek(file, 0, Fs.Seek.SET);
+    
+    content.add(String());
+    def i: Int;
+    def j: Int = 0;
+    for i = 0 , i < size , i++ {
+        def temp: Char;
+        Fs.read(temp~ptr, 1, 1, file);
+
+        if temp == '\n' {
+            content.add(String());
+            j++;
+        }
+        else {
+            content(j).append(temp);
+        }
+    }
+
+    return content;
+}
+
+func main() {
+    def file_path: String = "example_text.txt";
+    def result: Array[String] = readFileToArray(file_path);
+    
+    def i: Int;
+    for i = 0 , i < result.getLength() , i++ {
+        Console.print("%s\n", result(i).buf);
+    }
+}
+
+main();

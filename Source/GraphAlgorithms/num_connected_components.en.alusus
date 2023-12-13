@@ -1,0 +1,49 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+func dfs(node: Int, visited: ref[Array[Bool]], graph: ref[Array[Array[Int]]]) {
+    visited(node) = true;
+
+    def i: Int;
+    for i = 0 , i < graph(node).getLength(), i++ {
+        def childNode: Int = graph(node)(i);
+        if !visited(childNode) {
+            dfs(childNode, visited, graph);
+        }
+    }
+}
+
+
+func numberOfConnectedComponents(graph: ref[Array[Array[Int]]]): Int {
+    def visited: Array[Bool];
+    def i: Int;
+    for i = 0 , i < graph.getLength() , i++ {
+        visited.add(false);
+    }
+
+    def components: Int = 0;
+    for i = 0 , i < graph.getLength() , i++ {
+        if !visited(i) {
+            dfs(i, visited, graph);
+            components++;
+        }
+    }
+
+    return components;
+}
+
+func main() {
+    def graph: Array[Array[Int]];
+    graph.add(Array[Int]({1}));
+    graph.add(Array[Int]({0, 2}));
+    graph.add(Array[Int]({1}));
+    graph.add(Array[Int]({4}));
+    graph.add(Array[Int]({3, 5}));
+    graph.add(Array[Int]({4}));
+
+    Console.print("Number of connected components: %d\n", numberOfConnectedComponents(graph));
+}
+
+main();

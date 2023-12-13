@@ -318,5 +318,245 @@
         "jsAnswer": "Source/ArrayRelatedOperations/find_most_frequent.js",
         "enAlususAnswer": "Source/ArrayRelatedOperations/find_most_frequent.en.alusus",
         "arAlususAnswer": "Source/ArrayRelatedOperations/find_most_frequent.ar.alusus"
-    }
+    },
+    {
+        "enPrompt": "check if a given string starts with another given string",
+        "arPrompt": "تحقق فيما إذا كانت سلسلة نصية معطاة تبدأ بسلسلة نصية أخرى معطاة",
+        "cAnswer": "Source/StringRelatedOperations/starts_with.c",
+        "jsAnswer": "Source/StringRelatedOperations/starts_with.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/starts_with.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/starts_with.ar.alusus"
+    },
+    {
+        "enPrompt": "check if a given string ends with another given string",
+        "arPrompt": "تحقق فيما إذا كانت سلسلة نصية معطاة تنتهي بسلسلة نصية أخرى معطاة",
+        "cAnswer": "Source/StringRelatedOperations/ends_with.c",
+        "jsAnswer": "Source/StringRelatedOperations/ends_with.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/ends_with.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/ends_with.ar.alusus"
+    },
+    {
+        "enPrompt": "Remove any whitespace character from both ends of a given string",
+        "arPrompt": "أزل أي محرف فراغ من كلتا نهايتي سلسلة نصية معطاة",
+        "cAnswer": "Source/StringRelatedOperations/trim.c",
+        "jsAnswer": "Source/StringRelatedOperations/trim.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/trim.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/trim.ar.alusus"
+    },
+    {
+        "enPrompt": "Find the first index at which the two given arrays differ, return -1 if not found",
+        "arPrompt": "جد أول دليل تختلف عنده المصفوفتان المعطاتان، ارجع -1 إذا لم يوجد هكذا دليل",
+        "cAnswer": "Source/ArrayRelatedOperations/find_diff_index.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/find_diff_index.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/find_diff_index.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/find_diff_index.ar.alusus"
+    },
+    {
+        "enPrompt": "Slice a given array within a given range",
+        "arPrompt": "اجتزئ مصفوفة معطاة ضمن مجال معطى",
+        "cAnswer": "Source/ArrayRelatedOperations/array_slice.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/array_slice.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/array_slice.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/array_slice.ar.alusus"
+    },
+    {
+        "enPrompt": "Slice a given string within a given range and return the result",
+        "arPrompt": "اجتزئ سلسلة نصية معطاة ضمن مجال معطى و ارجع النتيجة",
+        "cAnswer": "Source/StringRelatedOperations/string_slice.c",
+        "jsAnswer": "Source/StringRelatedOperations/string_slice.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/string_slice.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/string_slice.ar.alusus"
+    },
+    {
+        "enPrompt": "Replace a given char with another given char in a given string and return the new string",
+        "arPrompt": "استبدل محرف معطى بآخر معطى في سلسلة نصية معطاة و ارجع السلسلة النصية الجديدة",
+        "cAnswer": "Source/StringRelatedOperations/replace.c",
+        "jsAnswer": "Source/StringRelatedOperations/replace.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/replace.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/replace.ar.alusus"
+    },
+    {
+        "enPrompt": "Replace a given value with another given value in a given array",
+        "arPrompt": "استبدل قيمة معطاة بآخرى معطاة في مصفوفة معطاة",
+        "cAnswer": "Source/ArrayRelatedOperations/replace.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/replace.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/replace.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/replace.ar.alusus"
+    },
+    {
+        "enPrompt": "Check if a given array is ordered and return 1 in case of Ascending order, -1 in case of Descending order, 0 otherwise",
+        "arPrompt": "تحقق فيما إذا كانت مصفوفة معطاة مرتبة و ارجع 1 في حال كانت مرتبة تصاعديًا، -1 في حال كانت مرتبة تنازليًا، 0 في حال كانت غير مرتبة",
+        "cAnswer": "Source/ArrayRelatedOperations/check_order.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/check_order.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/check_order.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/check_order.ar.alusus"
+    },
+    {
+        "enPrompt": "Clip the values of a given array within a given range",
+        "arPrompt": "اقتطع قيم مصفوفة معطاة ضمن مجال معطى",
+        "cAnswer": "Source/ArrayRelatedOperations/clip.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/clip.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/clip.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/clip.ar.alusus"
+    },
+    {
+        "enPrompt": "Initialize a given array with a given size by a given value",
+        "arPrompt": "هيئ مصفوفة معطاة لها حجم معطى بقيمة معطاة",
+        "cAnswer": "Source/ArrayRelatedOperations/init_array.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/init_array.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/init_array.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/init_array.ar.alusus"
+    },
+    {
+        "enPrompt": "Split a given string into a list of strings based on a given character",
+        "arPrompt": "جزئ نص معطى إلى لائحة من النصوص بناء على محرف معطى",
+        "cAnswer": "Source/StringRelatedOperations/split.c",
+        "jsAnswer": "Source/StringRelatedOperations/split.js",
+        "enAlususAnswer": "Source/StringRelatedOperations/split.en.alusus",
+        "arAlususAnswer": "Source/StringRelatedOperations/split.ar.alusus"
+    },
+    {
+        "enPrompt": "Check if all elements in a given array satisfy a criteria defined by a function with boolean return value",
+        "arPrompt": "تفحص فيما إذا كان كل عناصر مصفوفة معطاة تحقق معيارًا معرفًا بدالة تعيد قيمة ثـنائية",
+        "cAnswer": "Source/ArrayRelatedOperations/check_all.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/check_all.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/check_all.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/check_all.ar.alusus"
+    },
+    {
+        "enPrompt": "Check if any element in a given array satisfy a criteria defined by a function with boolean return value",
+        "arPrompt": "تفحص فيما إذا كان أي عنصر في مصفوفة معطاة يحقق معيارًا معرفًا بدالة تعيد قيمة ثـنائية",
+        "cAnswer": "Source/ArrayRelatedOperations/check_any.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/check_any.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/check_any.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/check_any.ar.alusus"
+    },
+    {
+        "enPrompt": "Check whether a given array is a permutation for another given array",
+        "arPrompt": "تحقق فيما إذا كانت مصفوفة معطاة هي تباديل لمصفوفة أخرى معطاة",
+        "cAnswer": "Source/ArrayRelatedOperations/is_permutation.c",
+        "jsAnswer": "Source/ArrayRelatedOperations/is_permutation.js",
+        "enAlususAnswer": "Source/ArrayRelatedOperations/is_permutation.en.alusus",
+        "arAlususAnswer": "Source/ArrayRelatedOperations/is_permutation.ar.alusus"
+    },
+    {
+        "enPrompt": "Read the nth line of a text file given its path and return the result",
+        "arPrompt": "اقرأ السطر ن لملف نصي معطى مساره و ارجع النتيجة",
+        "cAnswer": "Source/FileHandling/read_nth_line.c",
+        "jsAnswer": "Source/FileHandling/read_nth_line.js",
+        "enAlususAnswer": "Source/FileHandling/read_nth_line.en.alusus",
+        "arAlususAnswer": "Source/FileHandling/read_nth_line.ar.alusus"
+    },
+    {
+        "enPrompt": "Read the content of a text file given its path and return the result",
+        "arPrompt": "اقرأ محتوى ملف نصي معطى مساره و ارجع النتيجة",
+        "cAnswer": "Source/FileHandling/read_file.c",
+        "jsAnswer": "Source/FileHandling/read_file.js",
+        "enAlususAnswer": "Source/FileHandling/read_file.en.alusus",
+        "arAlususAnswer": "Source/FileHandling/read_file.ar.alusus"
+    },
+    {
+        "enPrompt": "Read the lines of a text file given its path into an array and return it",
+        "arPrompt": "اقرأ أسطر ملف نصي معطى مساره إلى مصفوفة و ارجعها",
+        "cAnswer": "Source/FileHandling/read_file_to_array.c",
+        "jsAnswer": "Source/FileHandling/read_fread_file_to_arrayile.js",
+        "enAlususAnswer": "Source/FileHandling/read_file_to_array.en.alusus",
+        "arAlususAnswer": "Source/FileHandling/read_file_to_array.ar.alusus"
+    },
+    {
+        "enPrompt": "Check whether a given number is prime or not and return that result",
+        "arPrompt": "تحقق فيما إذا كان عدد معطى أولي أم لا و ارجع تلك النتيجة",
+        "cAnswer": "Source/is_prime.c",
+        "jsAnswer": "Source/is_prime.js",
+        "enAlususAnswer": "Source/is_prime.en.alusus",
+        "arAlususAnswer": "Source/is_prime.ar.alusus"
+    },
+    {
+        "enPrompt": "Calculate the norm of a given vector which is represented by an array and return the result",
+        "arPrompt": "احسب طويلة شعاع معطى ممثل على شكل مصفوفة و ارجع النتيجة",
+        "cAnswer": "Source/Geometry/vector_norm.c",
+        "jsAnswer": "Source/Geometry/vector_norm.js",
+        "enAlususAnswer": "Source/Geometry/vector_norm.en.alusus",
+        "arAlususAnswer": "Source/Geometry/vector_norm.ar.alusus"
+    },
+    {
+        "enPrompt": "Calculate the dot product of two given vectors each represented by an array and return the result",
+        "arPrompt": "احسب الجداء النقطي لشعاعين معطيين كل منهما ممثل على شكل مصفوفة و ارجع النتيجة",
+        "cAnswer": "Source/Geometry/dot_product.c",
+        "jsAnswer": "Source/Geometry/dot_product.js",
+        "enAlususAnswer": "Source/Geometry/dot_product.en.alusus",
+        "arAlususAnswer": "Source/Geometry/dot_product.ar.alusus"
+    },
+    {
+        "enPrompt": "Calculate the outer product of two given vectors each represented by an array and return the result",
+        "arPrompt": "احسب الجداء الخارجي لشعاعين معطيين كل منهما ممثل على شكل مصفوفة و ارجع النتيجة",
+        "cAnswer": "Source/Geometry/outer_product.c",
+        "jsAnswer": "Source/Geometry/outer_product.js",
+        "enAlususAnswer": "Source/Geometry/outer_product.en.alusus",
+        "arAlususAnswer": "Source/Geometry/outer_product.ar.alusus"
+    },
+    {
+        "enPrompt": "Calculate the product of two given matrices represented by a 2D array and return the result",
+        "arPrompt": "احسب جداء مصفوفتين ثنائيتي البعد معطاتان و ممثلتان بمصفوفة ثنائية البعد و ارجع النتيجة",
+        "cAnswer": "Source/Geometry/matrix_matrix_multiplication.c",
+        "jsAnswer": "Source/Geometry/matrix_matrix_multiplication.js",
+        "enAlususAnswer": "Source/Geometry/matrix_matrix_multiplication.en.alusus",
+        "arAlususAnswer": "Source/Geometry/matrix_matrix_multiplication.ar.alusus"
+    },
+    {
+        "enPrompt": "Calculate the product of a given matrix, represented as 2D array, and a given vector, represented as an array, and return the result",
+        "arPrompt": "احسب جداء مصفوفة معطاة ممثلة على شكل مصفوفة ثنائية الأبعاد، و شعاع معطى ممثل على شكل مصفوفة و أعد النتيجة",
+        "cAnswer": "Source/Geometry/matrix_vector_multiplication.c",
+        "jsAnswer": "Source/Geometry/matrix_vector_multiplication.js",
+        "enAlususAnswer": "Source/Geometry/matrix_vector_multiplication.en.alusus",
+        "arAlususAnswer": "Source/Geometry/matrix_vector_multiplication.ar.alusus"
+    },
+    {
+        "enPrompt": "Calculate the product of a given matrix, represented as 2D array, and a given scalar, and return the result",
+        "arPrompt": "احسب جداء مصفوفة معطاة ممثلة على شكل مصفوفة ثنائية الأبعاد، و قيمة سلمية و أعد النتيجة",
+        "cAnswer": "Source/Geometry/matrix_scalar_multiplication.c",
+        "jsAnswer": "Source/Geometry/matrix_scalar_multiplication.js",
+        "enAlususAnswer": "Source/line_intersection/matrix_scalar_multiplication.en.alusus",
+        "arAlususAnswer": "Source/Geometry/matrix_scalar_multiplication.ar.alusus"
+    },
+    {
+        "enPrompt": "Find the intersection point of two given lines (the line represented by three values `a`, `b`, `c` as ax + by + c = 0) and return it, in case of parallel line return null or empty array",
+        "arPrompt": "جد نقطة التقاطع لخطين مستقيمين معطيين (الخط المستقيم ممثل بثلاث قيم هي أ، ب، ج كما يلي أ*س + ب*ص + ج = 0) و ارجع هذه النقطة، في حال كان المستقيمان متوازيان ارجع خالٍ أو مصفوفة فارغة",
+        "cAnswer": "Source/Geometry/line_intersection.c",
+        "jsAnswer": "Source/Geometry/line_intersection.js",
+        "enAlususAnswer": "Source/Geometry/line_intersection.en.alusus",
+        "arAlususAnswer": "Source/Geometry/line_intersection.ar.alusus"
+    },
+    {
+        "enPrompt": "Find the number of connected components in a given undirected graph",
+        "arPrompt": "جد عدد المكونات المترابطة في بيان غير موجه معطى",
+        "cAnswer": "Source/GraphAlgorithms/num_connected_components.c",
+        "jsAnswer": "Source/GraphAlgorithms/num_connected_components.js",
+        "enAlususAnswer": "Source/GraphAlgorithms/num_connected_components.en.alusus",
+        "arAlususAnswer": "Source/GraphAlgorithms/num_connected_components.ar.alusus"
+    },
+    {
+        "enPrompt": "Check if a given undirected graph is tree",
+        "arPrompt": "تحقق فيما إذا كان بيان غير موجه معطى يمثل شجرة",
+        "cAnswer": "Source/GraphAlgorithms/is_tree.c",
+        "jsAnswer": "Source/GraphAlgorithms/is_tree.js",
+        "enAlususAnswer": "Source/GraphAlgorithms/is_tree.en.alusus",
+        "arAlususAnswer": "Source/GraphAlgorithms/is_tree.ar.alusus"
+    },
+    {
+        "enPrompt": "Check if a given directed graph is a DAG",
+        "arPrompt": "تحقق فيما إذا كان بيان موجه معطى يمثل داغ",
+        "cAnswer": "Source/GraphAlgorithms/is_dag.c",
+        "jsAnswer": "Source/GraphAlgorithms/is_dag.js",
+        "enAlususAnswer": "Source/GraphAlgorithms/is_dag.en.alusus",
+        "arAlususAnswer": "Source/GraphAlgorithms/is_dag.ar.alusus"
+    },
+    {
+        "enPrompt": "Append a given log entry to a file given its path",
+        "arPrompt": "ألحق سجل إلى ملف معطى مساره",
+        "cAnswer": "Source/FileHandling/append_log.c",
+        "jsAnswer": "Source/FileHandling/append_log.js",
+        "enAlususAnswer": "Source/FileHandling/append_log.en.alusus",
+        "arAlususAnswer": "Source/FileHandling/append_log.ar.alusus"
+    },
 ]

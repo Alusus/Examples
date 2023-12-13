@@ -1,0 +1,33 @@
+import "Srl/Console";
+import "Srl/String";
+
+
+use Srl;
+
+
+func trim(s: ref[String]) {
+    def start: Int = 0;
+    def end: Int = s.getLength() - 1;
+
+    while (s(start) == ' ' || s(start) == '\t' || s(start) == '\n') {
+        start++;
+    }
+
+    while (s(end) == ' ' || s(end) == '\t' || s(end) == '\n') {
+        end--;
+    }
+
+    s = s.slice(start, end - start + 1);
+}
+
+
+func main() {
+    def s: String = "   Hello, World!   ";
+
+    Console.print("Original string: '%s'\n", s.buf);
+    trim(s);
+    Console.print("Trimmed string: '%s'\n", s.buf);
+}
+
+
+main();

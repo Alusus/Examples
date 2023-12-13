@@ -1,0 +1,33 @@
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func slice(a: ref[Array[Int]], start: Int, end: Int, result: ref[Array[Int]]) {
+    def i: Int;
+    for i = start , i <= end , i++ {
+        result.add(a(i));
+    }
+}
+
+func main() {
+    def a: Array[Int]({1, 2, 3, 4, 5});
+
+    def start: Int = 1;
+    def end: Int = 3;
+
+    def result: Array[Int];
+
+    slice(a, start, end, result);
+    
+    Console.print("Sliced array: ");
+    def i: Int;
+    for i = 0 , i < result.getLength() , i++ {
+        Console.print("%d ", result(i));
+    }
+}
+
+
+main();

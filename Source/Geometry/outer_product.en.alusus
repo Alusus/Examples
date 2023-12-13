@@ -1,0 +1,40 @@
+import "Srl/Console";
+import "Srl/Array";
+
+use Srl;
+
+
+func outer_product(v1: ref[Array[Float[64]]], v2: ref[Array[Float[64]]]): Array[Array[Float[64]]] {
+    def result: Array[Array[Float[64]]];
+
+    def i: Int;
+    def j: Int;
+    for i = 0 , i < v1.getLength() , i++ {
+        def row: Array[Float[64]];
+        for j = 0 , j < v2.getLength() , j++ {
+            row.add(v1(i)*v2(j));
+        }
+        result.add(row);
+    }
+
+    return result;
+}
+
+
+func main() {
+    def v1: Array[Float[64]]({1.0, 2.0, 3.0});
+    def v2: Array[Float[64]]({4.0, 5.0, 6.0});
+
+    def result: Array[Array[Float[64]]] = outer_product(v1, v2);
+
+    def i: Int;
+    def j: Int;
+    for i = 0 , i < v1.getLength() , i++ {
+        for j = 0 , j < v2.getLength() , j++ {
+            Console.print("%.2f ", result(i)(j));
+        }
+        Console.print("\n");
+    }
+}
+
+main();

@@ -1,0 +1,39 @@
+import "Srl/Console";
+import "Srl/String";
+import "Srl/Array"
+
+use Srl;
+
+
+func split(s: ref[String], token: Char): Array[String] {
+    def result: Array[String];
+
+    def temp: String;
+    def i: Int;
+    for i = 0 , i < s.getLength() , i++ {
+        if (s(i) != token) {
+            temp.append(s(i));
+        }
+        else {
+            result.add(temp);
+            temp = "";
+        }
+    }
+    result.add(temp);
+    return result;
+}
+
+
+func main() {
+    def s: String = "Hello,World,This,Is,A,Test";
+
+    def result: Array[String] = split(s, ',');
+
+    def i: Int;
+    for i = 0 , i < result.getLength() , i++ {
+        Console.print("%s\n", result(i).buf)
+    }
+}
+
+
+main();
