@@ -31,12 +31,3 @@ int isDAG() {
     }
     return 1;
 }
-
-int main() {
-    n = 4;
-    graph[0][1] = 1;
-    graph[1][2] = 1;
-    graph[2][3] = 1;
-    printf("Is DAG: %s\n", isDAG() ? "Yes" : "No");
-    return 0;
-}

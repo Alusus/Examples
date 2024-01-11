@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/Array";
 
 use Srl;
@@ -23,25 +22,3 @@ func multiply(m: ref[Matrix], s: Float[64]): Matrix {
 
     return result;
 }
-
-
-func main() {
-    def m: Matrix;
-    m.add(Array[Float[64]]({1.0, 2.0, 3.0}));
-    m.add(Array[Float[64]]({4.0, 5.0, 6.0}));
-
-    def s: Float = 2.0;
-
-    def result: Matrix = multiply(m, s);
-
-    def i: Int;
-    def j: Int;
-    for i = 0 , i < result.getLength() , i++ {
-        for j = 0 , j < result(0).getLength() , j++ {
-            Console.print("%.2f ", result(i)(j));
-        }
-        Console.print("\n");
-    }
-}
-
-main();

@@ -5,5 +5,3 @@ function appendLogEntry(filename, logEntry) {
     stream.write(logEntry + '\n');
     stream.end();
 }
-
-appendLogEntry('log.txt', 'This is a log entry.');

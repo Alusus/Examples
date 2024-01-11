@@ -14,10 +14,3 @@ function readFileToArray(filename) {
     }
     return lines;
 }
-
-const lines = readFileToArray('yourfile.txt');
-
-// Now you can access the lines from the file
-for(let i = 0; i < lines.length; i++) {
-    console.log(lines[i]);
-}

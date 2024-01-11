@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/String";
 
 
@@ -20,14 +19,3 @@ func replace(s: ref[String], oldChar: Char, newChar: Char): String {
 
     return result;
 }
-
-
-func main() {
-    def s: String = "Hello, World!";
-    def result: String = replace(s, 'o', 'a');
-
-    Console.print("%s\n", result.buf);
-}
-
-
-main();

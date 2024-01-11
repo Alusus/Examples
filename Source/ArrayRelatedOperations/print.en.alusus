@@ -11,12 +11,3 @@ func print(a: ref[Array[Int]]) {
         Console.print("%d ", a(i));
     }
 }
-
-func main() {
-    def a: Array[Int]({1, 2, 3, 4, 5});
-
-    print(a);
-}
-
-
-main();

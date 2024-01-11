@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX_STRINGS 100
@@ -26,15 +25,4 @@ char** split(char* str, char token) {
     result[j+1] = NULL; // End of strings
 
     return result;
-}
-
-int main() {
-    char str[] = "Hello,World,This,Is,A,Test";
-    char** result = split(str, ',');
-
-    for(int i = 0; result[i] != NULL; i++) {
-        printf("%s\n", result[i]);
-    }
-
-    return 0;
 }

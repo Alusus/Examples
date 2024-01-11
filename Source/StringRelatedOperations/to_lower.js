@@ -10,7 +10,3 @@ function toLowerCase(s) {
     }
     return result;
 }
-
-let s = "Hello, World!";
-s = toLowerCase(s);
-console.log(s);  // Outputs: hello, world!

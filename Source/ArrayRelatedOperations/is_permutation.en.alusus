@@ -1,5 +1,4 @@
 import "Srl/Array";
-import "Srl/Console";
 
 
 use Srl;
@@ -33,21 +32,3 @@ func is_permutation(a1: ref[Array[Int]], a2: ref[Array[Int]]): Bool {
 
     return true;
 }
-
-func main() {
-    def a1: Array[Int]({1, 2, 3, 4, 5});
-    def a2: Array[Int]({5, 4, 3, 2, 1});
-
-
-    def result: Bool = is_permutation(a1, a2);
-
-    if result {
-        Console.print("arr2 is a permutation of arr1.\n");
-    }
-    else {
-        Console.print("arr2 is not a permutation of arr1.\n");
-    }
-}
-
-
-main();

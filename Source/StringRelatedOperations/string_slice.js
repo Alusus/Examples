@@ -5,8 +5,3 @@ function slice_string(str, start, end) {
     }
     return result;
 }
-
-var str = "Hello, World!";
-var sliced = slice_string(str, 7, 12);
-
-console.log(sliced);

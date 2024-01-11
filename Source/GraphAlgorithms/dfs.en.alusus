@@ -1,4 +1,5 @@
 import "Srl/Array";
+import "Srl/Console";
 
 use Srl;
 

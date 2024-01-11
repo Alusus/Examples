@@ -23,10 +23,3 @@ function findFarthestPoint(givenPoint, points) {
     
     return farthestPoint;
 }
-
-let givenPoint = new Point(0, 0);
-let points = [new Point(1, 1), new Point(2, 2), new Point(3, 3), new Point(4, 4), new Point(5, 5)];
-
-let farthestPoint = findFarthestPoint(givenPoint, points);
-
-console.log(`The farthest point is (${farthestPoint.x}, ${farthestPoint.y})`);

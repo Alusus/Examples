@@ -5,8 +5,3 @@ function slice(arr, start, end) {
     }
     return result;
 }
-
-let arr = [1, 2, 3, 4, 5];
-let start = 1, end = 3;
-let result = slice(arr, start, end);
-console.log("Sliced array: " + result);

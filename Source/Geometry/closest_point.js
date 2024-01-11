@@ -23,10 +23,3 @@ function findClosestPoint(givenPoint, points) {
     
     return closestPoint;
 }
-
-let givenPoint = new Point(0, 0);
-let points = [new Point(1, 1), new Point(2, 2), new Point(3, 3), new Point(4, 4), new Point(5, 5)];
-
-let closestPoint = findClosestPoint(givenPoint, points);
-
-console.log(`The closest point is (${closestPoint.x}, ${closestPoint.y})`);

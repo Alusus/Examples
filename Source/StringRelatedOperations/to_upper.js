@@ -10,7 +10,3 @@ function toUpperCase(s) {
     }
     return result;
 }
-
-let s = "Hello, World!";
-s = toUpperCase(s);
-console.log(s);  // Outputs: hello, world!

@@ -3,8 +3,3 @@ function initializeArray(arr, value) {
         arr[i] = value;
     }
 }
-
-// Example usage:
-let arr = new Array(5);
-initializeArray(arr, 10);
-console.log(arr);

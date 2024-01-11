@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/String";
 
 
@@ -14,14 +13,3 @@ func find_char(s: ref[String], c: Char): Int {
 	}
 	return -1;
 }
-
-
-func main() {
-    def s: String = "abcde1324";
-
-	Console.print("%d\n", find_char(s, 'c'));
-	Console.print("%d\n", find_char(s, '0'));
-}
-
-
-main();

@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/String";
 
 
@@ -14,25 +13,3 @@ func char_exists(s: ref[String], c: Char): Bool {
 	}
 	return false;
 }
-
-
-func main() {
-	def s1: String = "abcde1324";
-
-	if char_exists(s1, 'c') {
-		Console.print("true\n");
-	}
-	else {
-		Console.print("false\n");
-	}
-
-	if char_exists(s1, '0') {
-		Console.print("true\n");
-	}
-	else {
-		Console.print("false\n");
-	}
-}
-
-
-main();

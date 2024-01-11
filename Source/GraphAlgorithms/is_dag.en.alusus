@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/Array";
 
 use Srl;
@@ -41,20 +40,3 @@ func isDAG(graph: ref[Array[Array[Int]]]): Bool {
 
     return true;
 }
-
-func main() {
-    def graph: Array[Array[Int]];
-    graph.add(Array[Int]({1}));
-    graph.add(Array[Int]({2}));
-    graph.add(Array[Int]({3}));
-    graph.add(Array[Int]());
-
-    if isDAG(graph) {
-        Console.print("The graph is a DAG\n");
-    }
-    else {
-        Console.print("The graph is not a DAG\n");
-    }
-}
-
-main();

@@ -5,7 +5,3 @@ function vectorNorm(vector) {
     }
     return Math.sqrt(sum);
 }
-
-let vector = [3.0, 4.0];
-let norm = vectorNorm(vector);
-console.log("The norm of the vector is: " + norm.toFixed(2));

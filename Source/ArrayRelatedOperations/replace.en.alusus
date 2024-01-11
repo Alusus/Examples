@@ -1,5 +1,4 @@
 import "Srl/Array";
-import "Srl/Console";
 
 
 use Srl;
@@ -13,19 +12,3 @@ func replace(a: ref[Array[Int]], oldValue: Int, newValue: Int) {
         }
     }
 }
-
-func main() {
-    def a: Array[Int]({1, 2, 3, 4, 5, 3, 6, 3, 7});
-
-
-    replace(a, 3, 8);
-
-    def i: Int;
-    for i = 0 , i < a.getLength() , i++ {
-        Console.print("%d ", a(i));
-    }
-
-}
-
-
-main();

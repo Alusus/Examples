@@ -1,5 +1,3 @@
-import "Srl/Console";
-
 use Srl;
 
 func isPrime(num: Int): Bool {
@@ -16,16 +14,3 @@ func isPrime(num: Int): Bool {
     
     return true;
 }
-
-func main() {
-    def num: Int = 59;
-
-    if isPrime(num) {
-        Console.print("%d is a prime number", num);
-    }
-    else {
-        Console.print("%d is not a prime number", num);
-    }
-}
-
-main();

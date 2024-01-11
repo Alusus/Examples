@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <math.h>
 
 typedef struct {
@@ -23,16 +22,4 @@ Point findFarthestPoint(Point givenPoint, Point points[], int size) {
     }
     
     return farthestPoint;
-}
-
-int main() {
-    Point givenPoint = {0, 0};
-    Point points[] = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-    int size = sizeof(points)/sizeof(points[0]);
-    
-    Point farthestPoint = findFarthestPoint(givenPoint, points, size);
-    
-    printf("The farthest point is (%f, %f)\n", farthestPoint.x, farthestPoint.y);
-    
-    return 0;
 }

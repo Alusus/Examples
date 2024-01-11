@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct {
@@ -18,13 +17,3 @@ double calculatePolygonArea(Point* vertices, int numVertices) {
     return abs(area / 2.0);
 }
 
-int main() {
-    Point vertices[] = {{4, 10}, {9, 7}, {11, 2}, {2, 2}};
-    int numVertices = sizeof(vertices) / sizeof(vertices[0]);
-
-    double area = calculatePolygonArea(vertices, numVertices);
-
-    printf("The area of the polygon is: %.2f\n", area);
-
-    return 0;
-}

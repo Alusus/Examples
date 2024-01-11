@@ -1,32 +1,6 @@
-import "Srl/Console";
-
-
 use Srl;
 
 
 func is_alpha(c: Char): Bool {
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 }
-
-
-func main() {
-    def c1: Char = 'f';
-
-	if is_alpha(c1) {
-    	Console.print("true\n");
-	}
-	else {
-		Console.print("false\n");
-	}
-
-    def c2: Char = '&';
-    if is_alpha(c2) {
-    	Console.print("true\n");
-	}
-	else {
-		Console.print("false\n");
-	}
-}
-
-
-main();

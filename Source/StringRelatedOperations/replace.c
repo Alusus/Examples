@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -17,14 +16,4 @@ char* replace(char* str, char oldChar, char newChar) {
     result[i] = '\0';
 
     return result;
-}
-
-int main() {
-    char* str = "Hello, World!";
-    char* replaced = replace(str, 'o', 'a');
-
-    printf("%s\n", replaced);
-    free(replaced);
-
-    return 0;
 }
