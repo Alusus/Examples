@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/Fs";
 import "Srl/String";
 import "Srl/Array";
@@ -32,15 +31,3 @@ func readFileToArray(file_path: ref[String]): Array[String] {
 
     return content;
 }
-
-func main() {
-    def file_path: String = "example_text.txt";
-    def result: Array[String] = readFileToArray(file_path);
-    
-    def i: Int;
-    for i = 0 , i < result.getLength() , i++ {
-        Console.print("%s\n", result(i).buf);
-    }
-}
-
-main();

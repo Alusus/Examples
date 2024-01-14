@@ -9,7 +9,3 @@ function calculatePolygonArea(vertices) {
 
     return Math.abs(area / 2);
 }
-
-let vertices = [{x: 4, y: 10}, {x: 9, y: 7}, {x: 11, y: 2}, {x: 2, y: 2}];
-
-console.log("The area of the polygon is: " + calculatePolygonArea(vertices));

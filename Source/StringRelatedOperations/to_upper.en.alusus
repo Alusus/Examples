@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/String";
 
 
@@ -20,15 +19,3 @@ func toUpperCase(s: ref[String]): String {
 	}
 	return result;
 }
-
-
-func main() {
-    def s: String("Hello World!");
-
-    s = toUpperCase(s);
-
-	Console.print("%s\n", s.buf);
-}
-
-
-main();

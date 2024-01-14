@@ -1,5 +1,4 @@
 import "Srl/Array";
-import "Srl/Console";
 
 
 use Srl;
@@ -28,14 +27,3 @@ func find_most_frequent(a: ref[Array[Int]]): Int {
 
     return res;
 }
-
-func main() {
-    def a: Array[Int]({1, 2, 2, 3, 3, 3, 4, 4, 4, 4});
-
-    def result: Int = find_most_frequent(a);
-
-    Console.print("The most frequent item is: %d\n", result);
-}
-
-
-main();

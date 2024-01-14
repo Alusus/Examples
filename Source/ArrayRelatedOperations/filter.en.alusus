@@ -1,5 +1,4 @@
 import "Srl/Array";
-import "Srl/Console";
 import "closure";
 
 
@@ -18,21 +17,3 @@ func filter(a: ref[Array[Int]], f: closure (num: Int): Bool): Array[Int] {
 
     return result;
 }
-
-func main() {
-    def a: Array[Int]({1, 2, 3, 4, 5, 6, 7, 8, 9});
-
-
-    def result: Array[Int] = filter(a, closure(num: Int): Bool {
-        return num % 2 == 0;
-    });
-
-    def i: Int;
-    for i = 0 , i < result.getLength() , i++ {
-        Console.print("%d ", result(i));
-    }
-
-}
-
-
-main();

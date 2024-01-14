@@ -26,7 +26,3 @@ function isTree(adjList) {
     }
     return true;
 }
-
-// Usage:
-let adjList = [[1], [0, 2, 3], [1], [1, 4, 5], [3], [3]];
-console.log("Is the graph a tree? ", isTree(adjList));

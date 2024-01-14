@@ -25,15 +25,3 @@ void readFileToArray(char *filename, char lines[MAX_LINES][MAX_LINE_LENGTH]) {
 
     fclose(file);
 }
-
-int main() {
-    char lines[MAX_LINES][MAX_LINE_LENGTH];
-    readFileToArray("yourfile.txt", lines);
-
-    // Now you can access the lines from the file
-    for(int i = 0; i < MAX_LINES && lines[i][0] != '\0'; i++) {
-        printf("%s\n", lines[i]);
-    }
-
-    return 0;
-}

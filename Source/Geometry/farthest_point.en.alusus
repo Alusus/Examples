@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/Math";
 import "Srl/Array";
 
@@ -30,34 +29,3 @@ func findFarthestPoint(givenPoint: Point, points: ref[Array[Point]]): Point {
 
     return farthestPoint;
 }
-
-
-func main() {
-    def givenPoint: Point;
-    givenPoint.x = 0;
-    givenPoint.y = 0;
-
-    def p1: Point;
-    p1.x = 1;
-    p1.y = 1;
-    def p2: Point;
-    p2.x = 2;
-    p2.y = 2;
-    def p3: Point;
-    p3.x = 3;
-    p3.y = 3;
-    def p4: Point;
-    p4.x = 4;
-    p4.y = 4;
-    def p5: Point;
-    p5.x = 5;
-    p5.y = 5;
-    def points: Array[Point]({p1, p2, p3, p4, p5});
-
-    def farthestPoint: Point = findFarthestPoint(givenPoint, points);
-
-    Console.print("The farthest point is (%f, %f)\n", (farthestPoint.x)~cast[Float[64]], (farthestPoint.y)~cast[Float[64]]);
-}
-
-
-main();

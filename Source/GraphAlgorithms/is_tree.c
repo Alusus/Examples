@@ -32,24 +32,3 @@ int isTree(int n) {
     }
     return 1;
 }
-
-int main() {
-    int n;
-    printf("Enter the number of vertices: ");
-    scanf("%d", &n);
-
-    printf("Enter the adjacency matrix:\n");
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            scanf("%d", &matrix[i][j]);
-        }
-    }
-
-    if(isTree(n)) {
-        printf("The graph is a tree.\n");
-    } else {
-        printf("The graph is not a tree.\n");
-    }
-
-    return 0;
-}

@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/Array";
 
 use Srl;
@@ -60,16 +59,3 @@ func mergeSort(a: ref[Array[Int]], l: Int, r: Int) {
         merge(a, l, m, r);
      }
 }
-
-func main() {
-    def a: Array[Int]({3, 4, 2, 5, 1});
-
-    mergeSort(a, 0, a.getLength() - 1);
-
-    def i: Int;
-    for i = 0 , i < a.getLength() , i++ {
-        Console.print("%d ", a(i));
-    }
-}
-
-main();

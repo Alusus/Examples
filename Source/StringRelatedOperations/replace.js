@@ -9,8 +9,3 @@ function replace(str, oldChar, newChar) {
     }
     return result;
 }
-
-var str = "Hello, World!";
-var replaced = replace(str, 'o', 'a');
-
-console.log(replaced);

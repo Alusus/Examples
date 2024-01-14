@@ -5,8 +5,3 @@ function replace(arr, oldValue, newValue) {
         }
     }
 }
-
-var arr = [1, 2, 3, 4, 5, 3, 6, 3, 7];
-replace(arr, 3, 8);
-
-console.log(arr);

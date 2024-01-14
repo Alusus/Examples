@@ -18,10 +18,3 @@ function split(str, token) {
 
     return result;
 }
-
-let str = "Hello,World,This,Is,A,Test";
-let result = split(str, ',');
-
-for(let i = 0; i < result.length; i++) {
-    console.log(result[i]);
-}

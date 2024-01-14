@@ -1,5 +1,4 @@
 import "Srl/Array";
-import "Srl/Console";
 import "Srl/Math";
 
 
@@ -17,12 +16,3 @@ func mean(a: ref[Array[Int]]): Float {
 
     return sum~cast[Float] / size;
 }
-
-func main() {
-    def a: Array[Int]({1, 2, 3, 4, 5, 6});
-
-    Console.print(mean(a));
-}
-
-
-main();

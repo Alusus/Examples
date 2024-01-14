@@ -14,10 +14,3 @@ function multiply(a, b) {
     }
     return result;
 }
-
-// Example usage:
-let a = [[1, 2, 3], [4, 5, 6]];
-let b = [[7, 8], [9, 10], [11, 12]];
-let result = multiply(a, b);
-
-console.log(result);

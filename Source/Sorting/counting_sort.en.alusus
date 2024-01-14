@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/Array";
 
 use Srl;
@@ -26,16 +25,3 @@ func countingSort(a: ref[Array[Int]]) {
         }
     }
 }
-
-func main() {
-    def a: Array[Int]({3, 4, 2, 5, 1});
-
-    countingSort(a);
-
-    def i: Int;
-    for i = 0 , i < a.getLength() , i++ {
-        Console.print("%d ", a(i));
-    }
-}
-
-main();

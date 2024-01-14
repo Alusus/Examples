@@ -19,8 +19,3 @@ function numberOfConnectedComponents(adjList) {
     }
     return components;
 }
-
-// Usage:
-let adjList = [[1], [0, 2], [1], [4], [3, 5], [4]];
-visited = new Array(adjList.length).fill(false);
-console.log("Number of connected components: ", numberOfConnectedComponents(adjList));

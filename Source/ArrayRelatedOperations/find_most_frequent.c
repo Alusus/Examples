@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 int find_most_frequent(int arr[], int n) {
     int max_count = 0, res = -1;
 

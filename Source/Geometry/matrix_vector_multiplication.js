@@ -11,10 +11,3 @@ function multiply(matrix, vector) {
 
     return result;
 }
-
-// Example usage:
-let matrix = [[1, 2, 3], [4, 5, 6]];
-let vector = [7, 8, 9];
-let result = multiply(matrix, vector);
-
-console.log(result);

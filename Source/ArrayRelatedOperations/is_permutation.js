@@ -31,8 +31,3 @@ function is_permutation(arr1, arr2) {
     // If we reach here, then arr2 is a permutation of arr1
     return true;
 }
-
-// Example usage:
-let arr1 = [1, 2, 3, 4, 5];
-let arr2 = [5, 4, 3, 2, 1];
-console.log(is_permutation(arr1, arr2));  // Outputs: true

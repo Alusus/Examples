@@ -5,8 +5,3 @@ function dot_product(v1, v2) {
     }
     return result;
 }
-
-let v1 = [1.0, 2.0, 3.0];
-let v2 = [4.0, 5.0, 6.0];
-
-console.log("Dot product: " + dot_product(v1, v2));

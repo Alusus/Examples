@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/Fs";
 import "Srl/String";
 
@@ -23,12 +22,3 @@ func read_file(file_path: ref[String]): String {
 
     return content;
 }
-
-func main() {
-    def file_path: String = "example_text.txt";
-    def result: String = read_file(file_path);
-    
-    Console.print("%s", result.buf);
-}
-
-main();

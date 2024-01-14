@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/String";
 
 
@@ -15,26 +14,3 @@ func is_string_alphanumeric(s: ref[String]): Bool {
 	}
 	return true;
 }
-
-
-func main() {
-    def s1: String = "abcde1324";
-
-	if is_string_alphanumeric(s1) {
-    	Console.print("true\n");
-	}
-	else {
-		Console.print("false\n");
-	}
-
-    def s2: String = "abcde*1324";
-    if is_string_alphanumeric(s2) {
-    	Console.print("true\n");
-	}
-	else {
-		Console.print("false\n");
-	}
-}
-
-
-main();

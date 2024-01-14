@@ -1,5 +1,4 @@
 import "Srl/Array";
-import "Srl/Console";
 
 
 use Srl;
@@ -16,17 +15,3 @@ func insert(a: ref[Array[Int]], pos: Int, val: Int) {
 
     a(pos) = val;
 }
-
-func main() {
-    def a: Array[Int]({1, 2, 4, 5});
-
-    insert(a, 3, 3);
-
-    def i: Int;
-    for i = 0 , i < a.getLength() , i++ {
-        Console.print("%d ", a(i));
-    }
-}
-
-
-main();

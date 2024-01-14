@@ -1,7 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
 
-// Function to read the n-th line of a file
 function read_nth_line(file_path, n) {
     return new Promise((resolve, reject) => {
         const fileStream = fs.createReadStream(file_path);
@@ -28,8 +27,3 @@ function read_nth_line(file_path, n) {
         });
     });
 }
-
-// Example usage:
-read_nth_line('/home/user/example_text.txt', 5)
-    .then(line => console.log(`Line 5: ${line}`))
-    .catch(error => console.error(error.message));

@@ -8,10 +8,3 @@ void appendLogEntry(char *filename, char *logEntry) {
     fwrite("\n", 1, 1, file);
     fclose(file);
 }
-
-int main() {
-    char filename[] = "log.txt";
-    char logEntry[] = "This is a log entry.";
-    appendLogEntry(filename, logEntry);
-    return 0;
-}

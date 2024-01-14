@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/String";
 
 
@@ -18,16 +17,3 @@ func ends_with(s: ref[String], suffix: ref[String]): Bool {
 	}
 	return true;
 }
-
-
-func main() {
-    def s: String = "abccde1324";
-
-    def suffix: String = "1324";
-	Console.print("%d\n", ends_with(s, suffix));
-    suffix = "1234";
-	Console.print("%d\n", ends_with(s, suffix));
-}
-
-
-main();

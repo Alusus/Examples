@@ -1,5 +1,4 @@
 import "Srl/Array";
-import "Srl/Console";
 
 
 use Srl;
@@ -14,21 +13,3 @@ func find_diff_index(a1: ref[Array[Int]], a2: ref[Array[Int]]): Int {
     }
     return -1;
 }
-
-func main() {
-    def a1: Array[Int]({1, 2, 3, 4, 5});
-    def a2: Array[Int]({1, 2, 0, 4, 5});
-
-
-    def diff_index: Int = find_diff_index(a1, a2);
-
-    if diff_index != -1 {
-        Console.print("The first index at which the two arrays are different is: %d\n", diff_index);
-    }
-    else {
-        Console.print("The two arrays are identical.\n");
-    }
-}
-
-
-main();

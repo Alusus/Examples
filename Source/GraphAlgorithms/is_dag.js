@@ -27,11 +27,3 @@ function isDAG() {
     }
     return true;
 }
-
-function main() {
-    n = 4;
-    graph = [[1], [2], [3], []];
-    console.log("Is DAG: " + (isDAG() ? "Yes" : "No"));
-}
-
-main();

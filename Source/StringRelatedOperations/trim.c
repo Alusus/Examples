@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 
 void trim(char *str) {
@@ -15,12 +14,4 @@ void trim(char *str) {
 
     // Null terminate the string
     str[end - start + 1] = '\0';
-}
-
-int main() {
-    char str[] = "   Hello, World!   ";
-    printf("Original string: '%s'\n", str);
-    trim(str);
-    printf("Trimmed string: '%s'\n", str);
-    return 0;
 }

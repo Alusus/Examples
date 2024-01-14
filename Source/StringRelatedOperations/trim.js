@@ -10,8 +10,3 @@ function trim(str) {
     // Return the trimmed string
     return str.substring(start, end + 1);
 }
-
-let str = "   Hello, World!   ";
-console.log("Original string: '" + str + "'");
-str = trim(str);
-console.log("Trimmed string: '" + str + "'");

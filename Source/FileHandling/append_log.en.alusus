@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/Fs";
 import "Srl/String";
 
@@ -12,11 +11,3 @@ func appendLogEntry(file_path: ref[String], logEntry: ref[String]) {
     Fs.write("\n", 1, 1, file);
     Fs.closeFile(file);
 }
-
-func main() {
-    def file_path: String = "example_text.txt";
-	def logEntry: String = "new log entry";
-    appendLogEntry(file_path, logEntry);
-}
-
-main();

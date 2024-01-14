@@ -1,5 +1,4 @@
 import "Srl/Array";
-import "Srl/Console";
 
 
 use Srl;
@@ -17,17 +16,3 @@ func rotate(a: ref[Array[Int]]) {
 
     a(size - 1) = first_element;
 }
-
-func main() {
-    def a: Array[Int]({1, 2, 3, 4, 5});
-
-    rotate(a);
-
-    def i: Int;
-    for i = 0 , i < a.getLength() , i++ {
-        Console.print("%d ", a(i));
-    }
-}
-
-
-main();

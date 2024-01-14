@@ -1,5 +1,4 @@
 import "Srl/Array";
-import "Srl/Console";
 import "closure";
 
 
@@ -16,23 +15,3 @@ func check_any(a: ref[Array[Int]], f: closure (num: Int): Bool): Bool {
 
     return false;
 }
-
-func main() {
-    def a: Array[Int]({1, 2, 3, 4, 5});
-
-
-    def result: Bool = check_any(a, closure(num: Int): Bool {
-        return num > 0;
-    });
-
-    if result {
-        Console.print("There is at least an element in the array that is positive.\n");
-    }
-    else {
-        Console.print("There is no element in the array that is positive.\n");
-    }
-
-}
-
-
-main();

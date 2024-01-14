@@ -1,4 +1,3 @@
-import "Srl/Console";
 import "Srl/String";
 import "Srl/Array"
 
@@ -22,18 +21,3 @@ func split(s: ref[String], token: Char): Array[String] {
     result.add(temp);
     return result;
 }
-
-
-func main() {
-    def s: String = "Hello,World,This,Is,A,Test";
-
-    def result: Array[String] = split(s, ',');
-
-    def i: Int;
-    for i = 0 , i < result.getLength() , i++ {
-        Console.print("%s\n", result(i).buf)
-    }
-}
-
-
-main();
