@@ -32,10 +32,16 @@ def generate(meta_data: dict, reverse=False):
         
         prompt = meta_data[f'{prompt_lang}Prompt']
         if reverse:
-            question = f'What this code do?\n{code}'
+            if prompt_lang == 'ar':
+                question = f'ما الذي يقوم به هذا الكود\n{code}'
+            else:
+                question = f'What does this code do?\n{code}'
             answer = prompt
         else:
-            question = f'Using {code_lang}, {prompt}'
+            if prompt_lang == 'ar':
+                question = f'باستعمال {code_lang}, {prompt}'
+            else:
+                question = f'Using {code_lang}, {prompt}'
             answer = code
         samples.append((question, answer))
     
