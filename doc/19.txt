@@ -1,0 +1,4 @@
+and	Logical `and` operation
+or	Logical `or` operation
+||	A symbolic form for `or`
+&&	A symbolic form for `and`

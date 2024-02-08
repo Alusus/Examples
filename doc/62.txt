@@ -1,0 +1,4 @@
+Tells whether the given character is a space, a tab, a new line, or a carriage return.
+```
+func isSpace (c: Char): Bool;
+```

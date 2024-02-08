@@ -1,0 +1,4 @@
+Parses the given HEX character.
+```
+func parseHexDigit (Char): Int;
+```

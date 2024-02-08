@@ -1,0 +1,48 @@
+Methods are functions defined inside classes and called using an instance of that class. A method is defined by defining a function inside the body of the class, adding @member modifier to that function, and making the first argument to that function a reference to the class.
+```
+class <type_name> {
+  @member func <method_name> (this: ref[this_type], <arg_definitions>): <ret_type> {
+    <method_body>
+  };
+};
+
+<object_name>.<method_name>(<arguments>);
+```
+Inside the method body it is possible to access the object related to that call by using the first argument for the function which is `this`, as if the user passed the object manually. Example:
+```
+  class Point {
+    def x: float;
+    def y: float;
+    @member func getDistance (this: ref[this_type]):float {
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+    };
+  }:
+  def p: Point;
+  p.x = 3;
+  p.y = 4;
+  print(p.getDistance()); // prints 5
+```
+It is also possible to define the methods using `handler` command, which is just a more pleasant syntax to the previous way.
+```
+class <type_name> {
+  handler this.<method_name> (<arg_definitions>): <ret_type> {
+    <method_body>
+  };
+};
+
+<object_name>.<method_name>(<arguments>);
+```
+Example:
+```
+  class Point {
+    def x: float;
+    def y: float;
+    handler this.getDistance ():float {
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+    };
+  }:
+  def p: Point;
+  p.x = 3;
+  p.y = 4;
+  print(p.getDistance()); // prints 5
+```

@@ -1,0 +1,12 @@
+Arrays are defined using the `array` built-in type, followed by the elements' type and count between square brackets.
+```
+def <array_name> : array[<element_type>, <element_count>]
+```
+It is possible to access an element in the array by putting its index inside square brackets, as follows:
+```
+  def myArray : array[Int, 10];
+  def i : Int;
+  for i=0, i<10, i++ {
+    myArray(i) = factorial(i)
+  }
+```

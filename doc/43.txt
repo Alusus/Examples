@@ -1,0 +1,4 @@
+Allocate memory in advance. This function allows the user to allocate memory in advance for use with string operations that deals with the string buffer directly. This function is useful for dealing with libraries that deal with char pointers, while benefiting from the memory management functionality that this class provides.
+```
+handler this.alloc (ArchInt);
+```

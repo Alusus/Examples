@@ -1,0 +1,11 @@
+There are 2 ways:
+```
+  handler this~init(ref[Array[ContentType]]);
+  handler this~init(count: Int, args: ...ContentType);
+```
+The first form initializes an array from another. The new array will use the same content of the given array, and no copy will happen until one of them changes the content. In that case, the content is copied before the change occurs to ensure that the other array is not affected.
+The second form initializes the array from the given items, as shown in the example below:
+```
+def a1: Array[Int]({ 5, 2, 1 }); // Array will contain 3 elements: 5, 2, and 1.
+def a2: Array[Int](3, 5, 2, 1); // Array will contain 3 elements: 5, 2, and 1.
+```

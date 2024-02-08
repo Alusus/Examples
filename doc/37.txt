@@ -1,0 +1,41 @@
+This feature allows the user to execute a set of commands on an object without exiting the current execution flow, and without repeating the object's name, that is done by using dot operator followed by a pack of statements enclosed in curly brackets. As shown in the next example.
+```
+  class Point {
+    def x: Int;
+    def y: Int;
+  }
+  
+  def p: Point;
+  p.{ x = 5; y = 10 };
+  // Upper statement is equivalent to:
+  // p.x = 5;
+  // p.y = 10;
+```
+Not exiting the current execution flow means that the program will execute command pack in a blocking fashion before continue to execute from the point before executing the pack.
+```
+drawPoint(p.{ x = 5; y = 10 });
+```
+In the previous example, command pack is executed on the variable `p` before passing it to `drawPoint` function. So that is equivalent to the following:
+```
+  p.x = 5;
+  p.y = 10;
+  drawPoint(p);
+```
+It is also possible to execute command pack on a temporarily object, as shown in the next example:
+```
+drawPoint(Point().{ x = 5; y = 10 });
+```
+Inside statements pack, key value `this` point to the object that we execute the statements pack on it. So it is possible to write the previous example as follows:
+```
+Point().{ x = 5; y = 10; drawPoint(this) };
+```
+It is also possible to use statements pack with basic types, as shown in the next example:
+```
+  print("Enter a number: ");
+  def i: Int(getInt());
+  print("Number is %s.\n", ptr[Char]().{
+      if i > 0 this = "positive"
+      else if i < 0 this = "negative"
+      else this = "zero"
+  });
+```

@@ -1,0 +1,4 @@
+Returns the index of the given key, or -1 if the key does not exist.
+```
+handler this.findPos (key: KeyType): ArchInt;
+```

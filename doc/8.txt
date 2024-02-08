@@ -1,0 +1,10 @@
+They are:
+- Int
+- ArchInt
+- Word
+- ArchWord
+- Float
+- Char
+- Bool
+- array
+- ptr

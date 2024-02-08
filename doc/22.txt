@@ -1,0 +1,7 @@
+Conditionals are written as follows:
+```
+if <condition expression> <statement>
+if <condition expression> { <group of statements> }
+if <condition expression> <statement_or_block> else <statement_or_block>
+```
+It is optional to enclose the condition expression with a round brackets.
