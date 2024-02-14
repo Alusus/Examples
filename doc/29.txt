@@ -1,0 +1,5 @@
+As the case with object initialization, user could customize object termination operation (i.e. define a destructor) by adding the following definition to the class:
+```
+handler this~terminate () { <body> };
+```
+When execution exits any scope, compiler automatically call this function for all objects defined in this scope. This function could be used to release any resources reserved by that object.

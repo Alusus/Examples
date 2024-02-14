@@ -1,0 +1,9 @@
+There are 2 versions of this method:
+1. Replaces a part of the string with another string, and returns the result in a new string.
+```
+handler this.replace (match: ptr[array[Char]], replacement: ptr[array[Char]]): String;
+```
+2. Replaces all occurances of a character with another character in the given array of chars. This function modifies the given array of chars.
+```
+func replace (chars: ptr[array[Char]], from: Char, to: Char): ptr[array[Char]];
+```

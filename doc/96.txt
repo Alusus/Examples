@@ -1,0 +1,5 @@
+This function allocates memory for the object, but does not initialize the object and leaves that to the user who can use `~init`.
+```
+  handler this.alloc (): ref[ObjType];
+  func alloc (): SrdRef[ObjType];
+```

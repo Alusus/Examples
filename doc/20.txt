@@ -1,0 +1,6 @@
+==	equality check
+!=	inequality check
+<	less than check
+>	greater than check
+<=	less than or equal check
+>=	greater than or equal check

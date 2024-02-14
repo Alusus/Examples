@@ -1,0 +1,4 @@
+The array of the values in the map.
+```
+def values: Array[ValueType];
+```

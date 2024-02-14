@@ -1,0 +1,9 @@
+Shared reference template that manages releasing the object automatically when the need for it ends. This reference keeps a count of the number of shared references that point to the same object. Every time one of the reference is terminated, the count decremented by 1. When the count reaches zero, the object is terminated and its memory is released.
+```
+func main {
+  def x: SrdRef[MyType] = SrdRef[MyType].construct();
+  def y: SrdRef[MyType] = x; // Both refs point to same object. Counter is now 2.
+  x.release(); // Counter is now 1 and the object is not freed yet.
+  y.release(); // Now the object is destructed and its memory is released.
+}
+```

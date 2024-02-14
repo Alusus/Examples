@@ -1,0 +1,17 @@
+There are 4 versions of this method:
+1. Searches for a string inside this string. It returns the start location of the found string, or -1 if nothing is found.
+```
+handler this.find (buf: ptr[array[Char]]): ArchInt;
+```
+2. Searches for a character inside this string. It returns the location of the found character, or -1 if nothing is found.
+```
+handler this.find (c: Char): ArchInt;
+```
+3. Searches for a string inside the given string. It returns a pointer to the beginning of the found string, or 0 if nothing is found.
+```
+func find (haystack: ptr[array[Char]], needle: ptr[array[Char]]): ptr[array[Char]];
+```
+4. Searches for a character inside the given string. It returns a pointer to the found character, or 0 if nothing is found.
+```
+func find (haystack: ptr[array[Char]], c: Char): ptr[array[Char]];
+```

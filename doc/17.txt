@@ -1,0 +1,4 @@
+A pointer to a variable. Variable's type specified inside Square brackets as follows:
+```
+ptr[the_type]
+```

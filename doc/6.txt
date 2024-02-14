@@ -1,0 +1,1 @@
+Line comments in Alusus starts with the symbol `//` and ends with line end. Block comments start with `/*` and end with `*/`. This is similar to comments in C++.

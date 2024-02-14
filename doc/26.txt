@@ -1,0 +1,30 @@
+Classes are defined using `class` command as the definition in `def` command.
+```
+def <type_name> : class { <definition_statements> }
+```
+Accessing class members is done using `.` operator, for example:
+```
+def Point : class {
+    def x : Float;
+    def y : Float
+};
+
+def p : Point;
+p.x = 1;
+p.y = 2;
+```
+It is possible to use the short form without `def` as follows:
+```
+class <type_name> { <definition_statements> }
+```
+As show in the next example:
+```
+class Point {
+    def x : Float;
+    def y : Float
+};
+
+def p : Point;
+p.x = 1;
+p.y = 2;
+```

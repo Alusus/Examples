@@ -1,0 +1,4 @@
+Returns the number of items in the map.
+```
+handler this.getLength (): ArchInt;
+```

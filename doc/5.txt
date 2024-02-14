@@ -1,0 +1,19 @@
+Every program using Alusus language must import "libalusus_spp.so" library either directly or indirectly. That is because this library contains definitions for basic commands related to procedural programming. For that reason, every program starts with the command "import".
+```
+import "libalusus_spp.so";
+```
+Often, you don't have to import the Standard Programming Paradigm library directly. Instead, you import other libraries that import the SPP library, for example:
+```
+import "Srl/Console.alusus";
+```
+Programs usually contain a module definition, which includes all the definitions of that program ( classes, functions, macros, global variables, constants). Any code that exists outside functions get executed as they are encountered. Therefore programs usually contain a call to the entry point function, and this is usually placed at the end, after all program elements are defined.
+```
+module HelloWorld
+{
+    function start {
+        ...
+    }
+}
+
+HelloWorld.start(); // Call the program's entry point.
+```

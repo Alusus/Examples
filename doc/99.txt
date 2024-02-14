@@ -1,0 +1,4 @@
+Release this reference, and if this reference is the last to point to the object then it will release the object before that.
+```
+handler this.release();
+```

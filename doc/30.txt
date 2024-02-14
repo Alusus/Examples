@@ -1,0 +1,22 @@
+Pointers are used to point to locations in memory and control the contents of those locations. They are defined by using the `ptr` built-in type, followed by the content type between square brackets.
+```
+def <ptr_name> : ptr[<content_type>]
+```
+It is possible to access the content pointed to by a pointer with the `~cnt` operator. Also, it is possible to get the location of any variable using `~ptr` operator, as shown in the next example:
+```
+  def p : ptr[Int];
+  def x : Int;
+  x = 5;
+  p = x~ptr;
+  p~cnt = 1;
+  // x is now equal to 1, not 5.
+```
+Addition and subtraction operations are allowed on pointers. In that case the amount of increase in pointer's value will be a multiple of class size that the pointer points to. For example, if we add 1 to a pointer to `Int`, the value of the pointer will increase by `Int` size, which means 4 bytes when `Int` is represented using 32bit.
+```
+  def p1: ptr[Int[32]] = ...;
+  def p2: ptr[Char] = ...;
+  p1 = p1 + 1; // Incremented by 4.
+  p1 = p1 + 5; // Incremented by 5 * 4.
+  p2 = p2 + 1; // Incremented by 1.
+  p2 = p2 + 5; // Incremented by 5.
+```

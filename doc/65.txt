@@ -1,0 +1,11 @@
+Create a new string from given format after filling it with the given arguments. This function is similar to `sprintf` function, by replacing symbols starting with `%` in the format by a value from arguments that match the type specified. The symbol `%` is followed by a character specifying the type of the given argument. As follows:
+%s Array of chars.
+%c A single char.
+%i 32 bits integer
+%l 64 bits integer
+%f 32 bits float
+%d 64 bits float
+%% Prints the `%` symbol
+```
+func format (fmt: ptr[array[Char]], values: ...any): String;
+```

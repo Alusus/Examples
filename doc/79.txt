@@ -1,0 +1,26 @@
+A map template that allows specifying the types of the key and the value, and takes the responsibility for managing memory while taking performance into consideration and avoiding unnecessary memory allocation and copying. The following example shows the class in use.
+```
+func main {
+  def m1: Map[Int, Int] = getMap();
+  m1.set(7, 50); // Memory buffer is expanded here.
+  def m2: Map[Int, Int] = m1; // Buffer is not cloned here.
+  m2.set(12, 7); // Buffer is cloned here so that m1 is not affected.
+  printMap(m2); // No buffer cloning happens here.
+  printInt(m2(7)); // Prints 50.
+  printInt(m2(12)); // Prints 7.
+  // Now buffers of m1 and m2 are freed.
+}
+
+func getMap (): Map[Int, Int] {
+  def m: Map[Int, Int];
+  m.add(0, 10);
+  return m; // No buffer cloning happens here.
+}
+
+func printMap (m: Map[Int, Int]) {
+  def i: Int;
+  for i = 0, i < m.getLength(), ++i {
+    Console.print("%d = %d\n", m.keyAt(i), m.valAt(i));
+  }
+}
+```

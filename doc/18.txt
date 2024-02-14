@@ -1,0 +1,11 @@
+=	Set a new value.
++=	Add a value to the current value.
+-=	Subtract a value from the current value.
+*=	Multiply the current value by another value.
+/=	Divide the current value by another value.
+%=	Divide the current value by another value and keep the remainder instead of the result.
+&=	Apply `and` logical operation on the current value
+|=	Apply `or` logical operation on the current value
+$=	Apply `xor` logical operation on the current value
+<<=	Shift all bits to the left by the given number.
+=>>	Shift all bits to the right by the given number.

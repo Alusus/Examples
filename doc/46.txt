@@ -1,0 +1,22 @@
+There are 4 versions of this method:
+1. Appends the given buffer to the content's end of the string.
+```
+handler this.append (buf: ptr[array[Char]]);
+```
+2. Appends the specified number of of characters from the given buffer.
+```
+handler this.append (buf: ptr[array[Char]], count: ArchInt);
+```
+3. Appends a character to the string's end.
+```
+handler this.append (c: Char);
+```
+4. Appends the given number to the end of the string. This function appends a string representation of the given number.
+```
+handler this.append (i: Int[64]);
+```
+5. This is similar to the 4th variant but it appends a float number instead of an integer.
+```
+handler this.append (f: Float[64]);
+```
+It is possible to replace these functions (except for the second function) by `+=` operator.

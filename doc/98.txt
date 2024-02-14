@@ -1,0 +1,5 @@
+This function assigns the object of this reference with a given object. After calling this function the reference takes the responsibility of releasing the object automatically. This function should be avoided if the given object is not allocated dynamically or if another code is responsible for releasing the object, since this will lead to segmentation fault.
+```
+  handler this.own (obj: ref[ObType]);
+  func own (obj: ref[ObjType]): SrdRef[ObjType];
+```

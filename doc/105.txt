@@ -1,0 +1,4 @@
+Release this reference without changing references count.
+```
+handler this.release();
+```

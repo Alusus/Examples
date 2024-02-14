@@ -1,0 +1,4 @@
+Adds new item to the array in the specified location after extending the allocated memory if necessary. If the content is shared with another array, this function copies the content to a new buffer.
+```
+handler this.insert (index: ArchInt, element: ContentType);
+```

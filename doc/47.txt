@@ -1,0 +1,17 @@
+There are 7 versions of this method:
+First 5 versions are similar to `append` functions but they return the value in new string instead of editing the current string. It is possible to replace functions 1, 3, 4, and 5 with the `+` operator.
+```
+handler this.concat (buf: ptr[array[Char]]);
+handler this.concat (buf: ptr[array[Char]], count: ArchInt);
+handler this.concat (c: Char);
+handler this.concat (i: Int[64]);
+handler this.concat (f: Float[64]);
+```
+6. Append the source string to the end of target string. User should ensure that the target buffer is enough to hold the new items.
+```
+func concat (target: ptr[array[Char]], source: ptr[array[Char]]): ptr;
+```
+7. This is similar to variant 6 but it only copies the specified number from the source string.
+```
+func concat (target: ptr[array[Char]], source: ptr[array[Char]], count: ArchInt): ptr;
+```

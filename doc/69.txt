@@ -1,0 +1,22 @@
+A dynamic array template that automatically manages the array buffer, taking performance into account and avoiding unnecessary memory allocation and copying operations. The following example shows usage of this dynamic array.
+```
+func main {
+  def a: Array[Int] = getArray();
+  a.add(1); // Here the allocated memory block is expanded.
+  def a2: Array[Int] = a; // No new memory block is allocated here.
+  a.add(2); // Now a new copy of the buffer is created so a2 is not affected.
+  printArray(a); // No new memory block is created or copied here.
+  // Now the memory blocks of a and a2 are freed.
+}
+
+func getArray(): Array[Int] {
+  def a: Array[Int];
+  a.add(0);
+  return a; // No new memory block is allocated here and memory copy happens.
+}
+
+func printArray (a: Array[Int]) {
+  def i: Int;
+  for i = 0, i < a.getLength(), ++i Console.print("%d\n", a(i));
+}
+```

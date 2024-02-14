@@ -1,0 +1,4 @@
+Copys part of the array and returns it as a new array. The copy starts from the item at index `start` and continues until `count` items are copied or the end of the array is reached.
+```
+handler this.slice (start: ArchInt, count: ArchInt);
+```

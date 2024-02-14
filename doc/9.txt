@@ -1,0 +1,9 @@
+Integer. We specify the number of bits inside Square brackets. Specifying the number of bits is optional, the default value is 32.
+```
+Int // 32 bits
+Int[1]
+Int[8]
+Int[16]
+Int[32]
+Int[64]
+```

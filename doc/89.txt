@@ -1,0 +1,4 @@
+Removes the specified key and its value. Returns 1 if the key is removed, and 0 if the key does not exist.
+```
+handler this.remove (key: KeyType): Bool;
+```

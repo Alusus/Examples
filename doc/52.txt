@@ -1,0 +1,4 @@
+Removes the spaces (space, new line, or tab characters) from both sides of the string and returns the result in a new string.
+```
+handler this.trim (): String;
+```

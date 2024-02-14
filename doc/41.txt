@@ -1,0 +1,8 @@
+```
+handler this == ptr[array[Char]]: Bool
+handler this > ptr[array[Char]]: Bool
+handler this < ptr[array[Char]]: Bool
+handler this >= ptr[array[Char]]: Bool
+handler this <= ptr[array[Char]]: Bool
+```
+Compares this string to the given string.

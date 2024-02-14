@@ -1,0 +1,4 @@
+Replaces the latin small characters with their corresponding capital characters and returns the result in a new string.
+```
+handler this.toUpperCase (): String;
+```

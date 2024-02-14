@@ -1,0 +1,61 @@
+Users can customize object initialization, i.e. define a constructor, using `handler` command, with the following syntax:
+```
+handler this~init (<argument_definitions>) { <body> };
+```
+When defining this operation inside the class, the compiler call this function every time it needs to initialize new object. It is possible to define arguments for this function if we want to initialize an object from another as the case when returning this object from a function by value, or receiving it in as function argument. When initializing the object in one of these cases, compiler call this function and passed the original object so that the function could copy it to `this`. Whereas in the case of not customizing initialization operation, the compiler copy object memory content.
+Note: when defining any customization operation, the compiler will not generate a default one in all cases, so it we must define all initialization cases, which includes initialization without arguments and initialization form another object. The next example explain custom initialization:
+```
+  class Point {
+    def x: int;
+    def y: int;
+
+    handler this~init() {
+      this.x = 0;
+      this.y = 0;
+    };
+    handler this~init(src: ref[Point]) {
+      this.x = src.x;
+      this.y = src.y;
+    };
+  }:
+
+  def p: Point; // calls this~init()
+  func getPoint (): Point {
+    def p: Point;
+    return p; // calls this~init(src)
+  };
+```
+In case of initialization operations with arguments, we must pass them to the variable's definition, which becomes as follows:
+```
+def <var_name>: <var_type>(<arguments>);
+```
+The next example shows that:
+```
+  class Point {
+    def x: int;
+    def y: int;
+
+    handler this~init(x: int, y: int) {
+      this.x = x;
+      this.y = y;
+    };
+  }:
+
+  def p: Point(5, 10);
+```
+It is also possible to customize initialization without arguments by writing initialization operationss inside the body of the class. This is the same as defining `handler this~init`, as shown in the next example:
+```
+  class Point {
+    def x: int;
+    def y: int;
+
+    this.x = 0;
+    this.y = 0;
+
+    handler this~init(src: ref[Point]) {
+      this.x = src.x;
+      this.y = src.y;
+    };
+  }:
+```
+Note: If the class contains variables with custom initialization, then this class is considered a class with custom initialization even if the user does not define initialization operations for the class. The reason behind that is that the compiler automatically defines initialization functions to initialize the inner elements.

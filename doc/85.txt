@@ -1,0 +1,4 @@
+Returns a reference to the value at the given location.
+```
+handler this.valAt (ArchInt): ref[ValueType];
+```

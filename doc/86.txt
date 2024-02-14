@@ -1,0 +1,6 @@
+Sets a value for the given key. If that key doesn't exist it will be added. If it already exists its value will be replaced by the new one. This functions will return a reference to the Map itself which allows the user to chain multiple `set` operations in one statement.
+```
+  handler this.set (
+    key: KeyType, value: ValueType
+  ): ref[Map[KeyType, ValueType]];
+```

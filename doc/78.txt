@@ -1,0 +1,4 @@
+Removes all items from the array. If the content is not shared with another array the buffer will be released.
+```
+handler this.clear ();
+```

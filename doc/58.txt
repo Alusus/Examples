@@ -1,0 +1,4 @@
+Splits the current string into an array of strings using the given separator. The separator is not included in the result. If that separator is not found, it returns and array of one element which is the whole string.
+```
+handler this.split (separator: ptr[array[Char]]): Array[String];
+```

@@ -1,0 +1,1 @@
+Integer with number of bits equal to system architecture, which means 32 on 32bit systems, and 64 on 64bit systems.

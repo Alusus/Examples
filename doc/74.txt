@@ -1,0 +1,18 @@
+There are 3 versions of this method:
+The first form adds an item to the array after extending the allocated memory if necessary. If the content is shared with another array, this function copies the content to a new buffer.
+```
+handler this.add (e: ContentType);
+```
+The second form adds many items at once.
+```
+handler this.add (argCount: Int, args: ...ContentType);
+```
+The third form adds an array to the current array. It adds all items of the given array to the current array. The given array will not be affected by this call.
+```
+handler this.add (e: Array[ContentType]);
+```
+Example:
+```
+a.add({ 5, 2, 1 }); // Adds 3 elements: 5, 2, 1.
+a.add(3, 5, 2, 1); // Adds 3 elements: 5, 2, 1.
+```

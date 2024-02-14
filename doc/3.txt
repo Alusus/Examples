@@ -1,0 +1,1 @@
+Curly brackets are used to group statements in a block. These blocks are used in conditionals, loop bodies, classes, functions, and modules.

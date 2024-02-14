@@ -1,0 +1,1 @@
+To separate statements, we use semicolons `;` in a way similar to a regular comma that separates items in a list. In other words, a semicolon is not part of the statement and can be ignored if no following statement exists.
