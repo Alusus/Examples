@@ -1,0 +1,54 @@
+[
+    {
+        "answer_path": "importing/1.alusus",
+        "question": "Import `Array` module in Alusus"
+    },
+    {
+        "answer_path": "importing/2.alusus",
+        "question": "Import `closure` module in Alusus"
+    },
+    {
+        "answer_path": "importing/3.alusus",
+        "question": "Import `Math` module in Alusus"
+    },
+    {
+        "answer_path": "importing/4.alusus",
+        "question": "Import `Console` module in Alusus"
+    },
+    {
+        "answer_path": "importing/4.alusus",
+        "question": "Import the module responsible of printing to console in Alusus"
+    },
+    {
+        "answer_path": "importing/4.alusus",
+        "question": "What should I import if I need to print something to the command line in Alusus"
+    },
+    {
+        "answer_path": "importing/5.alusus",
+        "question": "Import `Fs` module in Alusus"
+    },
+    {
+        "answer_path": "importing/5.alusus",
+        "question": "Import the module responsible of dealing with the file system"
+    },
+    {
+        "answer_path": "importing/6.alusus",
+        "question": "Import `String` module in Alusus"
+    },
+    {
+        "answer_path": "printing/1.alusus",
+        "question": "Using Alusus, print `hello world!`"
+    },
+    {
+        "answer_path": "printing/3.alusus",
+        "question": "Using Alusus, print `hello` and `world` in two separate lines"
+    },
+    {
+        "answer_path": "printing/5.alusus",
+        "question": "Using Alusus, print an empty line"
+    },
+    {
+        "answer_path": "printing/7.alusus",
+        "question": "Using Alusus, define a string containing `hi there!` and print it"
+    }
+]

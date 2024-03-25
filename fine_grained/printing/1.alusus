@@ -1,0 +1,5 @@
+import "Srl/Console";
+
+use Srl;
+
+Console.print("hello world!");
