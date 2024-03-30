@@ -1,0 +1,7 @@
+import "Srl/Console";
+import "Srl/String";
+
+use Srl;
+
+def s: String = "hi there!";
+Console.print("%s", s.buf);
