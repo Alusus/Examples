@@ -1,0 +1,14 @@
+All definitions must be done with the command `def`, which takes the following form:
+```
+def <identifier> : <definition>
+```
+The definition can be a class name, which makes the definition result an instance of that class. Alternatively, it can one of the definition statements, such as functions or classes. The following example defines a variable of type `Int`:
+```
+def i : Int
+```
+We can also define constants in the same way by putting the value itself instead of the class. This can be done with integers, floating numbers, as well as strings literals, as shown in the following example:
+```
+def hello: "Hello World";
+def pi: 3.141592;
+def daysPerWeek: 7;
+```

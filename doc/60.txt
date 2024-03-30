@@ -1,0 +1,9 @@
+There are 2 versions of this method:
+1. Copies the array of chars from the source to the target. User should ensure that the memory allocated for target is enough to hold the source content.
+```
+func copy (target: ptr[array[Char]], source: ptr[array[Char]]): ptr;
+```
+2. This is similar to the first function except that it copies only the specified number of items from the source.
+```
+func copy (target: ptr[array[Char]], source: ptr[array[Char]], count: ArchInt): ptr;
+```

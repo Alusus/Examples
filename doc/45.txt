@@ -1,0 +1,18 @@
+There are 4 versions of this method:
+1. Assigns new content to ths string from another string. This function does not copy the content of the other string, instead they both share the same buffer until one of them needs to change it, at which point the buffer is copied and the sharing ends.
+```
+handler this.assign (str: ref[String]);
+```
+2. Assigns new content for the string from a buffer in the memory. This function copies the content from that buffer into a new buffer managed by this string.
+```
+handler this.assign (buf: ptr[array[Char]]);
+```
+3. This is similar to the second variant but it copies only the specified number of characters from the given buffer.
+```
+handler this.assign (buf: ptr[array[Char]], count: ArchInt);
+```
+4. Assigns new value from a `format` and unspecified number of arguments to the target. User should ensure that there is enough memory in the target to hold the whole result.
+User could also use `=` operator to replace functions 1 and 2.
+```
+func assign (target: ptr[array[Char]], fmt: ptr[array[Char]], ...any): Int;
+```

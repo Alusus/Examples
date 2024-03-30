@@ -1,0 +1,7 @@
+There are 4 versions of this method, all of them are similar to `find` functions, but they start the search from the end of the string instead of the beginning.
+```
+handler this.findLast (buf: ptr[array[Char]]): ArchInt;
+handler this.findLast (c: Char): ArchInt;
+func findLast (haystack: ptr[array[Char]], needle: ptr[array[Char]]): ptr[array[Char]];
+func findLast (haystack: ptr[array[Char]], c: Char): ptr[array[Char]];
+```

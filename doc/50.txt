@@ -1,0 +1,17 @@
+There are 4 versions of this method:
+1. Compares the current string with the given string and returns 1 if the current one is bigger, -1 if it is smaller, or 0 if they are the same.
+```
+handler this.compare (buf: ptr[array[Char]]): Int;
+```
+2. This is similar to the first function but it compares only the specified number of the given buffer's items.
+```
+handler this.compare (buf: ptr[array[Char]], count: ArchInt): Int;
+```
+3. This is similar to the first function bit it compares the two given arrays of chars.
+```
+func compare (str1: ptr[array[Char]], str2: ptr[array[Char]]): Int;
+```
+4. This is similar to function 3 but it compares only a specified number of characters from the second array.
+```
+func compare (str1: ptr[array[Char]], str2: ptr[array[Char]], count: ArchInt): Int;
+```

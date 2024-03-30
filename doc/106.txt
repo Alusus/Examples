@@ -1,0 +1,23 @@
+Sets a new value to the reference, it changes the reference to point to the given object.
+There are 3 versions of this method:
+The first two functions takes the value of the reference from types `SrdRef` and `WkRef` respectively with the same object type.
+```
+  handler this.assign (r: ref[SrdRef[ObjType]]);
+  handler this.assign (r: ref[WkRef[ObjType]]);
+```
+On the other hand, the third function is used to make the reference points to an object with the same type of this reference, but belongs to a reference with another type.
+```
+handler this.assign (c: ref[RefCounter], o: ref[ObjType]);
+```
+This function is used in casting while ensuring that releasing the object when terminating the reference will leads to releasing the original object with its original type that is created with. The next example explains the difference:
+```
+  def x: SrdRef[MyType];
+  x.construct();
+  def y: WkRef[SubType];
+  y.assign(x.refCounter, x.subObj);
+  def z: SrdRef[SubType];
+  z = y;
+  
+  x.release(); // Nothing is released here.
+  z.release(); // x will be released here, not x.subObj.
+```

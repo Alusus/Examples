@@ -1,0 +1,4 @@
+Scans the given string searching for the given items in the format and returns those items in the arguments after the format. This function is similar to `sscanf` system function.
+```
+func scan (source: ptr[array[Char]], fmt: ptr[array[Char]], ...any): Int;
+```

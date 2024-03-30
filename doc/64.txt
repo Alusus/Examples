@@ -1,0 +1,4 @@
+Removes every match of the given character from the given array of chars. Removing that character results in shifting following characters to replace it. This function modifies the provided string.
+```
+func remove (chars: ptr[array[Char]], c: Char): ptr[array[Char]];
+```

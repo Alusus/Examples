@@ -1,0 +1,4 @@
+Aliases can be used to create a definition that is just an alias for another definition. This is similar to the typedef command in C except that it's more powerful allowing you to create aliases for classes, functions, variavbles as well as modules. In addition to writing aliases for the sake of simplfying access to otherwise lengthy definitions, this can be used to write localizations for libraries, allowing the same library to have multiple interfaces in different languages. Examples:
+```
+  def int: alias Int[32]; // `int` is now equivalent to `Int[32]`
+```

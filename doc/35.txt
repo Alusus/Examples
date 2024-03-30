@@ -1,0 +1,29 @@
+`import` command is used to load a source code or a library and use it in the program. This command automatically distinguished between a source code and a library. Currently, this command supports three types of files: source codes, general dynamic libraries, and build libraries like libalusus_spp. It is possible to load any dynamic library regardless of the language it was built from. When loading a dynamic library all its public functions become available to use inside Alusus program, but you need to define those function manually using the `function` command with `@expname` modifier, as shown in the next example:
+```
+  import "libmath.so";
+  def sin: @expname[sin] function (f: Float) => Float;
+
+  s = sin(r);
+```
+It is possible to discard the extension in `import` statement, the Core will add it automatically. For example it is possible to shorten the following:
+```
+import "Srl/String.alusus";
+```
+into the following:
+```
+import "Srl/String";
+```
+It is also possible to discard the extension and a prefix in dynamic library names. For example, the following:
+```
+import "libmath.so";
+```
+can be shortened into:
+```
+import "math";
+```
+In the previous case, the core will try to load the file "math.alusus", if not found, it will try to load "libmath.so" on Linux, or "libmath.dylib" on mac.
+In some cases, you may need to give multiple file names choices for the Core to choose from, and it will load the first one it can find. Providing multiple choices is useful to support multiple operating systems with the same source code. This is done using `or` inside `import` statement, as shown in the following example:
+```
+import "libmath.so" or "libmath.so.0";
+```
+It is also possible to use `||` instead of `or` in the previous example.

@@ -1,0 +1,44 @@
+Addition and subtraction operators:
+```
++   add
+-   subtract
+```
+
+Multiplication and divide operators:
+```
+*   multiply
+/   divide
+%	divide remainder
+```
+
+Bitwise operators:
+These operators are used to apply logical operations on bit level, or apply them between the bits for two numbers. Also, these operators include shift operations.
+```
+|	`or` operation
+$	`xor` operation
+&	`and` operation
+<<	Shift the bits to the left by the given number
+>>	Shift the bits to the right by the given number
+```
+
+single preceding operators:
+```
+++	Increase by 1
+--	Decrease by 1
++	Positive number sign
+-	Negative number sign
+!	Bitwise negation sign
+!!	Logical negation sign
+```
+
+single following operators:
+```
+++	Increase by 1
+--	Decrease by 1
+```
+
+Other operators:
+```
+.	Access an element's member
+{}	statements pack
+```

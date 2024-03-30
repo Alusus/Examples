@@ -1,0 +1,1 @@
+The object that this reference points to. In some cases you will need to access the object itself like when you need a pointer or a regular reference to the object, or in case you want to access one of object's methods that has the same name as one of `WkRef` methods.

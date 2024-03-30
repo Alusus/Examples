@@ -1,0 +1,4 @@
+Assigns new content to the array from another array. This function does not copy the contents of the other array, instead both arrays share the same buffer until one of the them needs to change its content, in which case that array will copy the buffer and end the sharing.
+```
+handler this.assign (a: ref[Array[ContentType]]);
+```

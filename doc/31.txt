@@ -1,0 +1,36 @@
+References are similar to how pointers work, except that it is simpler to deal with because it requires only defining the variable as reference, then dealing with it in the same way as we deal with the regular variables, which means it is possible to access the content without the need to use `cnt` operator.
+```
+def <ref_name> : ref[<content_type>]
+```
+Before using the reference we need to specify the pointer's value for that reference, which vary depending on whether the reference is an argument for some function or not. If the reference is a function's argument then all we need is passing a variable with the same type of the reference's content of that function, and the compiler will automatically pass a pointer to that variable and use it for that reference, as shown in the next example.
+```
+  func twice (ri: ref[int]) { ri *= 2 };
+
+  def i: int = 5;
+  twice(i);
+  // now i == 10
+```
+In the case of the reference being defined as a regular variable and not an argument to a function, we need to specify its pointer manually as shown in the next example:
+```
+  def ri: ref[Int];
+  def i: Int;
+  ri~ptr = i~ptr;
+  ri = 3;
+  // now i == 3
+```
+It is also possible to use `~ptr` operator to make the reference point to a dynamically allocated memory.
+```
+  def r: ref[MyType];
+  r~ptr = Memory.alloc(MyType~size)~cast[ptr[MyType]];
+```
+It is also possible to define a reference to a reference as shown in the next example:
+```
+  def rri: ref[ref[Int]];
+  def ri: ref[Int];
+  def i: Int;
+  ri~ptr = i~ptr;
+  rri~ptr~ptr = ri~ptr~ptr;
+  rri = 3;
+  // now i == 3
+```
+Note that `~ptr` operator starts always with the content. In other words, if we define x as `ref[ref[Int]]` and y as `ref[Int]` then `x~ptr` and `y~ptr` both return a pointer to `Int`. Also, operations on references are always applied on the content regardless of reference depth, therefore `x = 5` and `y = 5` both modify the content despite the fact that `x` is a double reference.

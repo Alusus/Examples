@@ -1,0 +1,5 @@
+This function allocates memory for the object and initialize it also. Initializing the object is done without any arguments, so to use this function the object must enable initialization without arguments. If you need to initialize an object with arguments then you should use `allocate` then `~init`.
+```
+  handler this.construct ();
+  func construct (): SrdRef[ObjType];
+```

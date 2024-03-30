@@ -1,0 +1,4 @@
+Returns a part of the current string in a new string.
+```
+handler this.slice (start: ArchInt, count: ArchInt): String;
+```

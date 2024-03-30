@@ -1,0 +1,4 @@
+Returns a new string which contains the given parts separated with the given separator.
+```
+func merge (parts: Array[String], separator: ptr[array[Char]]): String;
+```

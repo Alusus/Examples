@@ -1,0 +1,13 @@
+There are 3 ways to do that:
+The first form initializes empty Map and choosing between using an index or not. The use of index increases the speed of searching for items in the Map at the expense of consuming more memory and slowing down write operations.
+```
+handler this~init (useIndex: Bool);
+```
+The second form initialize the Map from another Map. The new Map will use the same content as the given Map, and no content copy will occurs until one of the two Maps changes its content at which point the content is copied to ensure the other Map is not affected. In this form index won't be used even if the given Map uses one.
+```
+handler this~init (ref[Map[KeyType, ValueType]]);
+```
+The third form is similar to the second one, but allows the user to use an index. If the user asked for using an index then it will be created even if the given Map does not have one.
+```
+handler this~init (ref[Map[KeyType, ValueType]], useIndex: Bool);
+```

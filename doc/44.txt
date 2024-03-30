@@ -1,0 +1,4 @@
+Changes the size of allocated memory for this string. This function enables the user to change the buffer size while doing string operations directly on the buffer.
+```
+handler this.realloc (ArchInt);
+```

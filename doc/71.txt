@@ -1,0 +1,4 @@
+Returns the number of items in the array.
+```
+handler this.getLength (): ArchInt;
+```

@@ -1,0 +1,20 @@
+`String` class simplifies dealing with strings. It is responsible for allocating and releasing the memory allocated for the string, taking performance into account and avoiding unnecessary memory allocation and copy operations. This class provides functions to simplify different operations on strings. The following example shows this class in use.
+```
+func main {
+  def str: String = getString();
+  str += " world"; // Memory block is expanded here.
+  def str2: String = str; // No new memory is allocated here.
+  str += "."; // Copy of the string buffer is created so str2 is not affected.
+  printStr(str); // No new memory allocation or copy happens here.
+  // Now memory blocks of str and str2 are freed.
+}
+
+func getString (): String {
+  def s: String = "Hello";
+  return s; // No new memory allocation or copy happens here.
+}
+
+func printStr (s: String) {
+  Console.print(s); // s is automatically casted into ptr[array[Char]].
+}
+```

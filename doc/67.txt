@@ -1,0 +1,4 @@
+Reads a float from the given array of chars and returns it.
+```
+func parseFloat (str: ptr[array[Char]]): Float[64];
+```

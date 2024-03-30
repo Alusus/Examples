@@ -1,0 +1,6 @@
+Sets a new value on the given index, which means changing the value based on its index instead of its key. Returns a reference to the Map itself which allows the user to chain multiple `setAt` operations in a one statement.
+```
+  handler this.setAt (
+    index: ArchInt, value: ValueType
+  ): ref[Map[KeyType, ValueType]];
+```

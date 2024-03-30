@@ -1,0 +1,24 @@
+Loops written as follows:
+```
+while <condition expression> <statement>
+```
+Or
+```
+while <condition expression> { <group of statements> }
+```
+Or
+```
+for <counter initialization>, <condition expression>, <counter update> <statement>
+```
+Or
+```
+for <counter initialization>, <condition expression>, <counter update> { <group of statement> }
+```
+As in conditionals, it is optional to enclose the loop header (condition expression in while loops, or the three expressions of for loop) in round brackets. For example:
+```
+while r!=0 r=performOperation();
+while r!=0 { r = performOperation() }
+for i=0, i<10, i++ print("%d\n", i);
+for (i=0, i<10, i++) print("%d\n", i);
+for i=0, i<10, i++ { print("%d\n", i) };
+```

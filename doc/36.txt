@@ -1,0 +1,29 @@
+It is possible to customize operators applied on the objects by using `handler` command in a similar way to customizing initialization but with the required operation instead of `~init` command. The following example explain how to customize equality operation on an object.
+```
+  class String {
+    ...
+    handler this = ptr[array[char]] {
+      this.copyChars(value);
+    };
+    handler this == ptr[array[char]] {
+      return this.compare(value);
+    };
+  };
+
+  def s: String;
+  s = "hello world";
+  if s == "hello world" print("text is identical");
+```
+Using the method it is possible to customize any operation, including comparison, arithmetic, and bitwise operations. It is also possible to customize parentheses as shown in the next example:
+```
+  class String {
+    ...
+    handler this(pos: int): char {
+      return this.getChar(pos);
+    };
+  };
+
+  def s: String;
+  s = "!@#$";
+  print(s(1)); // prints @
+```

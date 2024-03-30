@@ -1,0 +1,9 @@
+Source code elements can be tagged with modifiers that are used later for various reasons. Modifier can change the way tagged elements are compiled and executed, or they can only add some metadata. Modifiers have the following syntax:
+```
+@<keyword> <def_of_element_to_be_tagged>
+@<keyword>[<arguments>] <def_of_element_to_be_tagged>
+```
+The compiler depends on pre-defined modifiers to add certain properties to different definitions as shown in different parts of this document. User can add additional custom modifiers and access them later using `Spp.astMgr`.
+```
+@mymodifier["arg1", "arg2"] func myFunc { ... };
+```

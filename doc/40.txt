@@ -1,0 +1,4 @@
+This operator could be used to retrieve the character at the specified location.
+```
+handler this(i: ArchInt): Char
+```

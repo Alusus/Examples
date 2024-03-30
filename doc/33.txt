@@ -1,0 +1,5 @@
+Variables could be represented by a type other than its real type using `~cast` operator followed by square brackets with the type to be represented inside them. As shown in the next example.
+```
+  def f : Float;
+  printInteger(f~cast[Int]);
+```
