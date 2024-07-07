@@ -10,7 +10,7 @@ from openai import OpenAI
 api_key = input("Enter api key: ")
 client = OpenAI(api_key=api_key)
 
-DOCS_DIR = r"D:\Alusus\AI\repo\Examples\doc"
+DOCS_DIR = r"./doc"
 
 TEST_QUESTIONS = [
     # ArrayRelatedOperations
