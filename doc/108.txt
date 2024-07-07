@@ -1,0 +1,22 @@
+To print something in enAlusus it is possible to use `print` function from `Console` module which is similar to `printf` in c.
+for example:
+```
+import "Srl/Console";
+
+use Srl;
+
+Console.print("hello world!");
+```
+
+or like this:
+```
+
+```
+import "Srl/Console";
+import "Srl/String";
+
+use Srl;
+
+def s: String = "hi there!";
+Console.print("%s", s.buf);
+```
