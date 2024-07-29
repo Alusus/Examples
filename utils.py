@@ -48,7 +48,6 @@ def format_question(q):
 
 
 def get_cpp_code(client, question):
-    question = "Using enAlusus, find the max number in an array."
     messages = format_question(question)
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
