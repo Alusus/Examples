@@ -1,7 +1,8 @@
 import json
-import jsonlines
 import random
 import os
+
+from utils import format, export, debug
 
 # TRAIN_RATIO = 0.9
 LANGUAGES = [('c', 'en'), ('js', 'en'), ('enAlusus', 'en')]#, ('arAlusus', 'ar')]
@@ -12,7 +13,7 @@ TEST_QUESTIONS = [
     'reduce',
     'rfind',
     'std',
-    # FileHandling
+    # Geometry
     'farthest_point',
     'matrix_vector_multiplication',
     'triangle_area',
@@ -24,13 +25,6 @@ TEST_QUESTIONS = [
     'find_char',
     'to_upper'
 ]
-
-
-def debug(*msgs):
-    print(f'\n{"="*10}\n')
-    for msg in msgs:
-        print(msg)
-    print(f'\n{"="*10}\n')
 
 
 data = json.load(open('index.json', encoding='utf-8'))
@@ -145,27 +139,6 @@ def build(data, doc_data_path=None, fine_grained_data_path=None):
 
     return train_samples, test_samples
 
-def format(samples):
-    formatted_samples = []
-
-    for question, answer in samples:
-        sample = {
-            "messages": [
-                {
-                    "role": "user",
-                    "content": question
-                },
-                {
-                    "role": "assistant",
-                    "content": answer
-                }
-            ]
-        }
-
-        formatted_samples.append(sample)
-    
-    return formatted_samples
-
 
 train_samples, test_samples = build(
     data,
@@ -180,9 +153,6 @@ debug('train examples:', train_samples[:3])
 debug(f'test size: {len(test_samples)}')
 debug('test examples:', test_samples[:3])
 
-def export(samples: list, filename: str):
-    with jsonlines.open(f'{filename}.jsonl', mode='w') as writer:
-        writer.write_all(samples)
 
 export(train_samples, 'train_set')
 export(test_samples, 'test_set')

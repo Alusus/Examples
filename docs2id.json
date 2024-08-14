@@ -1,0 +1,68 @@
+[
+    {
+        "name": "ptr",
+        "ids": [17, 30],
+        "regex": false,
+        "patterns": ["*"]
+    },
+    {
+        "name": "if",
+        "ids": [22],
+        "regex": false,
+        "patterns": ["if"]
+    },
+    {
+        "name": "loop",
+        "ids": [23],
+        "regex": false,
+        "patterns": ["for", "while"]
+    },
+    {
+        "name": "function",
+        "ids": [24],
+        "regex": true,
+        "patterns": ["\\b\\w+\\s+(\\b(?!main\\b)\\w+)\\s*\\([^)]*\\)\\s*\\{.*?\\}"]
+    },
+    {
+        "name": "class",
+        "ids": [26, 27],
+        "regex": false,
+        "patterns": ["class"]
+    },
+    {
+        "name": "reference",
+        "ids": [31],
+        "regex": false,
+        "patterns": ["&"]
+    },
+    {
+        "name": "array",
+        "ids": [69, 70, 74],
+        "regex": true,
+        "patterns": ["\\w+\\s+\\w+\\s*\\[\\s*\\d*\\s*\\]\\s*(=\\s*\\{[^}]*\\}\\s*)?;"]
+    },
+    {
+        "name": "import",
+        "ids": [35],
+        "regex": false,
+        "patterns": ["#include"]
+    },
+    {
+        "name": "string",
+        "ids": [38, 39, 40, 42],
+        "regex": false,
+        "patterns": ["string"]
+    },
+    {
+        "name": "map",
+        "ids": [79, 80, 81, 82, 86],
+        "regex": false,
+        "patterns": ["map"]
+    },
+    {
+        "name": "print",
+        "ids": [108],
+        "regex": false,
+        "patterns": ["printf", "cout"]
+    }
+]
