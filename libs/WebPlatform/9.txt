@@ -1,0 +1,3 @@
+A class that represents an image.
+Properties:
+* `url`: String`. The URL of the image's source.

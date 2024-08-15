@@ -1,0 +1,12 @@
+`getSelectedValue`
+```
+handler this.getSelectedValue(): String;
+```
+Returns the value of the currently selected item.
+
+`selectValue`
+```
+handler this.selectValue(newValue: String);
+```
+Changes the current selection.
+

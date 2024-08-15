@@ -1,0 +1,38 @@
+We can create a component by defining a class for this component derived from `Component`, and initializing it in the constructor by setting its view with whatever needed styling and events.
+
+In addition to that, it's better to overload the () operator of the class to return a shared reference to a newly created instance, instead of creating a temp variable.
+
+As an example:
+```
+class Header {
+    @injection def component: Component;
+
+    handler this~init() {
+        // define the rectangle aread to hold the widgets
+        this.view = Box({}).{
+            // apply some styles
+            style.{
+                width = Length.percent(100) - Length.pt(3);
+                height = Length.pt(85);
+                padding = Length4.pt(4, 0, 0, 0);
+                background = Background(PRIMARY_COLOR);
+                borderWidth = Length4.pt(1.5);
+                borderStyle = BorderStyle.SOLID;
+                borderColor = PRIMARY_COLOR;
+                justify = Justify.SPACE_BETWEEN;
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            };
+            // children widgets
+            addChildren({
+                // here we add the children widgets for this component
+            });
+        }
+    }
+
+    // We overload `Header()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[Header] {
+        return SrdRef[Header].construct();
+    }
+}
+```

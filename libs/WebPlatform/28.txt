@@ -1,0 +1,40 @@
+To define a backend endpoint we define a regular function which accepts an argument of type ptr[Http.Connection] that represents a pointer to the connection and allows us to return a response containing the status and data. Also, we should apply the modifier @beEndpoint on it with the method accepted by this endpoint ("POST" for example) and its route. At first, we define an endpoint for sending the message the user entered to the server. We will need a variable to store the message in addition to the backend endpoint function.
+```
+def message: String;
+
+@beEndpoint["POST", "/message"]
+func postMessages (conn: ptr[Http.Connection]) {
+
+}
+```
+Note that we specify the method as "POST" since we will send data to this endpoint. Now we should read the data sent by the user in this function and store it in the variable message. We can read the data sent on the connection conn using Http.read, all we have to do is to define a buffer to store the data and call this method, as follows:
+```
+def postData: array[Char, 1024];
+def postDataSize: Int = Http.read(conn, postData~ptr, postData~size);
+message = String(postData~ptr, postDataSize);
+```
+Here we defined a buffer with enough size to hold the data. Of course, this depends on the goal of the app; in our app we build a simple short message chat, so this size is enough. After that, we read the data and store it in the buffer, the good thing is that method Http.read returns the size of the data it read, which helps us to convert this data into a String object. Finally, we return the status of this request. We will return the status of success without any data:
+```
+Http.print(conn, "HTTP/1.1 200 Ok\r\n\r\n");
+```
+To support multiple messages we need to modify few things.
+We need to modify the backend endpoint only. First, we will modify what is stored at the server from one message to an array of messages. Also, we will set an upper limit on the number of messages.
+```
+def MAX_MESSAGES: 12;
+def messages: Array[String];
+```
+In the endpoint responsible for receiving messages from thse user, all we need to do is add the message to the array. Of course, in case we surpass the limit on the number of messages we will remove the oldest message before adding the new one. We do that as follows:
+```
+@beEndpoint["POST", "/messages"]
+func postMessages (conn: ptr[Http.Connection]) {
+    def postData: array[Char, 1024];
+    def postDataSize: Int = Http.read(conn, postData~ptr, postData~size);
+
+    if messages.getLength() >= MAX_MESSAGES messages.remove(0);
+
+    messages.add(String(postData~ptr, postDataSize));
+    Http.print(conn, "HTTP/1.1 200 Ok\r\n\r\n");
+}
+```
+
+
