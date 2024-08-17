@@ -1,0 +1,5 @@
+```
+Window.instance.setView(
+    Text(String("Hello world!"))
+);
+```

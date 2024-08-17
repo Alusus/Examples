@@ -1,0 +1,3 @@
+Displays a button.
+Properties:
+* `text`: `String`. The text we want to show on the button.

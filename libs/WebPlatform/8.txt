@@ -1,0 +1,8 @@
+This represents an area to be used for free drawing.
+Variables:
+* `resourceId`: `ArchInt`. a unique identifier to distinguish each canvas from the other.
+Mixins:
+* `drawing`: `Drawing`. This mixin adds support for drawing operatios to this class. Visit the documentation of Drawing for details about available operations.
+Properties:
+* `bitmapWidth`: `SrdRef[Length]`. The width of the drawing area.
+* `bitmapHeight`: `SrdRef[Length]`. The height of the drawing area.

@@ -1,0 +1,5 @@
+A class that displays a hyperlink.
+Properties:
+* `url`: `String`. The address of the target page.
+* `child`: `SrdRef[Widget]`. The widget contained in the hyperlink, like a text or an image.
+* `newTab`: `Bool`. Determins if the address will be opened in a new tab or the current one.

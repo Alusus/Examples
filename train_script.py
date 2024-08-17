@@ -19,7 +19,7 @@ client.fine_tuning.jobs.create(
   training_file=train_file.id,
   validation_file=test_file.id,
   suffix=f"rag_v{version}_Alusus",
-  model="gpt-3.5-turbo",
+  model="gpt-4o-mini-2024-07-18",
   # hyperparameters={
   #   "n_epochs":3
   # }

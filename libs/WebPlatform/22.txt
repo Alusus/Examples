@@ -1,0 +1,1 @@
+A class used to show an HTML or Markdown document.

@@ -1,0 +1,3 @@
+onChanged: Gets fired when the entered value changes.
+onKeyPress: Gets fired when a key is pressed.
+onKeyUp: Gets fired when we a keypress ends.

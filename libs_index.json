@@ -1,0 +1,188 @@
+{
+    "doc_folder": "libs",
+    "WebPlatform": {
+        "doc_folder": "WebPlatform",
+        "docs": [
+            {
+                "id": 0,
+                "content": "how to import WebPlatform library?",
+                "regex": false,
+                "patterns": ["WebPlatform"]
+            },
+            {
+                "id": 1,
+                "content": "how to write a uiEndpoint?",
+                "regex": false,
+                "patterns": ["uiEndpoint", "user interface endpoint"]
+            },
+            {
+                "id": 2,
+                "content": "how to run the server?",
+                "regex": false,
+                "patterns": ["WebPlatform"]
+            },
+            {
+                "id": 3,
+                "content": "how to show a simple text in the uiEndpoint?",
+                "regex": false,
+                "patterns": ["uiEndpoint", "user interface endpoint", "text"]
+            },
+            {
+                "id": 4,
+                "content": "how to receive input from the user and show it?",
+                "regex": false,
+                "patterns": ["input", "text"]
+            },
+            {
+                "id": 5,
+                "content": "how to write a backend endpoint?",
+                "regex": false,
+                "patterns": ["backend endpoint", "beEndPoint"]
+            },
+            {
+                "id": 6,
+                "content": "what are the events supported by a widget?",
+                "regex": false,
+                "patterns": ["WebPlatform"]
+            },
+            {
+                "id": 7,
+                "content": "Widget class",
+                "regex": false,
+                "patterns": ["WebPlatform"]
+            },
+            {
+                "id": 8,
+                "content": "Canvas",
+                "regex": false,
+                "patterns": ["Canvas", "draw"]
+            },
+            {
+                "id": 9,
+                "content": "Image",
+                "regex": false,
+                "patterns": ["Image", "picture"]
+            },
+            {
+                "id": 10,
+                "content": "Text",
+                "regex": false,
+                "patterns": ["text", "uiEndpoint", "user interface endpoint"]
+            },
+            {
+                "id": 11,
+                "content": "Button",
+                "regex": false,
+                "patterns": ["button"]
+            },
+            {
+                "id": 12,
+                "content": "what events are supported by Button?",
+                "regex": false,
+                "patterns": ["button"]
+            },
+            {
+                "id": 13,
+                "content": "TextInput",
+                "regex": false,
+                "patterns": ["text", "input", "uiEndpoint", "user interface endpoint"]
+            },
+            {
+                "id": 14,
+                "content": "what events are supported by TextInput?",
+                "regex": false,
+                "patterns": ["text", "input", "uiEndpoint", "user interface endpoint"]
+            },
+            {
+                "id": 15,
+                "content": "Input",
+                "regex": false,
+                "patterns": ["input", "uiEndpoint", "user interface endpoint"]
+            },
+            {
+                "id": 16,
+                "content": "what events are supported by Input?",
+                "regex": false,
+                "patterns": ["input", "uiEndpoint", "user interface endpoint"]
+            },
+            {
+                "id": 17,
+                "content": "Select",
+                "regex": false,
+                "patterns": ["select"]
+            },
+            {
+                "id": 18,
+                "content": "what events are supported by Select?",
+                "regex": false,
+                "patterns": ["select"]
+            },
+            {
+                "id": 19,
+                "content": "what methods are supported by Select?",
+                "regex": false,
+                "patterns": ["select"]
+            },
+            {
+                "id": 20,
+                "content": "Hyperlink",
+                "regex": false,
+                "patterns": ["Hyperlink", "link"]
+            },
+            {
+                "id": 21,
+                "content": "what methods are supported by Hyperlink?",
+                "regex": false,
+                "patterns": ["Hyperlink", "link"]
+            },
+            {
+                "id": 22,
+                "content": "DocView",
+                "regex": false,
+                "patterns": ["DocView", "document"]
+            },
+            {
+                "id": 23,
+                "content": "what methods are supported by DocView?",
+                "regex": false,
+                "patterns": ["DocView", "document"]
+            },
+            {
+                "id": 24,
+                "content": "Browser",
+                "regex": false,
+                "patterns": ["Browser"]
+            },
+            {
+                "id": 25,
+                "content": "what methods are supported by Browser?",
+                "regex": false,
+                "patterns": ["Browser"]
+            },
+            {
+                "id": 26,
+                "content": "what are components?",
+                "regex": false,
+                "patterns": ["WebPlatform"]
+            },
+            {
+                "id": 27,
+                "content": "how to create a component?",
+                "regex": false,
+                "patterns": ["WebPlatform"]
+            },
+            {
+                "id": 28,
+                "content": "how to write a backend endpoint to receive a messages from the user?",
+                "regex": false,
+                "patterns": ["backend endpoint", "beEndPoint"]
+            },
+            {
+                "id": 29,
+                "content": "how to write a backend endpoint to send the messages to the user?",
+                "regex": false,
+                "patterns": ["backend endpoint", "beEndPoint"]
+            }
+        ]
+    }
+}
