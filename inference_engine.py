@@ -11,7 +11,7 @@ def get_inference_engine(question, **kwargs):
     elif 'enalusus' in question.lower():
         return BasicEngine(kwargs['api_key'], kwargs['model_tag'], kwargs['base_model_tag'], kwargs['docs_root_dir'])
     else:
-        return ValueError('Question cannot be answered by current supported engines.')
+        raise ValueError('Question cannot be answered by current supported engines.')
 
 
 class Engine:
@@ -29,17 +29,11 @@ class Engine:
         question, data = self.preprocess(question)
         docs = self.get_docs(question, data)
         question = get_rag_question(question, docs)
-        query = [
-            {
-                "role": "user",
-                "content": question,
-            }
-        ]
 
         response = self.client.chat.completions.create(
             model=self.model_tag,
             messages=[
-                {"role": "user", "content": query},
+                {"role": "user", "content": question},
             ]
         )
 
@@ -68,7 +62,7 @@ class WebPlatformEngine(Engine):
             docs = json.load(index_file)
         self.docs_root_dir = os.path.join(docs['doc_folder'], docs['WebPlatform']['doc_folder'])
         self.docs = docs['WebPlatform']['docs']
-        self.patterns = set([pattern.lower() for doc in docs for pattern in doc['patterns']])
+        self.patterns = set([pattern.lower() for doc in self.docs for pattern in doc['patterns']])
     
     def preprocess(self, question):
         matched_patterns = [pattern for pattern in self.patterns if pattern in question.lower()]
@@ -77,7 +71,7 @@ class WebPlatformEngine(Engine):
 
     def get_docs(self, question, data):
         def format_doc(doc):
-            doc_path = os.path.join(self.docs_root_dir, f'{doc['id']}.txt')
+            doc_path = os.path.join(self.docs_root_dir, f'{doc["id"]}.txt')
             with open(doc_path) as doc_file:
                 doc_content = doc_file.read()
             doc_content = f"{doc['content']}\n{doc_content}"
