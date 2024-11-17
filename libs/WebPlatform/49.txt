@@ -1,0 +1,73 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class TextWithTooltip {
+    @injection def component: Component;
+
+    def text: String;
+    def tooltip: String;
+
+    handler this~init() {
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        def super: ref[TextWithTooltip](this);
+
+        this.view = Box({}).{
+            addChildren({
+                Text(super.text)
+            })
+        }
+    }
+
+    handler this~init(text: ref[String], tooltip: ref[String]) {
+        this.text = text;
+        this.tooltip = tooltip;
+
+        this.build_view();
+    }
+
+    handler (this:Component).afterBuild() set_ptr {
+        // id here is id2, so need to get the 2 and replace it by 5 for example
+        def id: Int = String.parseInt(this.view.id.slice(2, this.view.id.getLength() - 2));
+        def textId: String = String.format("id%i", id+1);
+        setElementAttribute(textId, "title", this.tooltip.buf);
+    }
+
+    // We overload `TextWithTooltip()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[TextWithTooltip] {
+        return SrdRef[TextWithTooltip].construct();
+    }
+
+    handler this_type(text: ref[String], tooltip: ref[String]): SrdRef[TextWithTooltip] {
+        def r: SrdRef[TextWithTooltip]
+        r.alloc()~init(text, tooltip);
+        return r;
+    }
+}
+
+
+@uiEndpoint["/tooltip"]
+@title["Tooltip"]
+func tooltip {
+    Window.instance.setView(
+        Box({}).{
+            style.{
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            }
+            addChildren({
+                TextWithTooltip(String("Text body"), String("Some help text"))
+            });
+        }
+    );
+
+    runEventLoop();
+}
+```

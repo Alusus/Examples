@@ -1,0 +1,128 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class Card {
+    @injection def component: Component;
+
+    def title: String;
+    def content: String;
+    def imgData: String;
+
+    handler this~init() {
+        this.title = "title";
+        this.content = "content";
+        this.imgData = "imgData";
+
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        def super: ref[Card](this);
+
+        this.view = Box({}).{
+            style.{
+                boxShadow = BoxShadow(Length.px(0), Length.px(4), Length.px(8), Length.px(0), Color(0, 0, 0, 51));
+                width = Length.px(200);
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+                align = Align.CENTER;
+                margin = Length4.px(16, 16, 16, 16);
+            },
+            style({ StateSelector.HOVER }).{
+                boxShadow = BoxShadow(Length.px(0), Length.px(8), Length.px(16), Length.px(0), Color(0, 0, 0, 51));
+            }
+            addChildren({
+                Image().{
+                    style.{
+                        width = Length.pt(128);
+                        height = Length.pt(128);
+                    }
+                },
+                Box({}).{
+                    style.{
+                        padding = Length4.px(8, 8, 8, 8);
+                        display = Display.FLEX;
+                        layout = Layout.COLUMN;
+                    }
+                    addChildren({
+                        Text(super.title).{
+                            style.{
+                                fontSize = Length.em(1.2);
+                            }
+                        },
+                        Text(super.content),
+                    });
+                }
+            });
+        }
+    }
+
+    handler this~init(title: ref[String], content: ref[String], imgData: ref[String]) {
+        this.title = title;
+        this.content = content;
+        this.imgData = imgData;
+
+        this.build_view();
+    }
+
+    handler (this:Component).afterBuild() set_ptr {
+        // id here is id2, so need to get the 2 and replace it by 5 for example
+        def id: Int = String.parseInt(this.view.id.slice(2, this.view.id.getLength() - 2));
+        def imgId: String = String.format("id%i", id+1);
+        setElementAttribute(imgId, "src", this.imgData.buf);
+    }
+
+    // We overload `Card()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[Card] {
+        return SrdRef[Card].construct();
+    }
+
+    handler this_type(title: ref[String], content: ref[String], imgData: ref[String]): SrdRef[Card] {
+        def r: SrdRef[Card]
+        r.alloc()~init(title, content, imgData);
+        return r;
+    }
+}
+
+
+
+@uiEndpoint["/card"]
+@title["Card"]
+func card {
+    Window.instance.setView(
+        Box({}).{
+            addChildren({
+                Box({}).{
+                    style.{
+                        display = Display.FLEX;
+                        layout = Layout.ROW;
+                    }
+                    addChildren({
+                        Card(String("First Card"), String("First Card Content"), String("#")),
+                        Card(String("2nd Card"), String("2nd Card Content"), String("#")),
+                        Card(String("3rd Card"), String("3rd Card Content"), String("#")),
+                        Card(String("4th Card"), String("4th Card Content"), String("#")),
+                        Card(String("First Card"), String("First Card Content"), String("#")),
+                        Card(String("2nd Card"), String("2nd Card Content"), String("#")),
+                        Card(String("3rd Card"), String("3rd Card Content"), String("#")),
+                        Card(String("4th Card"), String("4th Card Content"), String("#")),
+                        Card(String("First Card"), String("First Card Content"), String("#")),
+                        Card(String("2nd Card"), String("2nd Card Content"), String("#")),
+                        Card(String("3rd Card"), String("3rd Card Content"), String("#")),
+                        Card(String("4th Card"), String("4th Card Content"), String("#")),
+                        Card(String("First Card"), String("First Card Content"), String("#")),
+                        Card(String("2nd Card"), String("2nd Card Content"), String("#")),
+                        Card(String("3rd Card"), String("3rd Card Content"), String("#")),
+                        Card(String("4th Card"), String("4th Card Content"), String("#")),
+                    });
+                }
+            });
+        }
+    );
+}
+```

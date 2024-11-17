@@ -1,0 +1,51 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+@uiEndpoint["/animated-text"]
+@title["Animated Text"]
+func animatedText {
+    Window.instance.setView(
+        Text(String("Some Text"))
+    );
+
+    setElementAttribute("id1", "class", "animated-text");
+
+    createElement("link", "custom-styles", "head");
+    setElementAttribute("custom-styles", "rel", "stylesheet");
+    setElementAttribute("custom-styles", "type", "text/css");
+    setElementAttribute("custom-styles", "href", "Assets/text_animation_styles.css");
+
+    runEventLoop();
+}
+```
+
+text_animation_styles.css:
+```
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.animated-text {
+    font-size: 2em;
+    color: #333;
+    opacity: 0;
+    animation: fadeIn 3s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+```

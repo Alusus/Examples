@@ -1,0 +1,38 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+@uiEndpoint["/button-link"]
+@title["Button With Link"]
+func buttonWithLink {
+    def buttonText: String = "Go To Link";
+    def buttonLink: String = "#";
+
+    Window.instance.setView(
+        Box({}).{
+            addChildren({
+                Hyperlink(
+                    buttonLink,
+                    Button(buttonText).{
+                        style.{
+                            background = Background(Color(173, 216, 230));
+                            borderWidth = Length4.pt(0, 1, 0, 0);
+                            margin = Length4.px(0, 5, 0, 5);
+                        }
+
+                        style({ StateSelector.HOVER }).{
+                            background = Background(Color(200, 243, 255));
+                        }
+                    }
+                )
+            });
+        }
+    );
+
+    runEventLoop();
+}
+```

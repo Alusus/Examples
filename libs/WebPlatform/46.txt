@@ -1,0 +1,103 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class NavBar {
+    @injection def component: Component;
+
+    def tabs: Map[String, String];
+
+    handler this~init() {
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        def super: ref[NavBar](this);
+
+        this.view = Box({}).{
+            style.{
+                boxShadow = BoxShadow(Length.px(0), Length.px(4), Length.px(8), Length.px(0), Color(0, 0, 0, 51));
+                width = Length.percent(100);
+                display = Display.FLEX;
+                layout = Layout.ROW;
+                align = Align.START;
+                margin = Length4.px(5, 0, 16, 0);
+                padding = Length4.px(5, 0, 5, 0);
+                background = Background(Color(173, 216, 230));
+            },
+            style({ StateSelector.HOVER }).{
+                boxShadow = BoxShadow(Length.px(0), Length.px(8), Length.px(16), Length.px(0), Color(0, 0, 0, 51));
+            }
+
+            def i: Int;
+            for i = 0 , i < super.tabs.getLength() , i++ {
+                def buttonText: String = super.tabs.keyAt(i);
+                def buttonLink: String = super.tabs.valAt(i);
+
+                addChildren({
+                    Hyperlink(
+                        buttonLink,
+                        Button(buttonText).{
+                            style.{
+                                background = Background(Color(173, 216, 230));
+                                borderWidth = Length4.pt(0, 1, 0, 0);
+                                margin = Length4.px(0, 5, 0, 5);
+                            }
+
+                            style({ StateSelector.HOVER }).{
+                                background = Background(Color(200, 243, 255));
+                            }
+                        }
+                    )
+                })
+            }
+        }
+
+        
+    }
+
+    handler this~init(tabs: Map[String, String]) {
+        this.tabs = tabs;
+
+        this.build_view();
+    }
+
+    // We overload `NavBar()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[NavBar] {
+        return SrdRef[NavBar].construct();
+    }
+
+    handler this_type(tabs: Map[String, String]): SrdRef[NavBar] {
+        def r: SrdRef[NavBar]
+        r.alloc()~init(tabs);
+        return r;
+    }
+}
+
+
+@uiEndpoint["/nav-bar"]
+@title["Navigation Bar"]
+func nav_bar {
+    def tabs: Map[String, String];
+    tabs.set(String("Home"), String("homeLink"));
+    tabs.set(String("About"), String("aboutLink"));
+    tabs.set(String("Posts"), String("postsLink"));
+
+    Window.instance.setView(
+        Box({}).{
+            style.{
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            }
+            addChildren({
+                Text(String("Page Title"));
+                NavBar(tabs);
+            });
+        }
+    );
+}
+```

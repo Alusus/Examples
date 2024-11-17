@@ -1,0 +1,83 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+def lastId: Int = 0;
+
+class Post {
+    def id: Int;
+    def title: String;
+    def content: String;
+    def imgData: String;
+
+    handler this~init() {
+        this.id = lastId++;
+        this.title = "";
+        this.content = "";
+        this.imgData = "";
+    }
+
+    handler this~init(title: ref[String], content: ref[String], imgData: ref[String]) {
+        this.id = lastId++;
+        this.title = title;
+        this.content = content;
+        this.imgData = imgData;
+    }
+
+    handler this~init(post: ref[Post]) {
+        this.id = lastId++;
+        this.title = post.title;
+        this.content = post.content;
+        this.imgData = post.imgData;
+    }
+
+    handler this = ref[Post] {
+        this.id = lastId++;
+        this.title = value.title;
+        this.content = value.content;
+        this.imgData = value.imgData;
+    }
+}
+
+
+def posts: Map[Int, Post];
+
+
+@beEndpoint["POST", "/update-post"]
+func updatePost (conn: ptr[Http.Connection]) {
+    def postData: array[Char, 1048576];
+    // retrieve the sent information and store it in the buffer
+    def postDataSize: Int = Http.read(conn, postData~ptr, postData~size);
+    
+    def data: Json = postData~ptr;
+
+    def postId: Int = data("id");
+    def postLoc: Int = posts.findPos(postId);
+
+    // check whether the post exists
+    if postLoc == -1 {
+        Http.print(conn, "HTTP/1.1 404 Not Found\r\n");
+        return;
+    }
+
+    def i: Int;
+    for i = 0, i < data.keys.getLength(), ++i {
+        if data.keys(i) == String("title") {
+            posts.valAt(postLoc).title = data.values(i);
+        }
+        else if data.keys(i) == String("content") {
+            posts.valAt(postLoc).content = data.values(i);
+        }
+        else if data.keys(i) == String("imgData") {
+            posts.valAt(postLoc).imgData = data.values(i);
+        }
+    }
+
+    Http.print(conn, "HTTP/1.1 204 OK\r\n");
+    Http.print(conn, "Content-Length: %i\r\n\r\n", 0);
+}
+```

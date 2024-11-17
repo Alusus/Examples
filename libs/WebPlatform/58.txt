@@ -1,0 +1,27 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+@uiEndpoint["/select"]
+@title["Select"]
+func select {
+    Window.instance.setView(
+        Box({}).{
+            addChildren({
+                Select().{
+                    items.set(String("value1"), String("First Value"));
+                    items.set(String("value2"), String("Second Value"));
+                    items.set(String("value3"), String("Third Value"));
+                    items.set(String("value4"), String("Fourth Value"));
+                }
+            });
+        }
+    );
+
+    runEventLoop();
+}
+```

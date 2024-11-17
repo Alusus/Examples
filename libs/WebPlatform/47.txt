@@ -1,0 +1,161 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class WeatherWidget {
+    @injection def component: Component;
+
+    def lat: float;
+    def lon: float;
+    def apiKey: String;
+
+    handler this~init() {
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        def super: ref[WeatherWidget](this);
+
+        def onFetch: closure (json: Json);
+
+        this.view = Box({}).{
+            style.{
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            },
+            onFetch = closure (json: Json) {
+
+                def data: Json = json("eventData")("body").rawValue.slice(1, json("eventData")("body").rawValue.getLength() - 2).replace("\\\"", "\"")
+
+                this.addChildren({
+                    Box({}).{
+                        style.{
+                            display = Display.FLEX;
+                            layout = Layout.ROW;
+                        }
+                        addChildren({
+                            Text(String("City: "))
+                            Text(String(data("name"))).{
+                                style.{
+                                    padding = Length4.px(0, 5, 0, 5);
+                                }
+                            }
+                        });
+                    },
+                    Box({}).{
+                        style.{
+                            display = Display.FLEX;
+                            layout = Layout.ROW;
+                        }
+                        addChildren({
+                            Text(String("Weather: "))
+                            Text(String(data("weather")(0)("main"))).{
+                                style.{
+                                    padding = Length4.px(0, 5, 0, 5);
+                                }
+                            }
+                        });
+                    },
+                    Box({}).{
+                        style.{
+                            display = Display.FLEX;
+                            layout = Layout.ROW;
+                        }
+                        addChildren({
+                            Text(String("Temp [F]: "))
+                            Text(String.format("%d", data("main")("temp")~cast[Float[64]])).{
+                                style.{
+                                    padding = Length4.px(0, 5, 0, 5);
+                                }
+                            }
+                        });
+                    },
+                    Box({}).{
+                        style.{
+                            display = Display.FLEX;
+                            layout = Layout.ROW;
+                        }
+                        addChildren({
+                            Text(String("Humidity: "))
+                            Text(String.format("%i", data("main")("humidity")~cast[Int])).{
+                                style.{
+                                    padding = Length4.px(0, 5, 0, 5);
+                                }
+                            }
+                        });
+                    },
+                    Box({}).{
+                        style.{
+                            display = Display.FLEX;
+                            layout = Layout.ROW;
+                        }
+                        addChildren({
+                            Text(String("Wind speed: "))
+                            Text(String.format("%d", data("wind")("speed")~cast[Float[64]])).{
+                                style.{
+                                    padding = Length4.px(0, 5, 0, 5);
+                                }
+                            }
+                        });
+                    }
+                });
+            };
+        }
+
+
+        def url: String = String.format(
+            "https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&appid=%s",
+            this.lat,
+            this.lon,
+            this.apiKey.buf
+        );
+
+        sendRequest(
+            "GET", url.buf, null, null, 10000,
+            onFetch
+        );
+    }
+
+    handler this~init(lat: float, lon: float, apiKey: ref[String]) {
+        this.lat = lat;
+        this.lon = lon;
+        this.apiKey = apiKey;
+
+        this.build_view();
+    }
+
+    // We overload `WeatherWidget()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[WeatherWidget] {
+        return SrdRef[WeatherWidget].construct();
+    }
+
+    handler this_type(lat: float, lon: float, apiKey: ref[String]): SrdRef[WeatherWidget] {
+        def r: SrdRef[WeatherWidget]
+        r.alloc()~init(lat, lon, apiKey);
+        return r;
+    }
+}
+
+
+@uiEndpoint["/weather"]
+@title["Weather Widget"]
+func weather {
+    Window.instance.setView(
+        Box({}).{
+            style.{
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            }
+            addChildren({
+                WeatherWidget(35.52, 35.77, String("your_api_key"));
+            });
+        }
+    );
+
+    runEventLoop();
+}
+```

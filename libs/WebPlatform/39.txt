@@ -1,0 +1,115 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class LoginForm {
+    @injection def component: Component;
+
+    def username: String;
+    def password: String;
+
+    handler this~init() {
+        // define the rectangle area to hold the widgets
+        this.username = "";
+        this.password = "";
+
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        // define the rectangle area to hold the widgets
+        def super: ref[LoginForm](this);
+
+        this.view = Box({}).{
+            // children widgets
+            style.{
+                align = Align.CENTER,
+                padding = Length4.pt(10, 10, 10, 10);
+                borderWidth = Length4.pt(1.5);
+                borderStyle = BorderStyle.SOLID;
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            },
+            addChildren({
+                Box({}).{
+                    style.{
+                        align = Align.CENTER,
+                        padding = Length4.pt(10, 10, 10, 10);
+                        borderWidth = Length4.pt(1.5);
+                        borderStyle = BorderStyle.SOLID;
+                        display = Display.FLEX;
+                        layout = Layout.ROW;
+                    },
+                    addChildren({
+                        Text(String("username:"))
+                        TextInput().{
+                            onKeyUp.connect(closure (widget: ref[TextInput], payload: ref[String]) {
+                                super.username = widget.getText();
+                            })
+                        }
+                    });
+                },
+                Box({}).{
+                    style.{
+                        align = Align.CENTER,
+                        padding = Length4.pt(10, 10, 10, 10);
+                        borderWidth = Length4.pt(1.5);
+                        borderStyle = BorderStyle.SOLID;
+                        display = Display.FLEX;
+                        layout = Layout.ROW;
+                    },
+                    addChildren({
+                        Text(String("password:"))
+                        TextInput().{
+                            onKeyUp.connect(closure (widget: ref[TextInput], payload: ref[String]) {
+                                super.password = widget.getText();
+                            })
+                        }
+                    });
+                },
+                Button(String("Login")).{
+                    style.{
+                        height = Length.percent(100);
+                        width = Length.pt(50);
+                        background = Background(Color(200, 200, 200));
+                        fontSize = Length.pt(16.0);
+                        justify = Justify.CENTER;
+                    };
+
+                    onClick.connect(closure (widget: ref[Widget], payload: ref[Int]) {
+                        def formData: String = String.format("{\"username\": \"%s\", \"password\": \"%s\"}", super.username.buf, super.password.buf);
+
+                        sendRequest(
+                            "POST", "/login", "Content-Type: application/json", formData, 10000,
+                            closure (Json) {}
+                        );
+                    });
+                }
+            });
+        }
+    }
+
+    // We overload `LoginForm()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[LoginForm] {
+        return SrdRef[LoginForm].construct();
+    }
+}
+
+@uiEndpoint["/login-page"]
+@title["Login"]
+func login_page {
+    Window.instance.setView(
+        Box({}).{
+            addChildren({
+                LoginForm()
+            })
+        }
+    );
+
+    runEventLoop();
+}
+```

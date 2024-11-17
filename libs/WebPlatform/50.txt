@@ -1,0 +1,105 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class ImageCarousel {
+    @injection def component: Component;
+
+    def images: Array[String];
+    def curImgId: Int;
+
+    handler this~init() {
+        this.curImgId = 0;
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        def super: ref[ImageCarousel](this);
+
+        this.view = Box({}).{
+            style.{
+                display = Display.FLEX;
+                layout = Layout.ROW;
+            }
+            addChildren({
+                Button(String("previous")).{
+                    onClick.connect(closure (widget: ref[Widget], payload: ref[Int]) {
+                        if (super.curImgId == 0) {
+                            super.curImgId = super.images.getLength() - 1;
+                        }
+                        else {
+                            super.curImgId -= 1;
+                        }
+                        super.build_view();
+                    });
+                },
+                Image(super.images(super.curImgId)).{
+                    style.{
+                        width = Length.pt(640);
+                        height = Length.pt(480);
+                    }
+                }
+                Button(String("next")).{
+                    onClick.connect(closure (widget: ref[Widget], payload: ref[Int]) {
+                        if (super.curImgId + 1 == super.images.getLength()) {
+                            super.curImgId = 0;
+                        }
+                        else {
+                            super.curImgId += 1;
+                        }
+                        super.build_view();
+                    });
+                }
+            })
+        }
+    }
+
+    handler this~init(images: ref[Array[String]]) {
+        this.images = images;
+        this.curImgId = 0;
+
+        this.build_view();
+    }
+
+    // We overload `ImageCarousel()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[ImageCarousel] {
+        return SrdRef[ImageCarousel].construct();
+    }
+
+    handler this_type(images: ref[Array[String]]): SrdRef[ImageCarousel] {
+        def r: SrdRef[ImageCarousel]
+        r.alloc()~init(images);
+        return r;
+    }
+}
+
+
+
+
+
+@uiEndpoint["/image-carousel"]
+@title["Image Carousel"]
+func imageCarousel {
+
+    def images: Array[String]({String("Assets/img1.jpg"), String("Assets/img2.jpg"), String("Assets/img3.jpg")});
+
+    Window.instance.setView(
+        Box({}).{
+            style.{
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+                align = Align.CENTER;
+            }
+            addChildren({
+                ImageCarousel(images)
+            });
+        }
+    );
+
+    runEventLoop();
+}
+```

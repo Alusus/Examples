@@ -1,0 +1,24 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+@uiEndpoint["/button-hover"]
+@title["Button Hover"]
+func button_hover {
+    Window.instance.setView(
+        Box({}).{
+            addChildren({
+                Button(String("Click Here")).{
+                    style({ StateSelector.HOVER }).{
+                        fontColor = Color("faa");
+                    }
+                }
+            });
+        }
+    );
+}
+```

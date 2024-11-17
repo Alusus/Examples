@@ -5,183 +5,243 @@
         "docs": [
             {
                 "id": 0,
-                "content": "how to import WebPlatform library?",
-                "regex": false,
-                "patterns": ["WebPlatform"]
+                "content": "how to import WebPlatform library?"
             },
             {
                 "id": 1,
-                "content": "how to write a uiEndpoint?",
-                "regex": false,
-                "patterns": ["uiEndpoint", "user interface endpoint"]
+                "content": "how to write a uiEndpoint?"
             },
             {
                 "id": 2,
-                "content": "how to run the server?",
-                "regex": false,
-                "patterns": ["WebPlatform"]
+                "content": "how to run the server?"
             },
             {
                 "id": 3,
-                "content": "how to show a simple text in the uiEndpoint?",
-                "regex": false,
-                "patterns": ["uiEndpoint", "user interface endpoint", "text"]
+                "content": "how to show a simple text in the uiEndpoint?"
             },
             {
                 "id": 4,
-                "content": "how to receive input from the user and show it?",
-                "regex": false,
-                "patterns": ["input", "text"]
+                "content": "how to receive input from the user and show it?"
             },
             {
                 "id": 5,
-                "content": "how to write a backend endpoint?",
-                "regex": false,
-                "patterns": ["backend endpoint", "beEndPoint"]
+                "content": "how to write a backend endpoint?"
             },
             {
                 "id": 6,
-                "content": "what are the events supported by a widget?",
-                "regex": false,
-                "patterns": ["WebPlatform"]
+                "content": "what are the events supported by a widget?"
             },
             {
                 "id": 7,
-                "content": "Widget class",
-                "regex": false,
-                "patterns": ["WebPlatform"]
+                "content": "Widget class"
             },
             {
                 "id": 8,
-                "content": "Canvas",
-                "regex": false,
-                "patterns": ["Canvas", "draw"]
+                "content": "Canvas"
             },
             {
                 "id": 9,
-                "content": "Image",
-                "regex": false,
-                "patterns": ["Image", "picture"]
+                "content": "Image"
             },
             {
                 "id": 10,
-                "content": "Text",
-                "regex": false,
-                "patterns": ["text", "uiEndpoint", "user interface endpoint"]
+                "content": "Text"
             },
             {
                 "id": 11,
-                "content": "Button",
-                "regex": false,
-                "patterns": ["button"]
+                "content": "Button"
             },
             {
                 "id": 12,
-                "content": "what events are supported by Button?",
-                "regex": false,
-                "patterns": ["button"]
+                "content": "what events are supported by Button?"
             },
             {
                 "id": 13,
-                "content": "TextInput",
-                "regex": false,
-                "patterns": ["text", "input", "uiEndpoint", "user interface endpoint"]
+                "content": "TextInput"
             },
             {
                 "id": 14,
-                "content": "what events are supported by TextInput?",
-                "regex": false,
-                "patterns": ["text", "input", "uiEndpoint", "user interface endpoint"]
+                "content": "what events are supported by TextInput?"
             },
             {
                 "id": 15,
-                "content": "Input",
-                "regex": false,
-                "patterns": ["input", "uiEndpoint", "user interface endpoint"]
+                "content": "Input"
             },
             {
                 "id": 16,
-                "content": "what events are supported by Input?",
-                "regex": false,
-                "patterns": ["input", "uiEndpoint", "user interface endpoint"]
+                "content": "what events are supported by Input?"
             },
             {
                 "id": 17,
-                "content": "Select",
-                "regex": false,
-                "patterns": ["select"]
+                "content": "Select"
             },
             {
                 "id": 18,
-                "content": "what events are supported by Select?",
-                "regex": false,
-                "patterns": ["select"]
+                "content": "what events are supported by Select?"
             },
             {
                 "id": 19,
-                "content": "what methods are supported by Select?",
-                "regex": false,
-                "patterns": ["select"]
+                "content": "what methods are supported by Select?"
             },
             {
                 "id": 20,
-                "content": "Hyperlink",
-                "regex": false,
-                "patterns": ["Hyperlink", "link"]
+                "content": "Hyperlink"
             },
             {
                 "id": 21,
-                "content": "what methods are supported by Hyperlink?",
-                "regex": false,
-                "patterns": ["Hyperlink", "link"]
+                "content": "what methods are supported by Hyperlink?"
             },
             {
                 "id": 22,
-                "content": "DocView",
-                "regex": false,
-                "patterns": ["DocView", "document"]
+                "content": "DocView"
             },
             {
                 "id": 23,
-                "content": "what methods are supported by DocView?",
-                "regex": false,
-                "patterns": ["DocView", "document"]
+                "content": "what methods are supported by DocView?"
             },
             {
                 "id": 24,
-                "content": "Browser",
-                "regex": false,
-                "patterns": ["Browser"]
+                "content": "Browser"
             },
             {
                 "id": 25,
-                "content": "what methods are supported by Browser?",
-                "regex": false,
-                "patterns": ["Browser"]
+                "content": "what methods are supported by Browser?"
             },
             {
                 "id": 26,
-                "content": "what are components?",
-                "regex": false,
-                "patterns": ["WebPlatform"]
+                "content": "what are components?"
             },
             {
                 "id": 27,
-                "content": "how to create a component?",
-                "regex": false,
-                "patterns": ["WebPlatform"]
+                "content": "how to create a component?"
             },
             {
                 "id": 28,
-                "content": "how to write a backend endpoint to receive a messages from the user?",
-                "regex": false,
-                "patterns": ["backend endpoint", "beEndPoint"]
+                "content": "how to write a backend endpoint to receive a messages from the user?"
             },
             {
                 "id": 29,
-                "content": "how to write a backend endpoint to send the messages to the user?",
-                "regex": false,
-                "patterns": ["backend endpoint", "beEndPoint"]
+                "content": "how to write a backend endpoint to send the messages to the user?"
+            },
+            {
+                "id": 30,
+                "content": "a beEndpoint for registering users, each user has a username, password, and age"
+            },
+            {
+                "id": 31,
+                "content": "a beEndpoint for user login, each user has a username, password, and age"
+            },
+            {
+                "id": 32,
+                "content": "a beEndpoint to delete a user, each user has a username, password, and age"
+            },
+            {
+                "id": 33,
+                "content": "a beEndpoint to create a post, each post has auto generated id, title, content, and image"
+            },
+            {
+                "id": 34,
+                "content": "a beEndpoint to get a post by id, each post has auto generated id, title, content, and image"
+            },
+            {
+                "id": 35,
+                "content": "a beEndpoint to get all posts, each post has auto generated id, title, content, and image"
+            },
+            {
+                "id": 36,
+                "content": "a beEndpoint to update a post, each post has auto generated id, title, content, and image"
+            },
+            {
+                "id": 37,
+                "content": "a beEndpoint to get all posts that contain a search query in their title, each post has auto generated id, title, content, and image"
+            },
+            {
+                "id": 38,
+                "content": "a page with post list, each post has auto generated id, title, content, and image"
+            },
+            {
+                "id": 39,
+                "content": "a login form with username and a password inputs"
+            },
+            {
+                "id": 40,
+                "content": "registeration form in which a user has username, password, and age"
+            },
+            {
+                "id": 41,
+                "content": "post creation form, each post has auto generated id, title, content, and image"
+            },
+            {
+                "id": 42,
+                "content": "a search bar to search the posts, each post has auto generated id, title, content, and image"
+            },
+            {
+                "id": 43,
+                "content": "create a grid layout with images inside each cell"
+            },
+            {
+                "id": 44,
+                "content": "a button that changes colors when the mouse hover over it"
+            },
+            {
+                "id": 45,
+                "content": "a card with css effects"
+            },
+            {
+                "id": 46,
+                "content": "navigation bar with some buttons that leads to some pages"
+            },
+            {
+                "id": 47,
+                "content": "a widget the shows the weather (temp, rain, other stats)"
+            },
+            {
+                "id": 48,
+                "content": "dark-light theme switcher using a button"
+            },
+            {
+                "id": 49,
+                "content": "tooltip to a text"
+            },
+            {
+                "id": 50,
+                "content": "Image carousel"
+            },
+            {
+                "id": 51,
+                "content": "sticky header"
+            },
+            {
+                "id": 52,
+                "content": "scroll to top button"
+            },
+            {
+                "id": 53,
+                "content": "Timer with alert on finish"
+            },
+            {
+                "id": 54,
+                "content": "Loading spinner"
+            },
+            {
+                "id": 55,
+                "content": "Neumorphism: Use soft shadows and highlights to create a modern, embossed look for elements"
+            },
+            {
+                "id": 56,
+                "content": "Hover Overlays: Add overlay effects to cards when users hover over them"
+            },
+            {
+                "id": 57,
+                "content": "a button with hyperlink"
+            },
+            {
+                "id": 58,
+                "content": "a select widget"
+            },
+            {
+                "id": 59,
+                "content": "text animation (gradually appearing)"
             }
         ]
     }

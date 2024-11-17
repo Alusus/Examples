@@ -1,0 +1,93 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+def lastId: Int = 0;
+
+class Post {
+    def id: Int;
+    def title: String;
+    def content: String;
+    def imgData: String;
+
+    handler this~init() {
+        this.id = lastId++;
+        this.title = "";
+        this.content = "";
+        this.imgData = "";
+    }
+
+    handler this~init(title: ref[String], content: ref[String], imgData: ref[String]) {
+        this.id = lastId++;
+        this.title = title;
+        this.content = content;
+        this.imgData = imgData;
+    }
+
+    handler this~init(post: ref[Post]) {
+        this.id = lastId++;
+        this.title = post.title;
+        this.content = post.content;
+        this.imgData = post.imgData;
+    }
+
+    handler this = ref[Post] {
+        this.id = lastId++;
+        this.title = value.title;
+        this.content = value.content;
+        this.imgData = value.imgData;
+    }
+}
+
+
+def posts: Map[Int, Post];
+
+
+func parseQueryParameters(query: ref[String]): Map[String, String] {
+    def queryParameters: Map[String, String];
+
+    def rawQueryParameters: Array[String] = query.split(",");
+
+    def i: Int;
+    for i = 0 , i < rawQueryParameters.getLength() , i++ {
+        def key_value: Array[String] = rawQueryParameters(i).split("=");
+        queryParameters.set(key_value(0), key_value(1));
+    }
+
+    return queryParameters;
+}
+
+
+@beEndpoint["GET", "/post-by-id"]
+func getPostById (conn: ptr[Http.Connection]) {
+    // define a variable to store the content we want to show
+    def content: String;
+
+    def requestInfo: ptr[Http.RequestInfo] = Http.getRequestInfo(conn);
+
+    def queryParameters: Map[String, String] = parseQueryParameters(String(requestInfo~cnt.queryString));
+    def postId: Int = String.parseInt(queryParameters(String("id")));
+
+    def postLoc: Int = posts.findPos(postId);
+    if postLoc != -1 {
+        content = String.format(
+            "{\"title\": %s, \"content\": %s, \"imgData\": \"%s\"}",
+            posts.valAt(postLoc).title.buf,
+            posts.valAt(postLoc).content.buf,
+            posts.valAt(postLoc).imgData.buf
+        )
+    }
+
+    // write the data through the given connection
+    // this data represent some information about the request in addition to the content.
+    Http.print(conn, "HTTP/1.1 200 OK\r\n");
+    Http.print(conn, "Content-Type: application/json\r\n");
+    Http.print(conn, "Cache-Control: no-cache\r\n");
+    Http.print(conn, "Content-Length: %i\r\n\r\n", content.getLength());
+    Http.print(conn, content);
+}
+```

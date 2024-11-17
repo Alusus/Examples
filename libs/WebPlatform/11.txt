@@ -1,3 +1,67 @@
 Displays a button.
 Properties:
 * `text`: `String`. The text we want to show on the button.
+
+Source code:
+```
+@merge module WebPlatform {
+    //==========================================================================
+    // Button
+    class Button {
+        @injection def widget: Widget;
+
+        //-----------------------
+        // Properties and Signals
+
+        generateProperty[text, Text, String];
+
+        //---------
+        // Handlers
+
+        handler this~init() {
+        }
+
+        handler this~init(t: String) {
+            this.text = t;
+        }
+
+        handler this.onPropUpdated() this.update();
+
+        //-------------------
+        // Function Overrides
+
+        handler (this:Widget).build (ownerId: String, nextSiblingId: String) set_ptr {
+            this.id = getNewId();
+            createElement("button", this.id, ownerId, nextSiblingId);
+            this.buildCommon();
+            this.update();
+        }
+
+        handler (this:Widget).unbuild() set_ptr {
+            deleteElement(this.id);
+            this.unbuildCommon();
+            this.id = String();
+        }
+
+        handler (this:Widget).update() set_ptr {
+            if this.id.getLength() > 0 {
+                this.updateCommon();
+                setElementAttribute(this.id, "textContent", this.text);
+            }
+        }
+
+        //-----------------
+        // Shared Functions
+
+        handler this_type(): SrdRef[Button] {
+            return SrdRef[Button].construct();
+        }
+
+        handler this_type(t: String): SrdRef[Button] {
+            def r: SrdRef[Button];
+            r.alloc()~init(t);
+            return r;
+        }
+    }
+}
+```

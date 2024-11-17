@@ -1,0 +1,157 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+@assetsRoute def assetsRoute: "Assets/";
+
+
+class CreatePostForm {
+    @injection def component: Component;
+
+    def title: String;
+    def content: String;
+    def imgInputId: String;
+    def imgWidgetId: String;
+
+    handler this~init() {
+        def super: ref[CreatePostForm](this);
+
+        this.view = Box({}).{
+            style.{
+                align = Align.CENTER,
+                padding = Length4.pt(10, 10, 10, 10);
+                borderWidth = Length4.pt(1.5);
+                borderStyle = BorderStyle.SOLID;
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            };
+            addChildren({
+                Text(String("Create a post")),
+                // title
+                Box({}).{
+                    style.{
+                        align = Align.CENTER,
+                        padding = Length4.pt(10, 10, 10, 10);
+                        borderWidth = Length4.pt(1.5);
+                        borderStyle = BorderStyle.SOLID;
+                        display = Display.FLEX;
+                        layout = Layout.ROW;
+                    },
+                    addChildren({
+                        Text(String("Title:"))
+                        TextInput().{
+                            onKeyUp.connect(closure (widget: ref[TextInput], payload: ref[String]) {
+                                super.title = widget.getText();
+                            })
+                        }
+                    });
+                },
+                // content
+                Box({}).{
+                    style.{
+                        align = Align.CENTER,
+                        padding = Length4.pt(10, 10, 10, 10);
+                        borderWidth = Length4.pt(1.5);
+                        borderStyle = BorderStyle.SOLID;
+                        display = Display.FLEX;
+                        layout = Layout.ROW;
+                    },
+                    addChildren({
+                        Text(String("Content:"))
+                        TextInput().{
+                            onKeyUp.connect(closure (widget: ref[TextInput], payload: ref[String]) {
+                                super.content = widget.getText();
+                            })
+                        }
+                    });
+                },
+                Input(String("file")),
+                Image(),
+                Button(String("Post")).{
+                    style.{
+                        height = Length.percent(100);
+                        width = Length.pt(100);
+                        background = Background(Color(200, 200, 200));
+                        fontSize = Length.pt(16.0);
+                        justify = Justify.CENTER;
+                    };
+
+                    onClick.connect(closure (widget: ref[Widget], payload: ref[Int]) {
+                        def imgData: String = getElementAttribute(super.imgWidgetId.buf, "src");
+
+                        def formData: String = String.format(
+                            "{\"title\": \"%s\", \"content\": \"%s\", \"imgData\": \"%s\"}",
+                            super.title.buf,
+                            super.content.buf,
+                            imgData.buf
+                        );
+
+                        sendRequest(
+                            "POST", "/post", "Content-Type: application/json", formData, 10000,
+                            closure (Json) {}
+                        );
+                    });
+                }
+            })
+        }
+    }
+
+    handler (this:Component).afterBuild() set_ptr {
+        def id: Int = String.parseInt(this.view.id.slice(2, this.view.id.getLength() - 2));
+        this.imgInputId = String.format("id%i", id+8);
+        this.imgWidgetId = String.format("id%i", id+9);
+
+        setElementAttribute(this.imgWidgetId.buf, "id", "img-view");
+        this.imgWidgetId = String("img-view");
+
+        // create image input field
+        setElementAttribute(this.imgInputId.buf, "accept", "image/*");
+        setElementAttribute(this.imgInputId.buf, "onChange", "readURL(this)");
+    }
+
+    // We overload `CreatePostForm()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[CreatePostForm] {
+        return SrdRef[CreatePostForm].construct();
+    }
+}
+
+
+@uiEndpoint["/create-post"]
+@title["Create Post"]
+func create_post {
+    Window.instance.setView(
+        Box({}).{
+            addChildren({
+                CreatePostForm()
+            })
+        }
+    );
+
+    loadJsScript("http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css");
+    loadJsScript("http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
+    loadJsScript("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js");
+    loadJsScript("./Assets/load_image_script.js");
+
+    runEventLoop();
+}
+```
+
+load_image_script.js:
+```
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $('#img-view')
+        .attr('src', e.target.result)
+        .width(150)
+        .height(200);
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+```
