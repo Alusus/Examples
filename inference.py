@@ -1,15 +1,25 @@
-from openai import OpenAI
+from inference_engine import get_inference_engine
+
+# TODO: use env file for these configurations
+DOCS_ROOT_DIR = './doc'
+WEBPLATFORM_INDEX_PATH = './libs_index.json'
+RAG_INDEX_PATH = './ivf_index_file.index'
 
 api_key = input("Enter api key: ")
-
+model_tag = input("Enter the model tag to be use for inference")
+base_model_tag = input("Enter the base model tag that used in the main model")
 question = input("Enter your question: ")
 
-client = OpenAI(api_key=api_key)
 
-response = client.chat.completions.create(
-  model="ft:gpt-3.5-turbo-0613:alusus-software-ltd:v2-alusus:8fw5aYfd",
-  messages=[
-    {"role": "user", "content": question},
-  ]
+inf_engine = get_inference_engine(
+    question,
+    api_key=api_key,
+    model_tag=model_tag,
+    base_model_tag=base_model_tag,
+    docs_root_dir=DOCS_ROOT_DIR,
+    docs_index_path=WEBPLATFORM_INDEX_PATH,
+    rag_index_path=RAG_INDEX_PATH
 )
-print(response.choices[0].message.content)
+
+answer = inf_engine.run(question)
+print(answer)

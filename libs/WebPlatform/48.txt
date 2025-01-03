@@ -1,0 +1,43 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+@uiEndpoint["/theme"]
+@title["Theme"]
+func theme {
+    def mode: String = "light";
+    setElementAttribute("body", "style", "background-color: #FFF; color: #222");
+    Window.instance.setView(
+        Box({}).{
+            style.{
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            }
+            def super: SrdRef[Box] = this;
+            addChildren({
+                Text(String("Some text")),
+                Button(String("Switch to Dark Mode")).{
+                    onClick.connect(closure(w: ref[Widget], payload: ref[Int]) {
+                        if mode == "light" {
+                            setElementAttribute("body", "style", "background-color: hsl(228, 5%, 15%); color: hsl(228, 5%, 80%)");
+                            this.setText(String("Switch to Light Mode"));
+                            mode = "dark";
+                        }
+                        else {
+                            setElementAttribute("body", "style", "background-color: #FFF; color: #222");
+                            this.setText(String("Switch to Dark Mode"));
+                            mode = "light";
+                        }
+                    });
+                }
+            });
+        }
+    );
+
+    runEventLoop();
+}
+```

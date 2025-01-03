@@ -1,0 +1,43 @@
+We can receive text input from the user using the TextInput widget, which displays a text entry field.
+We can use the Button widget to display a button for the user to click when the text entry is done. We will display what the user entered just like we displayed the static sentence "Hello World!" previously. We need to define two references to the text display and entry components so we can access them later.
+```
+def textInput: SrdRef[TextInput];
+def textShow: SrdRef[Text];
+```
+Now we can add the components we want, we will start by adding the TextInput box just like we did earlier with the Text box:
+```
+Window.instance.setView(
+    Box({}).{
+        addChildren({
+            TextInput().{
+                textInput = this;
+            },
+        });
+    }
+);
+```
+We assigned the value of this, which refers to the TextInput instance, to the reference defined earlier. This way we can easily reference this widget later. We'll do the same thing with the Text widget that we'll use to display the text.
+```
+Box({}).{
+    addChildren({
+        Text(String("Here you will see the text you entered")).{
+            textShow = this;
+        }
+    });
+},
+```
+Notice that we defiend these widgets inside a Box widget. Boxes are widgets that can contain other widgets, including other boxes. A single box can contain multiple widgets. They can be used for various reasons like formatting or grouping mulitple widgets. Later in this tutorial we will learn how to apply styles to these widgets. Finally, we need to add a button and we need to listen to click events on that button:
+```
+Button(String("Send")).{
+    onClick.connect(closure (widget: ref[Widget], payload: ref[Int]) {
+        def text: String = textInput.getText();
+        textInput.setText(String());
+        textShow.setText(text);
+    });
+}
+```
+Note that we can listen to the event of click on the button by linking a closure to the event onClick to be called when the button is clicked. In that closure, we first get the text from the input component using getText method, then we reset it to the default value. Finally, we set the text inside the display component using setText method. Now we just need to run the event loop so that events could reach its destinations. Without doing this the events will stay in the waiting queue for processing. To process the events we can call the following function after we finish creating the UI:
+```
+runEventLoop();
+```
+

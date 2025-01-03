@@ -1,0 +1,1 @@
+Components enable users to create reusable parts of the user interface, making it easier for users to create more complex user interfaces. A component consists of a single widget or a tree of widgets, along with the necessary interactions such as event handling for this widget.

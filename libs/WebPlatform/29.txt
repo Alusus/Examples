@@ -1,0 +1,42 @@
+The message must be stored before in a variable like that:
+```
+def message: String;
+```
+We define an endpoint to retrieve the message from the server, as follows:
+```
+@beEndpoint["GET", "/message"]
+func getMessages (conn: ptr[Http.Connection]) {
+
+}
+```
+All we have to do is return the message in the response using the method Http.print. Of course, we should add the appropriate headers, as follows:
+```
+@beEndpoint["GET", "/message"]
+func getMessages (conn: ptr[Http.Connection]) {
+    // add the required headers
+    Http.print(conn, "HTTP/1.1 200 Ok\r\n");
+    Http.print(conn, "Content-Type: text/plain\r\n");
+    Http.print(conn, "Cache-Control: no-cache\r\n");
+    Http.print(conn, "Content-Length: %d\r\n\r\n", message.getLength());
+    // put the buffer content which contains the messages
+    Http.print(conn, message.buf);
+}
+```
+If we need to support multiple messages, the messages must be stored in the server as follows:
+```
+def MAX_MESSAGES: 12;
+def messages: Array[String];
+```
+And the endpoint for getting the message will return the whole array of messages. To do this, all we need to do is merging the messages together with the \n separator between each two consecutive messages. That way, messages are separated by newline characters.
+```
+@beEndpoint["GET", "/messages"]
+func getMessages (conn: ptr[Http.Connection]) {
+    def response: String = String.merge(messages, "\n");
+
+    Http.print(conn, "HTTP/1.1 200 Ok\r\n");
+    Http.print(conn, "Content-Type: text/plain\r\n");
+    Http.print(conn, "Cache-Control: no-cache\r\n");
+    Http.print(conn, "Content-Length: %d\r\n\r\n", response.getLength());
+    Http.print(conn, response.buf);
+}
+```

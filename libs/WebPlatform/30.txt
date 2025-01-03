@@ -1,0 +1,57 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class User {
+    def username: String;
+    def password: String;
+    def age: Int;
+
+    handler this~init() {
+        this.username = "";
+        this.password = "";
+        this.age = 0;
+    }
+
+    handler this~init(username: ref[String], password: ref[String], age: Int) {
+        this.username = username;
+        this.password = password;
+        this.age = age;
+    }
+
+    handler this~init(user: ref[User]) {
+        this.username = user.username;
+        this.password = user.password;
+        this.age = user.age;
+    }
+
+    handler this = ref[User] {
+        this.username = value.username;
+        this.password = value.password;
+        this.age = value.age;
+    }
+}
+
+def users: Map[String, User];
+
+@beEndpoint["POST", "/user"]
+func register (conn: ptr[Http.Connection]) {
+    def postData: array[Char, 1024];
+    // retrieve the sent information and store it in the buffer
+    def postDataSize: Int = Http.read(conn, postData~ptr, postData~size);
+    
+    def data: Json = postData~ptr;
+
+    def username: String = data("username");
+    def password: String = data("password");
+    def age: Int = data("age");
+
+    users.set(username, User(username, password, age));
+
+    Http.print(conn, "HTTP/1.1 200 Ok\r\n\r\n");
+}
+```

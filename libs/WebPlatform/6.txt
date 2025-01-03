@@ -1,0 +1,10 @@
+onResize: Signals that the widget's dimensions changed.
+onMouseEnter: Signals that the cursor entered the widget's region.
+onMouseOut: Signals that the cursor exited the widget's region.
+onMouseDown: Signals that the mouse button has been pressed.
+onMouseUp: Signals that the mouse button has been released.
+onMouseMove: Signals that the cursor moved over the widget.
+onTouchStart: Signals the start of a touch on devices with touch screens.
+onTouchEnd: Signals the end of a touch on devices with touch screens.
+onTouchMove: Signals the change of touch positions on devices with touch screens.
+onClick: Signals that a mouse click occurred.

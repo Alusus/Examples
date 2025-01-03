@@ -1,0 +1,5 @@
+`postMessage`
+```
+handler this.postMessage(msgType: CharsPtr, msgBody: CharsPtr);
+```
+Posts an arbitrary message to the window of the loaded site.

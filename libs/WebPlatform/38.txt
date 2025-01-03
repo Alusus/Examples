@@ -1,0 +1,158 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+def lastId: Int = 0;
+
+class Post {
+    def id: Int;
+    def title: String;
+    def content: String;
+    def imgData: String;
+
+    handler this~init() {
+        this.id = lastId++;
+        this.title = "";
+        this.content = "";
+        this.imgData = "";
+    }
+
+    handler this~init(title: ref[String], content: ref[String], imgData: ref[String]) {
+        this.id = lastId++;
+        this.title = title;
+        this.content = content;
+        this.imgData = imgData;
+    }
+
+    handler this~init(post: ref[Post]) {
+        this.id = lastId++;
+        this.title = post.title;
+        this.content = post.content;
+        this.imgData = post.imgData;
+    }
+
+    handler this = ref[Post] {
+        this.id = lastId++;
+        this.title = value.title;
+        this.content = value.content;
+        this.imgData = value.imgData;
+    }
+}
+
+
+def posts: Map[Int, Post];
+
+class PostWidget {
+    @injection def component: Component;
+
+    def title: String;
+    def content: String;
+    def imgData: String;
+
+    handler this~init() {
+        // define the rectangle area to hold the widgets
+        this.title = "title";
+        this.content = "content";
+        this.imgData = "imgData";
+
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        // define the rectangle area to hold the widgets
+        def super: ref[PostWidget](this);
+
+        this.view = Box({}).{
+            // children widgets
+            style.{
+                align = Align.CENTER,
+                padding = Length4.pt(10, 10, 10, 10);
+                borderWidth = Length4.pt(1.5);
+                borderStyle = BorderStyle.SOLID;
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            },
+            addChildren({
+                Text(super.title),
+                Text(super.content),
+                Image().{
+                    style.{
+                        width = Length.pt(128);
+                        height = Length.pt(128);
+                    }
+                }
+            });
+        }
+    }
+
+    handler this~init(title: ref[String], content: ref[String], imgData: ref[String]) {
+        this.title = title;
+        this.content = content;
+        this.imgData = imgData;
+
+        this.build_view();
+    }
+
+    handler (this:Component).afterBuild() set_ptr {
+        // id here is id2, so need to get the 2 and replace it by 5 for example
+        def id: Int = String.parseInt(this.view.id.slice(2, this.view.id.getLength() - 2));
+        def imgId: String = String.format("id%i", id+3);
+        setElementAttribute(imgId, "src", this.imgData.buf);
+    }
+
+    // We overload `PostWidget()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[PostWidget] {
+        return SrdRef[PostWidget].construct();
+    }
+
+    handler this_type(title: ref[String], content: ref[String], imgData: ref[String]): SrdRef[PostWidget] {
+        def r: SrdRef[PostWidget]
+        r.alloc()~init(title, content, imgData);
+        return r;
+    }
+}
+
+
+@uiEndpoint["/posts_page"]
+@title["Posts"]
+func posts_page {
+    def onFetch: closure (json: Json);
+
+    Window.instance.setView(
+        Box({}).{
+            onFetch = closure (json: Json) {
+                def status: Int = json("eventData")("status");
+                if status >= 200 and status < 300 {
+                    // extract the data
+                    def body: Json = json("eventData")("body");
+                    def bodyModified: Json = body.rawValue.slice(1, body.rawValue.getLength() - 2).replace("\\\"", "\"");
+
+                    if bodyModified.getLength() > 0 {
+                        def i: Int;
+                        for i = 0 , i < bodyModified.getLength() , i++ {
+                            def postData: Json = bodyModified.values(i);
+                            def title: String = postData("title");
+                            def content: String = postData("content");
+                            def imgData: String = postData("imgData");
+
+                            this.addChildren({PostWidget(title, content, imgData)});
+                        }
+                    }
+                    else {
+                        this.addChildren({Text(String("No posts found"))})
+                    }
+                }
+            };
+        }
+    );
+
+    def url: String = "/posts";
+
+    sendRequest("GET", url.buf, null, null, 5000, onFetch);
+
+    runEventLoop();
+}
+```

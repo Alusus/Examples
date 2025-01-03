@@ -1,0 +1,131 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class SearchBar {
+    @injection def component: Component;
+
+    def q: String;
+
+    handler this~init() {
+        this.q = "";
+
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        def super: ref[SearchBar](this);
+
+        this.view = Box({}).{
+            style.{
+                align = Align.CENTER,
+                padding = Length4.pt(10, 10, 10, 10);
+                borderWidth = Length4.pt(1.5);
+                borderStyle = BorderStyle.SOLID;
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            },
+            addChildren({
+                Box({}).{
+                    style.{
+                        align = Align.CENTER,
+                        padding = Length4.pt(10, 10, 10, 10);
+                        borderWidth = Length4.pt(1.5);
+                        borderStyle = BorderStyle.SOLID;
+                        display = Display.FLEX;
+                        layout = Layout.ROW;
+                    },
+                    addChildren({
+                        TextInput().{
+                            onKeyUp.connect(closure (widget: ref[TextInput], payload: ref[String]) {
+                                super.q = widget.getText();
+                            })
+                        }
+                    });
+                },
+                Button(String("Search")).{
+                    style.{
+                        height = Length.percent(100);
+                        width = Length.pt(50);
+                        background = Background(Color(200, 200, 200));
+                        fontSize = Length.pt(16.0);
+                        justify = Justify.CENTER;
+                    };
+
+                    onClick.connect(closure (widget: ref[Widget], payload: ref[Int]) {
+                        def url: String = String.format("/posts_page?q=%s", super.q.buf);
+                        httpRedirect(url.buf);
+                    });
+                }
+            });
+        }
+    }
+
+    // We overload `SearchBar()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[SearchBar] {
+        return SrdRef[SearchBar].construct();
+    }
+}
+
+
+@uiEndpoint["/posts_page"]
+@title["Posts"]
+func posts_page {
+    def onFetch: closure (json: Json);
+
+    Window.instance.setView(
+        Box({}).{
+            onFetch = closure (json: Json) {
+                def status: Int = json("eventData")("status");
+                if status >= 200 and status < 300 {
+                    // extract the data
+                    def body: Json = json("eventData")("body");
+                    def bodyModified: Json = body.rawValue.slice(1, body.rawValue.getLength() - 2).replace("\\\"", "\"");
+
+                    if bodyModified.getLength() > 0 {
+                        def i: Int;
+                        for i = 0 , i < bodyModified.getLength() , i++ {
+                            def postData: Json = bodyModified.values(i);
+                            def title: String = postData("title");
+                            def content: String = postData("content");
+                            def imgData: String = postData("imgData");
+
+                            this.addChildren({PostWidget(title, content, imgData)});
+                        }
+                    }
+                    else {
+                        this.addChildren({Text(String("No posts found"))})
+                    }
+                }
+            };
+            addChildren({
+                SearchBar(),
+            });
+        }
+    );
+
+    // startTimer(10000, closure (json: Json) {
+    //    sendRequest("GET", "/posts", null, null, 2000, onFetch);
+    // });
+
+    def q: String = String.format("%s", getQueryParam("q"));
+    logToConsole(String.format("q: %s\n", q.buf));
+
+    def url: String = "/posts";
+
+    if q.getLength() > 0 {
+        url.append(String.format("?q=%s", q.buf).buf);
+    }
+
+    
+    logToConsole(String.format("url: %s\n", url.buf));
+
+    sendRequest("GET", url.buf, null, null, 5000, onFetch);
+
+    runEventLoop();
+}
+```

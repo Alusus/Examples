@@ -1,0 +1,140 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class RegisterForm {
+    @injection def component: Component;
+
+    def username: String;
+    def password: String;
+    def age: Int;
+
+    handler this~init() {
+        this.username = "";
+        this.password = "";
+
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        def super: ref[RegisterForm](this);
+
+        this.view = Box({}).{
+            style.{
+                align = Align.CENTER,
+                padding = Length4.pt(10, 10, 10, 10);
+                borderWidth = Length4.pt(1.5);
+                borderStyle = BorderStyle.SOLID;
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            },
+            addChildren({
+                // username
+                Box({}).{
+                    style.{
+                        align = Align.CENTER,
+                        padding = Length4.pt(10, 10, 10, 10);
+                        borderWidth = Length4.pt(1.5);
+                        borderStyle = BorderStyle.SOLID;
+                        display = Display.FLEX;
+                        layout = Layout.ROW;
+                    },
+                    addChildren({
+                        Text(String("username:"))
+                        TextInput().{
+                            onKeyUp.connect(closure (widget: ref[TextInput], payload: ref[String]) {
+                                super.username = widget.getText();
+                            })
+                        }
+                    });
+                },
+                // password
+                Box({}).{
+                    style.{
+                        align = Align.CENTER,
+                        padding = Length4.pt(10, 10, 10, 10);
+                        borderWidth = Length4.pt(1.5);
+                        borderStyle = BorderStyle.SOLID;
+                        display = Display.FLEX;
+                        layout = Layout.ROW;
+                    },
+                    addChildren({
+                        Text(String("password:"))
+                        TextInput().{
+                            onKeyUp.connect(closure (widget: ref[TextInput], payload: ref[String]) {
+                                super.password = widget.getText();
+                            })
+                        }
+                    });
+                },
+                // age
+                Box({}).{
+                    style.{
+                        align = Align.CENTER,
+                        padding = Length4.pt(10, 10, 10, 10);
+                        borderWidth = Length4.pt(1.5);
+                        borderStyle = BorderStyle.SOLID;
+                        display = Display.FLEX;
+                        layout = Layout.ROW;
+                    },
+                    addChildren({
+                        Text(String("age:"))
+                        Input(String("number")).{
+                            onKeyUp.connect(closure (widget: ref[Input], payload: ref[String]) {
+                                super.age = String.parseInt(widget.getText());
+                            })
+                        }
+                    });
+                },
+                Button(String("Register")).{
+                    style.{
+                        height = Length.percent(100);
+                        width = Length.pt(100);
+                        background = Background(Color(200, 200, 200));
+                        fontSize = Length.pt(16.0);
+                        justify = Justify.CENTER;
+                    };
+
+                    onClick.connect(closure (widget: ref[Widget], payload: ref[Int]) {
+                        def formData: String = String.format(
+                            "{\"username\": \"%s\", \"password\": \"%s\", \"age\": %i}",
+                            super.username.buf,
+                            super.password.buf,
+                            super.age
+                        );
+
+                        sendRequest(
+                            "POST", "/register", "Content-Type: application/json", formData, 10000,
+                            closure (Json) {}
+                        );
+                    });
+                }
+            });
+        }
+    }
+
+    // We overload `RegisterForm()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[RegisterForm] {
+        return SrdRef[RegisterForm].construct();
+    }
+}
+
+
+@uiEndpoint["/registeration-page"]
+@title["Register"]
+func login_page {
+    Window.instance.setView(
+        Box({}).{
+            addChildren({
+                RegisterForm()
+            })
+        }
+    );
+
+    runEventLoop();
+}
+```

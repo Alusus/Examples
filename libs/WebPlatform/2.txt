@@ -1,0 +1,5 @@
+```
+Console.print("Starting server on port 8020...\nURL: http://localhost:8020/\n");
+runServer({ "listening_ports", "8020"});
+```
+Note how we print a message to the user that shows the server address, then we run the server by using the function runServer and pasing the port we want this server to work on.

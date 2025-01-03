@@ -1,0 +1,45 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+@uiEndpoint["/scroll-to-top"]
+@title["Scroll To Top"]
+func scrollToTop {
+    Window.instance.setView(
+        Box({}).{
+            style.{
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            }
+
+            def i: Int;
+            for i = 0 , i < 200 , i++ {
+                addChildren({Text(String("Content"))});
+            }
+
+            addChildren({
+                Hyperlink(
+                    String("#"),
+                    Button(String("Scroll to Top")).{
+                        style.{
+                            background = Background(Color(173, 216, 230));
+                            borderWidth = Length4.pt(0, 1, 0, 0);
+                            margin = Length4.px(0, 5, 0, 5);
+                        }
+
+                        style({ StateSelector.HOVER }).{
+                            background = Background(Color(200, 243, 255));
+                        }
+                    }
+                )
+            });
+        }
+    );
+
+    runEventLoop();
+}
+```

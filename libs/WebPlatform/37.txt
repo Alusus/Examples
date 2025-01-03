@@ -1,0 +1,111 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+def lastId: Int = 0;
+
+class Post {
+    def id: Int;
+    def title: String;
+    def content: String;
+    def imgData: String;
+
+    handler this~init() {
+        this.id = lastId++;
+        this.title = "";
+        this.content = "";
+        this.imgData = "";
+    }
+
+    handler this~init(title: ref[String], content: ref[String], imgData: ref[String]) {
+        this.id = lastId++;
+        this.title = title;
+        this.content = content;
+        this.imgData = imgData;
+    }
+
+    handler this~init(post: ref[Post]) {
+        this.id = lastId++;
+        this.title = post.title;
+        this.content = post.content;
+        this.imgData = post.imgData;
+    }
+
+    handler this = ref[Post] {
+        this.id = lastId++;
+        this.title = value.title;
+        this.content = value.content;
+        this.imgData = value.imgData;
+    }
+}
+
+
+def posts: Map[Int, Post];
+
+
+func parseQueryParameters(query: ref[String]): Map[String, String] {
+    def queryParameters: Map[String, String];
+
+    def rawQueryParameters: Array[String] = query.split(",");
+
+    def i: Int;
+    for i = 0 , i < rawQueryParameters.getLength() , i++ {
+        def key_value: Array[String] = rawQueryParameters(i).split("=");
+        queryParameters.set(key_value(0), key_value(1));
+    }
+
+    return queryParameters;
+}
+
+
+@beEndpoint["GET", "/posts"]
+func getPosts (conn: ptr[Http.Connection]) {
+    // define a variable to store the content we want to show
+    def content: String;
+
+    def requestInfo: ptr[Http.RequestInfo] = Http.getRequestInfo(conn);
+
+    def queryParameters: Map[String, String] = parseQueryParameters(String(requestInfo~cnt.queryString));
+    def searchQuery: String = queryParameters(String("q"));
+
+    if posts.getLength() != 0 {
+        def i: Int;
+        content.append("{");
+        def lastPostId: Int = -1;
+        for i = 0 , i < posts.getLength() , i++ {
+            // skip unmatched posts
+            if posts.valAt(i).title.find(searchQuery.buf) == -1 {
+                continue;
+            }
+
+            // add separator if there is a matched post before this one
+            if lastPostId != -1 {
+                content.append(",");
+            }
+
+            content.append(String.format(
+                "\"post_%i\": {\"title\": \"%s\", \"content\": \"%s\", \"imgData\": \"%s\"}",
+                posts.keyAt(i),
+                posts.valAt(i).title.buf,
+                posts.valAt(i).content.buf,
+                posts.valAt(i).imgData.buf
+            ));
+
+            lastPostId = posts.keyAt(i);
+        }
+        content.append("}");
+    }
+
+    // write the data through the given connection
+    // this data represent some information about the request in addition to the content.
+    Http.print(conn, "HTTP/1.1 200 OK\r\n");
+    Http.print(conn, "Content-Type: application/json\r\n");
+    Http.print(conn, "Cache-Control: no-cache\r\n");
+    Http.print(conn, "Content-Length: %i\r\n\r\n", content.getLength());
+    Http.print(conn, content);
+}
+```

@@ -1,0 +1,55 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+@assetsRoute def assetsRoute: "Assets/";
+
+
+@uiEndpoint["/spinner"]
+@title["Spinner"]
+func spinner {
+    Window.instance.setView(
+        Box({})
+    );
+
+    setElementAttribute("id1", "class", "spinner");
+
+    createElement("link", "custom-styles", "head");
+    setElementAttribute("custom-styles", "rel", "stylesheet");
+    setElementAttribute("custom-styles", "type", "text/css");
+    setElementAttribute("custom-styles", "href", "Assets/spinner_styles.css");
+
+    runEventLoop();
+}
+```
+
+spinner_styles.css:
+```
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007BFF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+```

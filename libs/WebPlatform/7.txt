@@ -1,0 +1,4 @@
+The base class for all widgets.
+Variables:
+* `id`: a unique identifier to distinguish each widget from the other.
+* `className`: `String`. Class name of the widget, used for applying styles by class name.

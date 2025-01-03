@@ -1,0 +1,65 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class StickyHeader {
+    @injection def component: Component;
+
+    handler this~init() {
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        def super: ref[StickyHeader](this);
+
+        this.view = Box({}).{
+            style.{
+                position = Position.STICKY;
+                top = Length.px(0);
+                padding = Length4.px(10, 16, 10, 16);
+                background = Background(Color(85, 85, 85));
+                fontColor = Color(241, 241, 241);
+            }
+            addChildren({
+                Text(String("Header text"))
+            })
+        }
+    }
+
+    // We overload `StickyHeader()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[StickyHeader] {
+        return SrdRef[StickyHeader].construct();
+    }
+}
+
+
+
+
+
+@uiEndpoint["/sticky-header"]
+@title["Sticky Header"]
+func stickyHeader {
+    Window.instance.setView(
+        Box({}).{
+            style.{
+                display = Display.FLEX;
+                layout = Layout.COLUMN;
+            }
+            addChildren({
+                StickyHeader(),
+            });
+
+            def i: Int;
+            for i = 0 , i < 200 , i++ {
+                addChildren({Text(String("Content"))});
+            }
+        }
+    );
+
+    runEventLoop();
+}
+```

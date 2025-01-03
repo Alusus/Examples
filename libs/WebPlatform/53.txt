@@ -1,0 +1,88 @@
+```
+import "Build";
+import "Apm";
+Apm.importFile("Alusus/WebPlatform");
+use Srl;
+use WebPlatform;
+
+
+class Timer {
+    @injection def component: Component;
+
+    def seconds: Int;
+    def message: String;
+    def timerId: ArchInt;
+
+    handler this~init() {
+        this.seconds = 60;
+        this.message = "The timer is up";
+        this.timerId = -1;
+
+        this.build_view();
+    }
+
+    handler this~init(seconds: Int, message: String) {
+        this.seconds = seconds;
+        this.message = message;
+        this.timerId = -1;
+
+        this.build_view();
+    }
+
+    handler this.build_view() {
+        def super: ref[Timer](this);
+
+        this.view = Box({}).{
+            addChildren({
+                Text(String.format("%i", super.seconds)).{
+                    style.{
+                        fontSize = Length.pt(160.0);
+                    }
+                }
+            })
+        }
+
+        if (this.timerId == -1) {
+            this.timerId = startTimer(1000000, closure (json: Json) {
+                this.seconds -= 1;
+                logToConsole(String.format("msg: %s\n", this.message.buf));
+
+                this.build_view();
+
+                if (this.seconds == 0) {
+                    showAlert(this.message.buf);
+                    stopTimer(this.timerId);
+                }
+            });
+        }
+
+    }
+
+    // We overload `Timer()` to return a shared ref instead of a temp var.
+    handler this_type(): SrdRef[Timer] {
+        return SrdRef[Timer].construct();
+    }
+
+    handler this_type(seconds: Int, message: String): SrdRef[Timer] {
+        def r: SrdRef[Timer]
+        r.alloc()~init(seconds, message);
+        return r;
+    }
+}
+
+
+
+@uiEndpoint["/timer"]
+@title["Timer"]
+func timerPage {
+    Window.instance.setView(
+        Box({}).{
+            addChildren({
+                Timer(3, String("Time is over!"))
+            })
+        }
+    );
+
+    runEventLoop();
+}
+```

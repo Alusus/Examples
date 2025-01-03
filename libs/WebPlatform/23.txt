@@ -1,0 +1,12 @@
+`setHtml`
+```
+handler this.setHtml(html: String);
+```
+Sets an HTML document as the scene.
+
+`setMarkdown`
+```
+handler this.setMarkdown(md: String);
+handler this.setMarkdown(md: String, linksInNewTab: Bool);
+```
+Sets a Markdown document as the scene. The second form allows specifying whether hyperlinks in the document opens in the same browser tab or a new one. The first form opens links in the same tab.

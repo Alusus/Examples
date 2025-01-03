@@ -47,10 +47,10 @@ def format_question(q):
     ]
 
 
-def get_cpp_code(client, question):
+def get_cpp_code(client, question, model_tag="gpt-4o-mini"):
     messages = format_question(question)
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model=model_tag,
         messages=messages
     )
     return response.choices[0].message.content

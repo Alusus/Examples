@@ -1,0 +1,3 @@
+An area in which you can view another web page, i.e. an iframe.
+Properties:
+* `url`: `String`. The URL of the page to view.

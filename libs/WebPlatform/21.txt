@@ -1,0 +1,7 @@
+`setChild`
+```
+handler this.setChild (child: temp_ref[SrdRef[Widget]]);
+```
+Sets the child component of this hyperlink.
+parameters:
+* `child`: the widget we want displayed inside the hyperlink.
