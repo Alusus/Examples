@@ -45,17 +45,18 @@ class Engine:
 
 
 class BasicEngine(Engine):
-    def __init__(self, api_key, model_tag, base_model_tag, docs_root_dir):
+    def __init__(self, api_key, model_tag, base_model_tag, docs_root_dir, docs_index_path='docs2id.json'):
         super(BasicEngine, self).__init__(api_key, model_tag)
         self.docs_root_dir = docs_root_dir
         self.base_model_tag = base_model_tag
+        self.docs_index_path = docs_index_path
     
     def preprocess(self, question: str):
         cpp_code = get_cpp_code(self.client, question, self.base_model_tag)
         return question, {'cpp_code': cpp_code}
     
     def get_docs(self, question: str, data: dict):
-        return get_docs(data['cpp_code'], self.docs_root_dir)
+        return get_docs(data['cpp_code'], self.docs_root_dir, self.docs_index_path)
 
 
 class WebPlatformEngine(Engine):
