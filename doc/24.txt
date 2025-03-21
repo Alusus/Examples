@@ -16,11 +16,11 @@ def factorial : function (i:Int) => Int
 ```
 It is also possible to use a short form without the `def` command, as follows:
 ```
-function <func name> (<arguments>) => <return_type> { <function_body> }
+function <func name> (<arguments>): <return_type> { <function_body> }
 ```
 For example:
 ```
-function factorial (i:Int) => Int
+function factorial (i:Int): Int
 {
     if i==1 return 1;
     return i*factorial(i-1);
