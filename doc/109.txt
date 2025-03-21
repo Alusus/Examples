@@ -1,0 +1,99 @@
+# Smart References
+It is recommended to use smart references instead of plain references to avoid problems related to memory leaks. Smart references automatically manages the life cycle of the allocated object. It's recommended to limit the use of plain references to simple cases like passing argument by reference to functions that do not hold copies of the passed referneces (as is the case with using references to allow a function to return additional values to the caller).
+
+Smart references are povided by the Standard Runtime Library, and can be imported like this:
+```
+import "Srl/refs.alusus";
+```
+
+## SrdRef
+
+The shared reference class allows multiple references to share the same object and it handles releasing the object when it is no longer needed. It keeps a counter of the number of shared references that points to the same object. Each time a reference is terminated the counter decreases by 1 and when it reaches zero the object is terminated and its memory is released automatically.
+
+To define a shared reference that points to an object of a specified type:
+```
+def ref_name: Srl.SrdRef[Data_Type];
+```
+
+Where:
+* `ref_name`: the name of the shared reference.
+* `Data_Type`: the name of data's type we want to point to by the reference.
+
+To allocate memory for the object that the reference will point to and initialize it (construct it) we use `construct` function.
+```
+ref_name.construct();
+```
+
+To release the shared reference we use `release` function.
+```
+ref_name.release();
+```
+
+Here the shared reference is released but the object is not terminated unless this is the last reference pointing to the object. Note that when execution goes out of the scope in which a local SrdRef is defined, that ref will automatically be released without needing to call `release` manually.
+
+To access the object that the reference points to we use the property `obj`.
+```
+ref_name.obj
+```
+To get the number of shared references in the ownership of the object we `refCounter.count`.
+```
+ref_name.refCounter.count
+```
+
+## Example
+
+Now we will define a shared reference that points to an object with `int` type and we will create the object using `construct` function as follows:
+```
+def x: SrdRef[int];
+x.construct();
+```
+Now to assign a value to the object that the shared reference points to (which is `x`) we use the property `obj` as follows:
+```
+x.obj = 9;
+```
+
+To create multiple shared references that share the same object, we need to create another shared reference an assign to it the first one:
+```
+def y: SrdRef[MyType] = x; // now both references points to the same object.
+```
+
+Now to print the value of the object that the references `x` and `y` point to:
+```
+print(x.obj); // 9
+print(y.obj); // 9
+```
+
+To get the number of shared references:
+```
+print(x.refCounter.count); // 2
+```
+
+To release the first shared reference we write:
+```
+x.release();
+```
+
+So this cause the release of the first shared reference and decrease the counter by 1, which means its current value is 1. This means that there exists a reference that points to the object, so the object referred to will not released.
+Now if we release the second shared reference:
+```
+y.release();
+```
+
+This cause the release of the second shared reference and decreasing the counter by 1, which means its value is zero so there no other references to the object and we no longer need it so it will be terminated and its memory will be released.
+
+**Note:** usually we won't need to call `release` function manually since it is called automatically when terminating a shared reference (like when when the workflow exit the scope that the shared reference is define in it) or when assigning a new object to the shared reference.
+
+**Note:** later when dealing with classes and dealing with its members we won't need to write `obj` to access the member `x` from the object because you could write `myRef.x` instead of `myRef.obj.x`.
+```
+import "Srl/Console.alusus";
+import "Srl/refs.alusus";
+use Srl;
+class A {
+  def val: int;
+}
+def a: SrdRef[A]; // define a shared reference for this class
+a.construct();
+a.val = 200; // assign a value to the object
+Console.print("%d", a.val); // 200
+a.release();
+```
