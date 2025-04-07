@@ -32,3 +32,20 @@ x = readNumber();
 y = readNumber();
 drawPoint(x, y);
 ```
+If the function does not return anything we should not add a return arg_type
+For example:
+```
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func print(a: ref[Array[Int]]) {
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+}
+```
