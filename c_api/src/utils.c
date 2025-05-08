@@ -8,7 +8,7 @@ char* format_question(const char *q) {
     snprintf(
         formatted_q,
         sizeof(formatted_q),
-        "%s\nPlease return only the code without any explanation and without comments inside the code",
+        "%s\nPlease return only the code without any explanation and without comments inside the code\nPlease make sure to use C++ only.",
         q
     );
 
@@ -157,11 +157,8 @@ char* get_rag_question(const char* question, char *combined_docs) {
     return result;
 }
 
-char* read_doc(int doc_id, const char *root_dir) {
-    char doc_path[512];
-    snprintf(doc_path, sizeof(doc_path), "%s/%i.txt", root_dir, doc_id);
-
-    printf("Reading doc [%s] ...\n", doc_path);
+char* read_doc_by_path(const char *doc_path) {
+    //printf("Reading doc [%s] ...\n", doc_path);
     FILE* doc_file = fopen(doc_path, "rb");  // Open file in binary mode
     if (doc_file == NULL) {
         perror("Failed to open document file");
@@ -191,7 +188,16 @@ char* read_doc(int doc_id, const char *root_dir) {
     fclose(doc_file);
     doc_content[doc_length] = '\0';
 
+    //printf("Reading is done successfully!");
+
     return doc_content;
+}
+
+char* read_doc_by_id(int doc_id, const char *root_dir) {
+    char doc_path[512];
+    snprintf(doc_path, sizeof(doc_path), "%s/%i.txt", root_dir, doc_id);
+
+    return read_doc_by_path(doc_path);
 }
 
 // Function to convert a string to lowercase
@@ -228,6 +234,9 @@ int parse_config(const char* filename, Config* config) {
             else if (strcmp(key, "model_tag") == 0) strcpy(config->model_tag, value);
             else if (strcmp(key, "base_model_tag") == 0) strcpy(config->base_model_tag, value);
             else if (strcmp(key, "embedding_model_path") == 0) strcpy(config->embedding_model_path, value);
+            else if (strcmp(key, "basic_vdb_path") == 0) strcpy(config->basic_vdb_path, value);
+            else if (strcmp(key, "basic_index_path") == 0) strcpy(config->basic_index_path, value);
+            else if (strcmp(key, "alusus_features_mapper_path") == 0) strcpy(config->alusus_features_mapper_path, value);
         }
     }
 
@@ -257,4 +266,105 @@ JSON* read_json_file(const char *path) {
     free(data);
 
     return parsed_json;
+}
+
+char* get_root_dir(const char* filepath) {
+    const char* p1 = strrchr(filepath, '/');
+    const char* p2 = strrchr(filepath, '\\');
+    const char* last_sep = p1;
+    if (!last_sep || (p2 && p2 > last_sep))
+        last_sep = p2;
+    if (!last_sep)
+        return strdup("");
+    size_t len = last_sep - filepath;
+    char* root_dir = malloc(len + 1);
+    if (!root_dir)
+        return NULL;
+    strncpy(root_dir, filepath, len);
+    root_dir[len] = '\0';
+    return root_dir;
+}
+
+#define OVECCOUNT 30  // Must be a multiple of 3
+
+// Remove any substring matching <think>.*?</think>
+char *remove_think_section(const char *input) {
+    const char *pattern = "<think>.*?</think>";
+    const char *error;
+    int erroffset;
+    pcre *re = pcre_compile(pattern, PCRE_DOTALL, &error, &erroffset, NULL);
+    if (!re) {
+        fprintf(stderr, "PCRE compilation failed at offset %d: %s\n", erroffset, error);
+        return strdup(input);  // Return a duplicate if regex compilation fails
+    }
+
+    size_t input_len = strlen(input);
+    // Allocate buffer for the result, which will never be longer than the input
+    char *result = malloc(input_len + 1);
+    if (!result) {
+        pcre_free(re);
+        return NULL;
+    }
+    size_t result_pos = 0;
+    int start_offset = 0;
+    int rc;
+    int ovector[OVECCOUNT];
+
+    // Search repeatedly for matches
+    while ((rc = pcre_exec(re, NULL, input, (int)input_len, start_offset, 0, ovector, OVECCOUNT)) >= 0) {
+        int match_start = ovector[0];
+        int match_end   = ovector[1];
+        // Copy text before the match to the result
+        int num_chars = match_start - start_offset;
+        memcpy(result + result_pos, input + start_offset, num_chars);
+        result_pos += num_chars;
+        start_offset = match_end;
+    }
+    // Copy any remaining text after the last match
+    if (start_offset < (int)input_len) {
+        int num_chars = (int)input_len - start_offset;
+        memcpy(result + result_pos, input + start_offset, num_chars);
+        result_pos += num_chars;
+    }
+    result[result_pos] = '\0';
+    pcre_free(re);
+    return result;
+}
+
+// Trim whitespace in place (shifts the string to the left)
+void trim_whitespace(char *str) {
+    // Trim leading whitespace
+    char *start = str;
+    while (*start && isspace((unsigned char)*start))
+        start++;
+    if (start != str)
+        memmove(str, start, strlen(start) + 1);
+
+    // Trim trailing whitespace
+    char *end = str + strlen(str) - 1;
+    while (end >= str && isspace((unsigned char)*end)) {
+        *end = '\0';
+        end--;
+    }
+}
+
+char* format_final_response(const char *code) {
+    // Calculate the required buffer size
+    size_t response_size = strlen(code) + 500; // Adding space for static text
+    //printf("response_size: %zi\n", response_size);
+    char *response = (char*)malloc(response_size);
+    
+    if (!response) {
+        printf("Memory allocation error.\n");
+        return strdup("Memory allocation error.");
+    }
+
+    // Format the response
+    snprintf(response, response_size, 
+        "This is the final answer, just return the code to the user without any modification.\n"
+        "<code>\n%s\n</code>\n", code);
+    
+    //printf("response:\n%s\n", response);
+
+    return response;
 }
