@@ -16,11 +16,11 @@ def factorial : function (i:Int) => Int
 ```
 It is also possible to use a short form without the `def` command, as follows:
 ```
-function <func name> (<arguments>) => <return_type> { <function_body> }
+function <func name> (<arguments>): <return_type> { <function_body> }
 ```
 For example:
 ```
-function factorial (i:Int) => Int
+function factorial (i:Int): Int
 {
     if i==1 return 1;
     return i*factorial(i-1);
@@ -31,4 +31,21 @@ Calling a function is done by using the function's name followed by the argument
 x = readNumber();
 y = readNumber();
 drawPoint(x, y);
+```
+If the function does not return anything we should not add a return arg_type
+For example:
+```
+import "Srl/Array";
+import "Srl/Console";
+
+
+use Srl;
+
+
+func print(a: ref[Array[Int]]) {
+    def i: Int;
+    for i = 0 , i < a.getLength() , i++ {
+        Console.print("%d ", a(i));
+    }
+}
 ```
