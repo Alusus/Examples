@@ -1,4 +1,8 @@
 #include "WebPlatformEngine.h"
+#include "DocsExpert.h"
+#include "MainAgent.h"
+#include "AlususExpert.h"
+#include "KeywordDocsRetriever.h"
 #include "common.h"
 #include "utils.h"
 #include "llama.h"
@@ -14,7 +18,7 @@ static struct llama_context * ctx = NULL;
 
 static FaissIndex* faissIndex = NULL;
 
-void free_resources() {
+void webplatform_free_resources() {
     // faiss cleanup
     faiss_Index_free(faissIndex);
 
@@ -62,17 +66,17 @@ static float* get_embedding(const char *question, const char *model_path) {
     llama_token tokens[512];  // Token array, assuming max 512 tokens
     int n_tokens = llama_tokenize(model, question, strlen(question), tokens, 512, 1, 0);
 
-    printf("******************\n");
-    printf("number of tokens: %i\n", n_tokens);
-    printf("tokens:\n");
-    for (int i = 0 ; i < n_tokens ; ++i) {
-        printf("%i", tokens[i]);
-        if (i + 1 < n_tokens) {
-            printf(", ");
-        }
-    }
-    printf("\n");
-    printf("******************\n");
+    // printf("******************\n");
+    // printf("number of tokens: %i\n", n_tokens);
+    // printf("tokens:\n");
+    // for (int i = 0 ; i < n_tokens ; ++i) {
+    //     printf("%i", tokens[i]);
+    //     if (i + 1 < n_tokens) {
+    //         printf(", ");
+    //     }
+    // }
+    // printf("\n");
+    // printf("******************\n");
 
     // Create batch
     struct llama_batch batch = llama_batch_init(cparams.n_batch, 0, 1);
@@ -103,7 +107,7 @@ static float* get_embedding(const char *question, const char *model_path) {
 
     // Allocate memory for embeddings
     const int n_embd = llama_n_embd(model);
-    printf("n_embd: %i\n", n_embd);
+    //printf("n_embd: %i\n", n_embd);
     float *embeddings = (float *)malloc(n_embd_count * n_embd * sizeof(float));
     // initialize
     for (int i = 0 ; i < n_embd_count * n_embd ; ++i) {
@@ -113,17 +117,36 @@ static float* get_embedding(const char *question, const char *model_path) {
     // Extract embeddings
     printf("Extract embeddings...\n");
     memcpy(embeddings, llama_get_embeddings_seq(ctx, 0), n_embd * sizeof(float));
-    printf("Embedding: ");
-    for (int i = 0 ; i < 10 ; ++i) {
-        printf("%.2f, ", embeddings[i]);
-    }
-    printf("\n");
+    // printf("Embedding: ");
+    // for (int i = 0 ; i < 10 ; ++i) {
+    //     printf("%.2f, ", embeddings[i]);
+    // }
+    // printf("\n");
     printf("****Done extracting embeddings***\n");
 
     return embeddings;
 }
 
-static char* get_docs(idx_t *indices, int k, const char *docs_index_path) {
+static char* format_example(int doc_id, const char *prompt, const char *doc) {
+    size_t example_size = strlen(prompt) + strlen(doc) + 128;
+    char *example = (char*)malloc(example_size);
+    if (!example) {
+        fprintf(stderr, "Failed to allocate memory for doc %i\n", doc_id);
+        free(doc);
+        return "";
+    }
+    snprintf(
+        example,
+        example_size,
+        "Prompt: %s\nAnswer:\n%s\n",
+        prompt,
+        doc
+    );
+
+    return example;
+}
+
+static JSON* get_docs(idx_t *indices, int k, const char *docs_index_path) {
     JSON *docs_index = read_json_file(docs_index_path);
 
     char docs_root_dir[512];
@@ -135,37 +158,27 @@ static char* get_docs(idx_t *indices, int k, const char *docs_index_path) {
         JSON2STR(JSON_AT(JSON_AT(docs_index, "WebPlatform"), "doc_folder"))
     );
 
-    printf("docs root directory: %s\n", docs_root_dir);
+    //printf("docs root directory: %s\n", docs_root_dir);
 
     JSON *docs;
     JSON_REF(JSON_AT(docs_index, "WebPlatform"), "docs", docs);
 
-    char* combined_docs = (char*)malloc(1);
-    if (combined_docs == NULL) {
-        fprintf(stderr, "Failed to allocate memory for combined docs\n");
-        return NULL;
-    }
-    combined_docs[0] = '\0';  // Initialize the combined_docs string
+    JSON *docs_array = json_object_new_array();
 
     for (int i = 0 ; i < k; ++i) {
         int doc_id = indices[i];
-        printf("Processing doc %i\n", doc_id);
+        //printf("Processing doc %i\n", doc_id);
         if (doc_id == -1) {
             continue;
         }
 
-        char *content = JSON2STR(JSON_AT(JSON_AT_IDX(docs, doc_id), "content"));
-        char *doc = read_doc(doc_id, docs_root_dir);
+        char *prompt = JSON2STR(JSON_AT(JSON_AT_IDX(docs, doc_id), "content"));
+        char *doc = read_doc_by_id(doc_id, docs_root_dir);
 
         if (doc) {
-            combined_docs = (char *)realloc(
-                combined_docs,
-                strlen(combined_docs) + strlen(content) + strlen(doc) + 3
-            );
-            strcat(combined_docs, content);
-            strcat(combined_docs, "\n");
-            strcat(combined_docs, doc);
-            strcat(combined_docs, "\n");
+            char *example = format_example(doc_id, prompt, doc);
+            JSON_A_ADD(docs_array, STR2JSON(example));
+            free(example);
 
             printf("Doc %i added successfuly\n", doc_id);
         }
@@ -173,22 +186,27 @@ static char* get_docs(idx_t *indices, int k, const char *docs_index_path) {
             printf("Failed to add Doc %i\n", doc_id);
         }
 
-        // printf(
-        //     "************\nDoc %i\ncontent:%s\nFull doc:\n%s\n************\n",
-        //     doc_id, content, read_doc(doc_id, docs_root_dir)
-        // );
-
         // Cleanup
         free(doc);
     }
 
-    return combined_docs;
+    return docs_array;
+}
+
+static JSON* get_docs_from_code(
+    const char* code, const char* docs_root_dir,
+    const char *features_mapper_path)
+{
+    JSON* features_mapper = read_json_file(features_mapper_path);
+    
+    return get_docs_by_keyword(code, docs_root_dir, features_mapper);
 }
 
 char* webplatform_run(
   const char *api_key, const char *question,
   const char *docs_index_path, const char *rag_index_path,
-  const char *model_tag, const char *model_path) {
+  const char *model_tag, const char *embedding_model_path,
+  const char *alusus_features_mapper_path, const char *docs_root_dir) {
     // read the index file once
     if (faissIndex == NULL) {
         FaissErrorCode err = faiss_read_index_fname(rag_index_path, 0, &faissIndex);
@@ -205,35 +223,58 @@ char* webplatform_run(
     memmove(question, question + strlen(prefix), strlen(question) - strlen(prefix) + 1);
 
     // get question embeddings
-    float *embeddings = get_embedding(question, model_path);
+    float *embeddings = get_embedding(question, embedding_model_path);
 
     // get docs
-    int k = 4; // number of nearest neighbors
+    int k = 5; // number of nearest neighbors
     int nq = 1; // number of queries
     float *distances = (float*)malloc(nq * k * sizeof(float));
     idx_t *indices = (idx_t*)malloc(nq * k * sizeof(idx_t));
 
     faiss_Index_search(faissIndex, nq, embeddings, k, distances, indices);
-    printf("Distances:\n");
-    for (int i = 0; i < k; i++) {
-        printf("%f ", distances[i]);
-    }
-    printf("\nIndices:\n");
-    for (int i = 0; i < k; i++) {
-        printf("%lld ", indices[i]);
-    }
-    printf("\n");
+    // printf("Distances:\n");
+    // for (int i = 0; i < k; i++) {
+    //     printf("%f ", distances[i]);
+    // }
+    // printf("\nIndices:\n");
+    // for (int i = 0; i < k; i++) {
+    //     printf("%lld ", indices[i]);
+    // }
+    // printf("\n");
 
-    char *combined_docs = get_docs(indices, k, docs_index_path);
-    printf("*********\nCombiend docs:\n%s\n*********\n", combined_docs);
+    JSON *examples = get_docs(indices, k, docs_index_path);
 
     // Cleanup
     free(embeddings);
     free(distances);
     free(indices);
 
-    // construct RAG query
-    char *rag_question = get_rag_question(question, combined_docs);
+    // refine docs
+    printf("\nRefining exmpales ...\n");
+    JSON *refined_examples = refine_docs(question, examples, NULL, api_key);
+    printf("\nRefining exmpales is done successfully\n");
 
-    return send_request(api_key, rag_question, model_tag);
+    // get initial answer
+    printf("\nPrompting Main Agent ...\n");
+    const char *initial_code = prompt_main_agent(question, refined_examples, api_key);
+    printf("exited prompt_main_agent function\n");
+    if(!initial_code) {
+        printf("Invalid pointer!\n");
+    }
+    printf("initial code:\n%s\n", initial_code);
+    printf("\nPrompting Main Agent is done successfully\n");
+
+    // add keyword docs
+    printf("\nGetting keyword docs ...\n");
+    JSON *keyword_docs = get_docs_from_code(initial_code, docs_root_dir, alusus_features_mapper_path);
+    printf("\nGetting keyword docs is done successfully\n");
+
+    // get refined answer
+    printf("\nPrompting Alusus Expert ...\n");
+    const char *final_answer = prompt_alusus_expert(initial_code, keyword_docs, api_key);
+    printf("\nPrompting Alusus Expert is done successfully\n");
+
+    char *formatted_response = format_final_response(final_answer);
+    //printf("formatted_response:\n%s\n", formatted_response);
+    return formatted_response;
 }

@@ -30,20 +30,25 @@ int main(int argc, char *argv[]) {
     char *lower_question = str_to_lowercase(question);
 
     if (strstr(lower_question, "webplatform") != NULL) {
-        atexit(free_resources);
+        atexit(webplatform_free_resources);
         char *result =  webplatform_run(
             cfg.api_key, question,
             cfg.webplatform_docs_index_path, cfg.rag_index_path,
-            cfg.model_tag, cfg.embedding_model_path
+            cfg.model_tag, cfg.embedding_model_path,
+            cfg.alusus_features_mapper_path, cfg.docs_root_dir
         );
         show_result(result);
     }
     else if (strstr(lower_question, "enalusus") != NULL) {
+        atexit(basic_free_resources);
         char *result = basic_run(
             cfg.api_key, question,
             cfg.docs_root_dir, cfg.basic_docs_index_path,
-            cfg.base_model_tag, cfg.model_tag
+            cfg.base_model_tag, cfg.model_tag,
+            cfg.basic_vdb_path, cfg.basic_index_path,
+            cfg.alusus_features_mapper_path, cfg.embedding_model_path
         );
+        printf("Exited basic_run\n");
         show_result(result);
     }
     else {
