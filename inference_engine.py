@@ -45,17 +45,22 @@ class Engine:
 
 
 class BasicEngine(Engine):
-    def __init__(self, api_key, model_tag, base_model_tag, docs_root_dir):
+    def __init__(self, api_key, model_tag, base_model_tag, docs_root_dir, docs_index_path='docs2id.json'):
         super(BasicEngine, self).__init__(api_key, model_tag)
         self.docs_root_dir = docs_root_dir
         self.base_model_tag = base_model_tag
+        self.docs_index_path = docs_index_path
     
     def preprocess(self, question: str):
         cpp_code = get_cpp_code(self.client, question, self.base_model_tag)
         return question, {'cpp_code': cpp_code}
     
-    def get_docs(self, question: str, data: dict):
-        return get_docs(data['cpp_code'], self.docs_root_dir)
+    def get_docs(self, question: str, data: dict, return_cpp_code=False):
+        docs = get_docs(data['cpp_code'], self.docs_root_dir, self.docs_index_path)
+        if return_cpp_code:
+            return docs, data['cpp_code']
+        else:
+            return docs 
 
 
 class WebPlatformEngine(Engine):
@@ -74,7 +79,7 @@ class WebPlatformEngine(Engine):
         question = question[len(prefix):]
         return question, None
 
-    def get_docs(self, question, data):
+    def get_docs(self, question, data, n_docs=5):
         def format_doc(doc):
             doc_path = os.path.join(self.docs_root_dir, f'{doc["id"]}.txt')
             with open(doc_path) as doc_file:
@@ -82,14 +87,14 @@ class WebPlatformEngine(Engine):
             doc_content = f"{doc['content']}\n\n{doc_content}"
             return doc_content
 
-        docs_indices = self.__get_doc_indices(question)
+        docs_indices = self.__get_doc_indices(question, n_docs)
         print(f'docs_indices: {docs_indices}')
         matched_docs = [self.docs[i] for i in docs_indices if i != -1]
 
         matched_docs = list(map(format_doc, matched_docs))
         return matched_docs
 
-    def __get_doc_indices(self, query):
-        _, I = get_results(self.index, self.model, [query], k=5)
+    def __get_doc_indices(self, query, n_docs):
+        _, I = get_results(self.index, self.model, [query], k=n_docs)
 
         return I[0]

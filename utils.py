@@ -39,6 +39,7 @@ def debug(*msgs):
 def format_question(q):
     q = q.replace("enAlusus", "c++")
     q += "\nPlease return only the code without any explanation and without comments inside the code"
+    q += "\nPlease make sure to use C++ only"
     return [
         {
             "role": "user",
@@ -56,7 +57,7 @@ def get_cpp_code(client, question, model_tag="gpt-4o-mini"):
     return response.choices[0].message.content
 
 
-def get_docs_ids(cpp_code):
+def get_docs_ids(cpp_code, docs_index_path):
     def exists(feature):
         if feature["regex"]:
             for pattern in feature["patterns"]:
@@ -69,7 +70,7 @@ def get_docs_ids(cpp_code):
                     return True
         return False
 
-    with open('docs2id.json') as f:
+    with open(docs_index_path) as f:
         c_features_mapper = json.load(f)
     
     docs = []
@@ -82,8 +83,8 @@ def get_docs_ids(cpp_code):
     return docs, names
 
 
-def get_docs(cpp_code, docs_root_dir: str):
-    docs_ids, _ = get_docs_ids(cpp_code)
+def get_docs(cpp_code, docs_root_dir: str, docs_index_path='docs2id.json'):
+    docs_ids, _ = get_docs_ids(cpp_code, docs_index_path)
 
     docs = []
     for id in docs_ids:

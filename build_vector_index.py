@@ -23,12 +23,20 @@ def get_samples(examples_index_path, lib_name):
     return samples
 
 
-def create_index(embeddings, save_path):
+def get_basic_samples(examples_index_path):
+    with open(examples_index_path, encoding='utf-8') as f:
+        examples_index = json.load(f)
+    
+    samples = [example['enPrompt'] for example in examples_index]
+
+    return samples
+
+
+def create_index(embeddings, save_path, n_clusters=20):
     # Create an IVF index
     dimension = embeddings.shape[1]
-    nlist = 20  # Number of clusters
     quantizer = faiss.IndexFlatL2(dimension)
-    index = faiss.IndexIVFFlat(quantizer, dimension, nlist, faiss.METRIC_L2)
+    index = faiss.IndexIVFFlat(quantizer, dimension, n_clusters, faiss.METRIC_L2)
 
     # Train the index
     index.train(np.array(embeddings))
@@ -48,11 +56,16 @@ def get_results(index, model, queries, k=5):
     return D, I
 
 
-def main():
+def main(lib_name: str, n_clusters: int, k: int, query: str):
     model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
     print("[INFO] Getting samples...")
-    samples = get_samples("libs_index.json", "WebPlatform")
+    if lib_name == 'basic':
+        samples = get_basic_samples("index.json")
+    else:
+        #samples = get_samples("libs_index.json", "WebPlatform")
+        samples = get_samples("libs_index.json", lib_name)
+
     print("[INFO] Generate embeddings...")
     embeddings = []
     for i in range(0, len(samples), 16):
@@ -63,19 +76,27 @@ def main():
     print(embeddings.shape)
 
     print("[INFO] Creating Index...")
-    create_index(embeddings, "ivf_index_file.index")
+    # create_index(embeddings, "ivf_index_file.index")
+    index_filename = f"vdb_{lib_name}.index"
+    create_index(embeddings, index_filename, n_clusters)
 
     # Load the index from disk
     print("[INFO] Reading Index...")
-    index = faiss.read_index("ivf_index_file.index")
+    index = faiss.read_index(index_filename)
 
     print("[INFO] Inference...")
-    D, I = get_results(index, model, ["Submit button"])
+    D, I = get_results(index, model, [query], k)
 
     print(f'D: {D}')
     print('-'*30)
     print(f'I: {I}')
 
 
+
 if __name__ == "__main__":
-    main()
+    main(
+        'basic',
+        n_clusters=10,
+        k=20,
+        query="write a code to check whether an array contains a number that's a multiple of 3 or not"
+    )
