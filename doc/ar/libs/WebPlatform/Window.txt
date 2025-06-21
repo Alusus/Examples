@@ -1,0 +1,31 @@
+عرف نـافذة: لقب Window؛
+@دمج صنف نـافذة {
+    عرف النموذج: لقب instance؛
+    عرف الطراز: لقب style؛
+    عرف مخزن_الجلسة: لقب sessionStorage؛
+    عرف المخزن_المحلي: لقب localStorage؛
+    عرف حدد_المشهد: لقب setView؛
+    عرف أزل_المشهد: لقب unsetView؛
+    عرف الموقع: لقب location؛
+    عرف بروتوكول_الموقع: لقب locationProtocol؛
+    عرف خادم_الموقع: لقب locationHost؛
+    عرف مسار_الموقع: لقب locationPath؛
+    عرف استعلام_الموقع: لقب locationQuery؛
+    عرف وسم_الموقع: لقب locationHash؛
+    عرف هات_متغير_استعلام: لقب getQueryParam؛
+    عرف ادفع_مسارا: لقب pushLocation؛
+    عرف مرئية: لقب visible؛
+    عرف حجم: لقب resize؛
+    عرف المفاتيح_المكبوتة: لقب keysToSwallow؛
+    عرف عند_بدء_الكبسة: لقب onKeyDown؛
+    عرف عند_انتهاء_الكبسة: لقب onKeyUp؛
+    عرف عند_تغير_احتكار_المؤشر: لقب onPointerLockChange؛
+    عرف عند_تغير_ملء_الشاشة: لقب onFullScreenChange؛
+    عرف عند_ربط_مقبض: لقب onGamepadConnected؛
+    عرف عند_فصل_مقبض: لقب onGamepadDisconnected؛
+    عرف عند_تغير_المسار: لقب onLocationChanged؛
+    عرف عند_تغير_المرئية: لقب onVisibilityChanged؛
+    عرف عند_استلام_رسالة: لقب onMessage؛
+    عرف أرسل_رسالة: لقب postMessage؛
+    عرف ارسل_رسالة_للمالك: لقب postMessageToParent؛
+}

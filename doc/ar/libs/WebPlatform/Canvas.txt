@@ -1,0 +1,7 @@
+عرف مـرسم: لقب Canvas؛
+@دمج صنف مـرسم {
+    عرف رسم: لقب drawing؛
+    عرف معرف_مورد: لقب resourceId؛
+    عرب_خصلة[عرض_الصورة، _عرض_الصورة، bitmapWidth، BitmapWidth]؛
+    عرب_خصلة[طول_الصورة، _طول_الصورة، bitmapHeight، BitmapHeight]؛
+}

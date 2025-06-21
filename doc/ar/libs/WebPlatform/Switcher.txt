@@ -1,0 +1,6 @@
+عرف مـبدال: لقب Switcher؛
+@دمج صنف مـبدال {
+    عرف حدد_الانتقال: لقب setTransition؛
+    عرف بدل_إلى: لقب switchTo؛
+    عرف أيجب_الاحتفاظ_بالفرع: لقب shouldPreserveChild؛
+}
