@@ -7,6 +7,7 @@ from inference_engine import BasicEngine, WebPlatformEngine
 from copilot_server.agents import DocsExpert, MainAgent, AlususExpert
 from copilot_server.agents import KeywordDocsRetriever, BasicExamplesRetriever
 from copilot_server.LLMs import OpenAILLM, DeepSeekLLM
+from copilot_server.agents import Translator
 
 app = Flask(__name__)
 
@@ -26,6 +27,7 @@ OPENAI_API_KEY = os.getenv("OLD_API_KEY")
 HF_API_KEY = os.getenv("HF_TOKEN")
 MODEL_TAG = os.getenv("MODEL_TAG")
 BASE_MODEL_TAG = os.getenv("BASE_MODEL_TAG")
+AR_DOCS_DIR = os.getenv("AR_DOCS_DIR")
 
 
 alusus_gpt4 = OpenAILLM(OPENAI_API_KEY, MODEL_TAG)
@@ -38,7 +40,7 @@ docs_expert = DocsExpert(llm=gpt_4o_mini, debug=DEBUG)
 main_agent = MainAgent(llm=o3_mini, debug=DEBUG)
 keyword_docs_retriever = KeywordDocsRetriever(ALUSUS_FEATURES_MAPPER_PATH, DOCS_ROOT_DIR)
 alusus_expert = AlususExpert(llm=o3_mini, debug=DEBUG)
-
+translator = Translator(o3_mini, ar_docs_dir=AR_DOCS_DIR, debug=DEBUG)
 
 
 def format_response(code):
@@ -56,6 +58,7 @@ def format_response(code):
 def handle_basic():
     data = request.json
     query = data.get('query')
+    lang = data.get('lang')
 
     engine = BasicEngine(OPENAI_API_KEY, MODEL_TAG, BASE_MODEL_TAG, DOCS_ROOT_DIR, BASIC_INDEX_PATH)
 
@@ -75,13 +78,17 @@ def handle_basic():
     syntax_docs = keyword_docs_retriever.get_docs(code)
     refined_code = alusus_expert(code, syntax_docs)
 
-    return jsonify({"response": format_response(refined_code)})
+    # translate code
+    translated_code = translator(refined_code, lang)
+
+    return jsonify({"response": format_response(translated_code)})
 
 
 @app.route('/web_platform', methods=['POST'])
 def handle_web_platform():
     data = request.json
     query = data.get('query')
+    lang = data.get('lang')
 
     engine = WebPlatformEngine(OPENAI_API_KEY, MODEL_TAG, WEBPLATFORM_INDEX_PATH, RAG_INDEX_PATH)
 
@@ -97,7 +104,10 @@ def handle_web_platform():
     syntax_docs = keyword_docs_retriever.get_docs(code)
     refined_code = alusus_expert(code, syntax_docs)
 
-    return jsonify({"response": format_response(refined_code)})
+    # translate code
+    translated_code = translator(refined_code, lang, used_libs=['WebPlatform'])
+
+    return jsonify({"response": format_response(translated_code)})
 
 
 if __name__ == '__main__':
