@@ -14,6 +14,7 @@ typedef struct json_object JSON;
 #define JSON_ADD(json_obj, key, value) json_object_object_add(json_obj, key, value)
 #define JSON_A_ADD(json_obj, json_val) json_object_array_add(json_obj, json_val)
 #define JSON2STR(json_obj) json_object_get_string(json_obj)
+#define STR2JSON(str) json_object_new_string(str)
 #define JSON2INT(json_obj) json_object_get_int(json_obj)
 
 // Configs
@@ -27,6 +28,9 @@ typedef struct {
     char model_tag[MAX_LINE_LENGTH];
     char base_model_tag[MAX_LINE_LENGTH];
     char embedding_model_path[MAX_LINE_LENGTH];
+    char basic_vdb_path[MAX_LINE_LENGTH];
+    char basic_index_path[MAX_LINE_LENGTH];
+    char alusus_features_mapper_path[MAX_LINE_LENGTH];
 } Config;
 
 #endif // COMMON_H
