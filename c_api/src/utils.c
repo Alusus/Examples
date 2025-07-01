@@ -237,6 +237,7 @@ int parse_config(const char* filename, Config* config) {
             else if (strcmp(key, "basic_vdb_path") == 0) strcpy(config->basic_vdb_path, value);
             else if (strcmp(key, "basic_index_path") == 0) strcpy(config->basic_index_path, value);
             else if (strcmp(key, "alusus_features_mapper_path") == 0) strcpy(config->alusus_features_mapper_path, value);
+            else if (strcmp(key, "ar_docs_dir") == 0) strcpy(config->ar_docs_dir, value);
         }
     }
 
