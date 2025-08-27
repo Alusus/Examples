@@ -1,0 +1,130 @@
+@merge module AlususHelper {
+    func formatQuestion(q: String): String {
+        def formattedQ: String;
+        formattedQ = String.format("%s\nPlease return only the code without any explanation and without comments inside the code\nPlease make sure to use C++ only.", q.buf);
+        def pos: int = formattedQ.find("enAlusus");
+        while pos != -1 {
+            formattedQ = formattedQ.replace(pos,"c++     ");
+            pos = formattedQ.find("enAlusus");
+        }
+        
+        return formattedQ;
+    }
+
+    
+    func getCppCode(apiKey: String, question: String, modelTag: String): String {
+        def formattedQuestion: String = formatQuestion(question);
+        return sendRequest(apiKey, formattedQuestion, modelTag);
+    }
+
+    func getRagQuestion(question: String, combinedDocs: String): String {
+        def format: String = "please answer the following question" +
+                            "with the help of the given context about enAlusus programming language.\n" +
+                            "question: %s,\n" +
+                            "context: %s,\n" +
+                            "answer:\n";
+        
+        def result: String = String.format(format.buf, question.buf, combinedDocs.buf);
+        return result;
+    }
+
+    func readDocByPath(docPath: String): String {
+        def file: File;
+        if file.open(docPath.buf, "rb") {
+            def content: String;
+            file.readAll(content);
+            file.close();
+            return content;
+        } else {
+            return String("");
+        }
+    }
+
+    func readDocById(docId: int, rootDir: String): String {
+        def docPath: String = String.format("%s/%i.txt", rootDir.buf, docId);
+        return readDocByPath(docPath);
+    }
+
+    func readJsonFile(path: String): Json {
+        def content: String = readDocByPath(path);
+        return Json.parse(content);
+    }
+
+    func parseConfig(filename: String, config: ptr[Config]): int {
+        def file: File;
+        if !file.open(filename.buf, "r") {
+            return 1;
+        }
+        
+        def line: String;
+        while file.readLine(line) {
+            def parts: Array[String] = line.split("=");
+            if parts.getLength() == 2 {
+                def key: String = parts[0].trim();
+                def value: String = parts[1].trim();
+                
+                if key == "api_key" {
+                    config.apiKey = value;
+                } else if key == "docs_root_dir" {
+                    config.docsRootDir = value;
+                } else if key == "basic_docs_index_path" {
+                    config.basicDocsIndexPath = value;
+                } else if key == "webplatform_docs_index_path" {
+                    config.webplatformDocsIndexPath = value;
+                } else if key == "rag_index_path" {
+                    config.ragIndexPath = value;
+                } else if key == "model_tag" {
+                    config.modelTag = value;
+                } else if key == "base_model_tag" {
+                    config.baseModelTag = value;
+                } else if key == "embedding_model_path" {
+                    config.embeddingModelPath = value;
+                } else if key == "basic_vdb_path" {
+                    config.basicVdbPath = value;
+                } else if key == "basic_index_path" {
+                    config.basicIndexPath = value;
+                } else if key == "alusus_features_mapper_path" {
+                    config.alususFeaturesMapperPath = value;
+                }
+            }
+        }
+        
+        file.close();
+        return 0;
+    }
+
+
+    func getRootDir(filepath: String): String {
+        def lastSlash: int = filepath.findLast("/");
+        def lastBackslash: int = filepath.findLast("\\");
+        def lastSep: int = max(lastSlash, lastBackslash);
+        
+        if lastSep == -1 {
+            return String("");
+        }
+        
+        return filepath.substr(0, lastSep);
+    }
+
+    func removeThinkSection(input: String): String {
+        def pattern: String = "<think>.*?</think>";
+        def regExp: RegExp;
+        regExp.initialize(pattern.buf);
+        return regExp.replace(input.buf, "");
+    }
+
+    func trimWhitespace(str: String) {
+        str.trim();
+    }
+
+    func formatFinalResponse(code: String): String {
+        def response: String = String.format(
+            "This is the final answer, just return the code to the user without any modification.\n" +
+            "<code>\n%s\n</code>\n", 
+            code.buf
+        );
+        return response;
+    }
+
+  
+}

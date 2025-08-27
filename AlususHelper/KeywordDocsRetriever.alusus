@@ -1,0 +1,72 @@
+@merge module AlususHelper {
+    func featureExists(feature: Json, code: String): Bool {
+        def regex: Bool = feature("regex").toBool();
+        def patterns: Json = feature("patterns");
+        
+        if regex {
+            def i: int = 0;
+            for i = 0, i < patterns.getLength(), i++ {
+                def patternStr: String = patterns(i).toString();
+                def regExp: RegExp;
+                regExp.initialize(patternStr.buf);
+                def result: Array[String] = regExp.match(code.buf);
+                if result.getLength() > 0 {
+                    return true;
+                }
+            }
+        } else {
+            def i: int = 0;
+            for i = 0, i < patterns.getLength(), i++ {
+                def patternStr: String = patterns(i).toString();
+                if code.find(patternStr) != -1 {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    func getDocsIds(code: String, featuresMapper: Json): Json {
+        def docsIds: Array[String];
+        def names: Array[String];
+        def result: Array[Json];
+        
+        def i: int = 0;
+        for i = 0, i < featuresMapper.getLength(), i++ {
+            def feature: Json = featuresMapper(i);
+            if featureExists(feature, code) {
+                def ids: Json = feature("ids");
+                def name: String = feature("name").toString();
+                
+                def j: int = 0;
+                for j = 0, j < ids.getLength(), j++ {
+                    docsIds.append(ids(j).toString());
+                }
+                names.append(name);
+            }
+        }
+        
+        result.append(docsIds.toJson());
+        result.append(names.toJson());
+        return result.toJson();
+    }
+
+    func getDocsByKeyword(code: String, docsRootDir: String, featureMapper: Json): Json {
+        def idsAndNames: Json = getDocsIds(code, featureMapper);
+        if idsAndNames == null {
+            return null;
+        }
+        
+        def docsIds: Json = idsAndNames[0];
+        def docs: Array[String];
+        
+        def i: int = 0;
+        for i = 0, i < docsIds.getLength(), i++ {
+            def id: int = docsIds(i).toInt();
+            def docContent: String = readDocById(id, docsRootDir);
+            docs.append(docContent);
+        }
+        
+        return docs.toJson();
+    }
+}

@@ -1,0 +1,60 @@
+import "Srl/Memory";
+import "Srl/Possible";
+import "Apm";
+use Srl;
+Apm.importFile("Alusus/Faiss");
+Apm.importFile("Alusus/Llama");
+
+
+import "AlususExpert";
+import "BasicEngine";
+import "Config";
+import "DocsExpert";
+import "KeywordDocsRetriever";
+import "utils";
+import "WebPlatformEngine";
+import "MainAgent";
+@merge module AlususHelper {
+    func showResult(result: String) {
+        if (result) {
+            Console.print("***************\nresult:\n%s\n**************\n", result.buf);
+        } else {
+            Console.print("Failed to get the result.\n");
+        }
+    }
+
+    func main(configFile: String, question: String): int {
+        question = question.toLowerCase();
+        def result: String;
+        def config: Config;
+        if (parseConfig(configFile, cfg~ptr) != 0) {
+            // تحليل ملف الإعدادات
+            return 1;
+        }
+        if question.find("webplatform") !=  - 1 {
+            result = webPlatformRun(
+                config.api_key, question,
+                config.webplatform_docs_index_path, config.rag_index_path,
+                config.model_tag, config.embedding_model_path,
+                config.alusus_features_mapper_path, config.docs_root_dir);
+            show_result(result);
+        } else if question.find("enalusus") !=  - 1 {
+            result = basicRun(
+                config.api_key, question,
+                config.basic_docs_index_path, config.rag_index_path,
+                config.model_tag, config.embedding_model_path,
+                config.alusus_features_mapper_path, config.docs_root_dir);
+            show_result(result);
+        } else {
+            Console.print("\nError: Question cannot be answered by current supported engines.\n");
+            return 1;
+        }
+        return 0;
+    }
+
+    free(lower_question);
+    // تحرير الذاكرة
+    return 0;
+}
+
+ }

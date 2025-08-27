@@ -1,0 +1,202 @@
+@merge module WebPlatformEngine {
+    class WebPlatformEngine {
+        def model: SrdRef[LlamaModel];
+        def ctx: SrdRef[LlamaContext];
+        def faissIndex: SrdRef[FaissIndex];
+        def cparams: LlamaContextParams;
+
+        func ~init() {
+            this.model = null;
+            this.ctx = null;
+            this.faissIndex = null;
+        }
+
+        func freeResources() {
+            if this.faissIndex != null {
+                faissIndexFree(this.faissIndex);
+                this.faissIndex = null;
+            }
+
+            if this.ctx != null {
+                llamaFree(this.ctx);
+                this.ctx = null;
+            }
+            
+            if this.model != null {
+                llamaFreeModel(this.model);
+                this.model = null;
+            }
+            
+            llamaBackendFree();
+            print("LLama.cpp resources are freed.\n");
+        }
+
+        func getEmbedding(question: String, modelPath: String): Possible[Array[float]] {
+            if this.model == null {
+                llamaNackendInit();
+                
+                def mparams: LlamaModelParams = llamaModelDefaultParams();
+                this.model = llamaLoadModelFromFile(modelPath.buf, mparams);
+                this.cparams = llamaContextDefaultParams();
+
+                this.cparams.embeddings = true;
+                this.cparams.n_batch = 4096;
+                this.cparams.n_ubatch = this.cparams.n_batch;
+                this.cparams.pooling_type = LLAMA_POOLING_TYPE_MEAN;
+                this.ctx = llamaNewContextWithModel(this.model, this.cparams);
+
+                if this.model == null {
+                
+                    return  Possible[Array[float]].failure(GenericError.new("Unable to load model", "Unable to load model"));
+                }
+            }
+
+            def tokens: Array[LlamaToken];
+            def n_tokens: int = llamaTokenize(this.model, question.buf, question.getLength(), tokens, 512, 1, 0);
+
+            def batch: LlamaBatch = llamaBatchInit(this.cparams.n_batch, 0, 1);
+            def n_embd_count: int = 1;
+
+            llamaKvCacheClear(this.ctx);
+            def i : int =0;
+            for i= 0 , i < n_tokens , i++ {
+                batch.token(batch.n_tokens_ = tokens[i];
+                batch.pos(batch.n_tokens_ = i;
+                batch.n_seq_id(batch.n_tokens) = 1;
+                batch.seq_id(batch.n_tokens)= 0;
+                batch.logits(batch.n_tokens) = true;
+                batch.n_tokens++;
+            }
+
+            if llamaModelHasEncoder(this.model) and not llamaModelHasDecoder(this.model) {
+                if llamaEncode(this.ctx, batch) < 0 {
+                    return Possible[Array[float]].failure(GenericError.new("Failed to encode", "Failed to encode"));
+                }
+            } else if not llamaModelHasEncoder(this.model) and llamaModelHasDecoder(this.model) {
+                if llamaDecode(this.ctx, batch) < 0 {
+                    return Possible[Array[float]].failure(GenericError.new("Failed to decode", "Failed to decode"));
+                   
+                }
+            }
+
+            def n_embd: int = llama_n_embd(this.model);
+            def embeddings: Array[float];
+    
+
+            for i=0 , i< n_embd_count * n_embd  , i++in  {
+                embeddings.append(0);
+            }
+            llamaGetEmbeddingsSeq(this.ctx, 0,embeddings.buf)
+            
+            return Possible[Array[float]].success(embeddings);
+        }
+
+        func formatExample(docId: int, prompt: String, doc: String): String {
+            return String.format("Prompt: %s\nAnswer:\n%s\n", prompt.buf, doc.buf);
+        }
+
+        func getDocs(indices: Array[idx_t], k: int, docsIndexPath: String): Possible[Json] {
+            def docsIndex: Possible[Json] = readJsonFile(docsIndexPath);
+            if not docsIndex {
+                return docsIndex.error;
+            }
+
+            def docsRootDir: String = String.format("%s/%s",
+                docsIndex.value{"doc_folder"}.toString().buf,
+                docsIndex.value{"WebPlatform"}{"doc_folder"}.toString().buf
+            );
+
+            def docs: Json = docsIndex.value{"WebPlatform"}{"docs"};
+            def docsArray: Json = Json.array();
+            def i : int =0;
+            for i = 0 , i< k , i++ {
+                def docId: int = indices(i);
+                if docId == -1 {
+                    continue;
+                }
+
+                def prompt: String = docs(docId)("content").toString();
+                def docContent: Possible[String] = readDocById(docId, docsRootDir.buf);
+
+                if docContent {
+                    def example: String = formatExample(docId, prompt, docContent.value);
+                    docsArray.append(example);
+                    print("Doc " + docId.toString() + " added successfully\n");
+                } else {
+                    print("Failed to add Doc " + docId.toString() + "\n");
+                }
+            }
+
+            return Possible[Json].success(docsArray);
+        }
+
+        func getDocsFromCode(code: String, docsRootDir: String, featuresMapperPath: String): Possible[Json] {
+            def featuresMapper: Possible[Json] = readJsonFile(featuresMapperPath);
+            if not featuresMapper {
+                return featuresMapper.error;
+            }
+            
+            return getDocsByKeyword(code, docsRootDir, featuresMapper.value);
+        }
+
+        func webPlatformRun(apiKey: String, question: String, docsIndexPath: String, ragIndexPath: String,
+                modelTag: String, embeddingModelPath: String, alususFeaturesMapperPath: String,
+                docsRootDir: String): Possible[String] {
+            
+            if this.faissIndex == null {
+                def err: FaissErrorCode = faissReadIndexFname(ragIndexPath.buf, 0, this.faissIndex);
+                if err != 0 {
+                    return Possible[Json].failure(GenericError.new("Error reading index from file: " , faissGetLastError()));
+                    Possible[Json].success(docsArray);
+                }
+            }
+
+            // Remove prefix from question
+            def prefix: String = "Using enAlusus with WebPlatform, ";
+            if question.find(prefix.buf) == 0 {
+                question = question.substr(prefix.getLength());
+            }
+
+            def embeddings: Possible[Array[float]] = getEmbedding(question, embeddingModelPath);
+            if not embeddings {
+                return embeddings.error;
+            }
+
+            def k: int = 5;
+            def nq: int = 1;
+            def distances: Array[float];
+            distances.alloc(nq * k);
+            def indices: Array[idx_t];
+            indices.alloc(nq * k);
+
+            faissIndexSearch(this.faissIndex, nq, embeddings.value.buf, k, distances.buf, indices.buf);
+
+            def examples: Possible[Json] = getDocs(indices, k, docsIndexPath);
+            if not examples {
+                return examples.error;
+            }
+
+            def refinedExamples: Possible[Json] = refineDocs(question, examples.value, null, apiKey);
+            if not refinedExamples {
+                return refinedExamples.error;
+            }
+
+            def initialCode: Possible[String] = promptMainAgent(question, refinedExamples.value, apiKey);
+            if not initialCode {
+                return initialCode.error;
+            }
+
+            def keywordDocs: Possible[Json] = getDocsFromCode(initialCode.value, docsRootDir, alususFeaturesMapperPath);
+            if not keywordDocs {
+                return keywordDocs.error;
+            }
+
+            def finalAnswer: Possible[String] = promptAlususExpert(initialCode.value, keywordDocs.value, apiKey);
+            if not finalAnswer {
+                return finalAnswer.error;
+            }
+
+            return formatFinalResponse(finalAnswer.value);
+        }
+    }
+}
