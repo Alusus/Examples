@@ -1,9 +1,11 @@
 import "Srl/Memory";
+import "Srl/Memory";
 import "Srl/Possible";
 import "Apm";
 use Srl;
 Apm.importFile("Alusus/Faiss");
 Apm.importFile("Alusus/Llama");
+Apm.importFile("Alusus/ExtendedNet");
 
 
 import "AlususExpert";
@@ -27,23 +29,25 @@ import "MainAgent";
         question = question.toLowerCase();
         def result: String;
         def config: Config;
-        if (parseConfig(configFile, cfg~ptr) != 0) {
-            // تحليل ملف الإعدادات
+        if (parseConfig(configFile, config~ptr) != 0) {
+  
             return 1;
         }
         if question.find("webplatform") !=  - 1 {
             result = webPlatformRun(
-                config.api_key, question,
-                config.webplatform_docs_index_path, config.rag_index_path,
-                config.model_tag, config.embedding_model_path,
-                config.alusus_features_mapper_path, config.docs_root_dir);
+                config.apiKey, question,
+                config.webplatformDocsIndexPath, config.ragIndexPath,
+                config.modelTag, config.embeddingModelPath,
+                config.alususFeaturesMapperPath, config.docsRootDir
+            );
             show_result(result);
         } else if question.find("enalusus") !=  - 1 {
             result = basicRun(
-                config.api_key, question,
-                config.basic_docs_index_path, config.rag_index_path,
-                config.model_tag, config.embedding_model_path,
-                config.alusus_features_mapper_path, config.docs_root_dir);
+                config.apiKey, question,
+                config.basicDocsIndexPath, config.ragIndexPath,
+                config.modelTag, config.embeddingModelPath,
+                config.alususFeaturesMapperPath, config.docsRootDir
+            );
             show_result(result);
         } else {
             Console.print("\nError: Question cannot be answered by current supported engines.\n");
@@ -52,8 +56,6 @@ import "MainAgent";
         return 0;
     }
 
-    free(lower_question);
-    // تحرير الذاكرة
     return 0;
 }
 

@@ -1,43 +1,80 @@
 @merge module AlususHelper {
+    def API_URL: String = "https://api.openai.com/v1/chat/completions";
+    def OVECCOUNT: int = 30;
+
+    func send_request(apiKey: String, question: String, model_tag: String): String {
+        def message: String = String.format("{\"role\" : \"user\", \"content\" : \"%s\"}", question.buf);
+        def messages: String = String.format("[%s]", message.buf);
+        def postedData: String = String.format("{\"model\" : \"%s\", \"messages\" : \"%s\"}", model_tag.buf, messages.buf);
+        def request: Net.Request(API_URL, apiKey, String("Bearer"), String("application/json"));
+        request.post(postedData);
+        if request.responseHttpStatus != 200 {
+            return String.format("error %i", request.responseHttpStatus);
+        }
+        def respones: Json = request.responseBody;
+        def choises: String = respones("choices");
+        if choises == "" {
+            return String("Failed to get 'choices' from JSON response");
+        }
+        def serverMessage: String = respones("choices")(0)("message");
+        if serverMessage == "" {
+            return String("Failed to get 'message' from JSON response");
+        }
+        def messageContent: String = respones("choices")(0)("message")("content");
+        if serverMessage == "" {
+            return String("Failed to get 'message' from JSON response");
+        }
+        return messageContent;
+    }
+
     func formatQuestion(q: String): String {
         def formattedQ: String;
         formattedQ = String.format("%s\nPlease return only the code without any explanation and without comments inside the code\nPlease make sure to use C++ only.", q.buf);
         def pos: int = formattedQ.find("enAlusus");
-        while pos != -1 {
-            formattedQ = formattedQ.replace(pos,"c++     ");
+        while pos !=  - 1 {
+            formattedQ = formattedQ.replace(pos, "c++     ");
             pos = formattedQ.find("enAlusus");
         }
-        
+
         return formattedQ;
     }
 
-    
     func getCppCode(apiKey: String, question: String, modelTag: String): String {
         def formattedQuestion: String = formatQuestion(question);
         return sendRequest(apiKey, formattedQuestion, modelTag);
     }
 
     func getRagQuestion(question: String, combinedDocs: String): String {
-        def format: String = "please answer the following question" +
-                            "with the help of the given context about enAlusus programming language.\n" +
-                            "question: %s,\n" +
-                            "context: %s,\n" +
-                            "answer:\n";
-        
+        def format: String = "please answer the following question" + 
+            "with the help of the given context about enAlusus programming language.\n" + 
+            "question: %s,\n" + 
+            "context: %s,\n" + 
+            "answer:\n";
+
         def result: String = String.format(format.buf, question.buf, combinedDocs.buf);
         return result;
     }
 
     func readDocByPath(docPath: String): String {
-        def file: File;
-        if file.open(docPath.buf, "rb") {
-            def content: String;
-            file.readAll(content);
-            file.close();
-            return content;
-        } else {
+        def file: ptr[Fs.File];
+        file = Fs.openFile(docPath.buf, "r")
+            if file == 0 {
+            Console.print("Failed to open document file\n");
             return String("");
         }
+        Fs.seek(file, 0, Fs.Seek.END);
+        def fileLength: int = 0;
+        fileLength = Fs.tell(file);
+        if fileLength <= 0 {
+            Console.print("Failed to determine file size\n");
+            return String("");
+        }
+        def docContent: String;
+        docContent.alloc(fileLength);
+        Fs.seek(file, 0, Fs.Seek.SET);
+        Fs.read(docContent, char~size, fileLength, file);
+        Fs.closeFile(file);
+        return docContent;
     }
 
     func readDocById(docId: int, rootDir: String): String {
@@ -47,84 +84,83 @@
 
     func readJsonFile(path: String): Json {
         def content: String = readDocByPath(path);
-        return Json.parse(content);
+        return Json.parse(content.buf);
     }
 
     func parseConfig(filename: String, config: ptr[Config]): int {
-        def file: File;
-        if !file.open(filename.buf, "r") {
+        def file: ptr[Fs.File];
+        file = Fs.openFile(filename.buf, "r")
+            if file == 0 {
+            Console.print("Failed to open file %s\n", filename.buf);
             return 1;
         }
-        
-        def line: String;
-        while file.readLine(line) {
-            def parts: Array[String] = line.split("=");
+        def resultArray: Array[String];
+        def line: array[Char, 256];
+        // max length line
+        while Fs.readLine(line~ptr, 256, file) != null {
+            def parts: Array[String] = String(line~ptr).split("=");
             if parts.getLength() == 2 {
                 def key: String = parts[0].trim();
-                def value: String = parts[1].trim();
-                
+                def keyValue: String = parts[1].trim();
                 if key == "api_key" {
-                    config.apiKey = value;
+                    config.apiKey = keyValue;
                 } else if key == "docs_root_dir" {
-                    config.docsRootDir = value;
+                    config.docsRootDir = keyValue;
                 } else if key == "basic_docs_index_path" {
-                    config.basicDocsIndexPath = value;
+                    config.basicDocsIndexPath = keyValue;
                 } else if key == "webplatform_docs_index_path" {
-                    config.webplatformDocsIndexPath = value;
+                    config.webplatformDocsIndexPath = keyValue;
                 } else if key == "rag_index_path" {
-                    config.ragIndexPath = value;
+                    config.ragIndexPath = keyValue;
                 } else if key == "model_tag" {
-                    config.modelTag = value;
+                    config.modelTag = keyValue;
                 } else if key == "base_model_tag" {
-                    config.baseModelTag = value;
+                    config.baseModelTag = keyValue;
                 } else if key == "embedding_model_path" {
-                    config.embeddingModelPath = value;
+                    config.embeddingModelPath = keyValue;
                 } else if key == "basic_vdb_path" {
-                    config.basicVdbPath = value;
+                    config.basicVdbPath = keyValue;
                 } else if key == "basic_index_path" {
-                    config.basicIndexPath = value;
+                    config.basicIndexPath = keyValue;
                 } else if key == "alusus_features_mapper_path" {
-                    config.alususFeaturesMapperPath = value;
+                    config.alususFeaturesMapperPath = keyValue;
                 }
             }
         }
-        
-        file.close();
+        Fs.closeFile(file);
         return 0;
     }
 
-
     func getRootDir(filepath: String): String {
-        def lastSlash: int = filepath.findLast("/");
-        def lastBackslash: int = filepath.findLast("\\");
-        def lastSep: int = max(lastSlash, lastBackslash);
-        
-        if lastSep == -1 {
+        def lastSlash: int = filepath.findLast('/');
+        def lastBackslash: int = filepath.findLast('\\');
+        def lastSep: int = lastSlash;
+        if lastSep < lastBackslash
+            lastSep = lastBackslash;
+        if lastSep ==  - 1 {
             return String("");
         }
-        
-        return filepath.substr(0, lastSep);
+
+        return filepath.slice(0, lastSep);
     }
 
     func removeThinkSection(input: String): String {
         def pattern: String = "<think>.*?</think>";
         def regExp: RegExp;
         regExp.initialize(pattern.buf);
-        return regExp.replace(input.buf, "");
-    }
-
-    func trimWhitespace(str: String) {
-        str.trim();
+        def result: Array[String];
+        result = regExp.match(input.buf);
+        if result.getLength() > 0 return result(1);
+        return input;
     }
 
     func formatFinalResponse(code: String): String {
         def response: String = String.format(
-            "This is the final answer, just return the code to the user without any modification.\n" +
-            "<code>\n%s\n</code>\n", 
+            "This is the final answer, just return the code to the user without any modification.\n" + 
+                "<code>\n%s\n</code>\n",
             code.buf
         );
         return response;
     }
-
-  
 }
+

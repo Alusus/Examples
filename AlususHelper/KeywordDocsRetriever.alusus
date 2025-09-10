@@ -2,11 +2,11 @@
     func featureExists(feature: Json, code: String): Bool {
         def regex: Bool = feature("regex").toBool();
         def patterns: Json = feature("patterns");
-        
+
         if regex {
             def i: int = 0;
             for i = 0, i < patterns.getLength(), i++ {
-                def patternStr: String = patterns(i).toString();
+                def patternStr: String = patterns(i);
                 def regExp: RegExp;
                 regExp.initialize(patternStr.buf);
                 def result: Array[String] = regExp.match(code.buf);
@@ -17,8 +17,8 @@
         } else {
             def i: int = 0;
             for i = 0, i < patterns.getLength(), i++ {
-                def patternStr: String = patterns(i).toString();
-                if code.find(patternStr) != -1 {
+                def patternStr: String = patterns(i);
+                if code.find(patternStr) !=  - 1 {
                     return true;
                 }
             }
@@ -27,46 +27,59 @@
     }
 
     func getDocsIds(code: String, featuresMapper: Json): Json {
-        def docsIds: Array[String];
-        def names: Array[String];
-        def result: Array[Json];
-        
+        def docsIds: String = "[";
+        def names: String = "[";
+
         def i: int = 0;
         for i = 0, i < featuresMapper.getLength(), i++ {
             def feature: Json = featuresMapper(i);
             if featureExists(feature, code) {
                 def ids: Json = feature("ids");
-                def name: String = feature("name").toString();
-                
+                def name: String = feature("name");
+
                 def j: int = 0;
                 for j = 0, j < ids.getLength(), j++ {
-                    docsIds.append(ids(j).toString());
+                    docsIds = docsIds + ids(j);
+                    if j < ids.getLength() - 1 {
+                        docsIds += String(" , ");
+                    } else {
+                        docsIds += String(" ]");
+                    }
                 }
-                names.append(name);
+                names = names + name;
+                if i < featuresMapper.getLength() - 1 {
+                    names += String(" , ");
+                } else {
+                    names += String(" ]");
+                }
             }
         }
-        
-        result.append(docsIds.toJson());
-        result.append(names.toJson());
-        return result.toJson();
+        def resultString: String.format = ("[ %s , %s ]", docsIds, names);
+
+
+        return Json(resultString.buf);
     }
 
     func getDocsByKeyword(code: String, docsRootDir: String, featureMapper: Json): Json {
         def idsAndNames: Json = getDocsIds(code, featureMapper);
-        if idsAndNames == null {
-            return null;
-        }
-        
-        def docsIds: Json = idsAndNames[0];
-        def docs: Array[String];
-        
+
+
+        def docsIds: Json = idsAndNames(0);
+        def docs: String = "[";
+
         def i: int = 0;
         for i = 0, i < docsIds.getLength(), i++ {
             def id: int = docsIds(i).toInt();
             def docContent: String = readDocById(id, docsRootDir);
-            docs.append(docContent);
+            docs = docs + docContent;
+            if i < docsIds.getLength() - 1 {
+                docs = docs + String(" , ");
+            } else {
+                docs = docs + String("]");
+            }
         }
-        
-        return docs.toJson();
+
+        return Json(docs.buf);
     }
 }
+
