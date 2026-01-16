@@ -1,0 +1,211 @@
+import "CopilotDocRetriever"
+Apm.importFile("Alusus/WebPlatform");
+
+use Srl;
+use WebPlatform;
+
+def BASIC_VDB_PATH: String = "vdb_basic.index";
+def BASIC_EXAMPLES_INDEX_PATH: String = "index.json";
+
+func getJsonBody[maxSize: integer](conn: ptr[Http.Connection]): Json {
+        def totalSize: ArchInt = String.parseInt(Http.getHeader(conn, "Content-Length"));
+        def currentSize: ArchInt = 0;
+        def jsonStr: String;
+        while currentSize < totalSize {
+            def postData: array[Char, maxSize];
+            def postDataSize: ArchInt = Http.read(conn, postData~ptr, postData~size);
+            if postDataSize < 0 {
+                Console.print(String.format("Failed to read request body. Error code: %i", postDataSize));
+                return Json();
+            } else if postDataSize == 0 {
+                Console.print("Failed to read request body. Could not read data.");
+                return Json();
+            }
+            jsonStr.append(postData~ptr, postDataSize);
+            currentSize += postDataSize;
+        }
+        return Json(jsonStr);
+    }
+    
+func sendHttpResponse(
+        conn: ptr[Http.Connection], code: Int, body: CharsPtr, contentType: CharsPtr, method: CharsPtr, route: CharsPtr
+    ) {
+        if code == 200 {
+            Http.print(conn, "HTTP/1.1 200 Ok\r\n");
+        } else if code == 201 {
+            Http.print(conn, "HTTP/1.1 201 Created\r\n");
+        } else if code == 202 {
+            Http.print(conn, "HTTP/1.1 202 Accepted\r\n");
+        } else if code == 400 {
+            Http.print(conn, "HTTP/1.1 400 Bad Request\r\n");
+        } else if code == 401 {
+            Http.print(conn, "HTTP/1.1 401 Unauthorized\r\n");
+        } else if code == 402 {
+            Http.print(conn, "HTTP/1.1 402 Payment Info Needed\r\n");
+        } else if code == 403 {
+            Http.print(conn, "HTTP/1.1 403 Forbidden\r\n");
+        } else if code == 404 {
+            Http.print(conn, "HTTP/1.1 404 Not Found\r\n");
+        } else if code == 409 {
+            Http.print(conn, "HTTP/1.1 409 Conflict\r\n");
+        } else if code == 422 {
+            Http.print(conn, "HTTP/1.1 422 Unprocessable Entity\r\n");
+        } else if code == 423 {
+            Http.print(conn, "HTTP/1.1 423 Locked\r\n");
+        } else if code == 500 {
+            Http.print(conn, "HTTP/1.1 500 Internal Server Error\r\n");
+        } else if code == 502 {
+            Http.print(conn, "HTTP/1.1 502 Bad Gateway\r\n");
+        } else {
+            Http.print(conn, "HTTP/1.1 500 Internal Server Error\r\n");
+        }
+        if body == 0 {
+            Http.print(conn, "\r\n");
+        } else {
+            Http.print(conn, "Content-Type: %s\r\n", contentType);
+            Http.print(conn, "Cache-Control: no-cache\r\n");
+            Http.print(conn, "Content-Length: %d\r\n\r\n", String.getLength(body));
+            Http.print(conn, "%s", body);
+        }
+     
+    }
+
+def TOOLS_JSON: String =
+    "["
+        "{"
+            "\"name\":\"alusus_docs_retrieve\","
+            "\"title\":\"Alusus Docs\","
+            "\"description\":\"Retrieve documentation for a given query about Alusus programming language\","
+            "\"inputSchema\":{"
+                "\"type\":\"object\","
+                "\"properties\":{"
+                    "\"query\":{"
+                        "\"type\":\"string\","
+                        "\"description\":\"The user question about Alusus programming language\""
+                    "}"
+                "},"
+                "\"required\":[\"query\"]"
+            "}"
+        "}"
+    "]";
+
+func retrieveDocs(query: String): Array[String] {
+    def basicRetriever : CopilotDocRetriever.BasicExamplesRetriever = CopilotDocRetriever.BasicExamplesRetriever(BASIC_VDB_PATH, BASIC_EXAMPLES_INDEX_PATH);
+    def docs : Array[String] = basicRetriever.get_docs(query,10);
+    return docs;
+}
+
+func getTool(name: String): Bool {
+    return name == "alusus_docs_retrieve";
+}
+
+func initializeMcp(id: Int): String {
+    return String.format(
+        "{"
+          "\"jsonrpc\":\"2.0\","
+          "\"id\":%i,"
+          "\"result\":{"
+            "\"protocolVersion\":\"2025-06-18\","
+            "\"serverInfo\":{\"name\":\"alusus-docs\",\"version\":\"1.0.0\"},"
+            "\"capabilities\":{\"tools\":{\"listChanged\":true},\"resources\":{}}"
+          "}"
+        "}",
+        id
+    );
+}
+
+@beEndpoint["POST", "/mcp"]
+func mcp(conn: ptr[Http.Connection]) {
+    def payload: Json = getJsonBody[8192](conn);
+    def method: String = payload("method");
+    def id: Int = payload("id")~cast[Int];
+    if method == "initialize" {
+        sendHttpResponse(
+            conn, 200, initializeMcp(id),
+            "application/json", "POST", "/mcp"
+        );
+        return;
+    }
+
+    if method == "notifications/initialized" {
+        sendHttpResponse(
+            conn, 200,
+            "{\"jsonrpc\":\"2.0\",\"method\":\"notifications/initialized\",\"params\":{}}",
+            "application/json", "POST", "/mcp"
+        );
+        return;
+    }
+    if method == "tools/list" {
+        def response: String = String.format(
+            "{\"jsonrpc\":\"2.0\",\"id\":%i,\"result\":%s}",
+            id, TOOLS_JSON.buf
+        );
+        sendHttpResponse(conn, 200, response, "application/json", "POST", "/mcp");
+        return;
+    }
+    if method == "ping" {
+        sendHttpResponse(
+            conn, 200,
+            String.format("{\"jsonrpc\":\"2.0\",\"id\":%i,\"result\":{}}", id),
+            "application/json", "POST", "/mcp"
+        );
+        return;
+    }
+    if method == "tools/call" {
+        def params: Json = payload("params");
+        if params.isNull() {
+            sendHttpResponse(conn, 400, "Bad Request", "text/plain", "POST", "/mcp");
+            return;
+        }
+        def toolName: String = params("name");
+        def args: Json = params("arguments");
+        if not getTool(toolName) {
+            sendHttpResponse(conn, 400, "Bad Request, invalid tool name", "text/plain", "POST", "/mcp");
+            return;
+        }
+        def query: String = args("query");
+        def results: Array[String] = retrieveDocs(query);
+        def content: String = "[";
+        def i : int =0;
+        for  i =0 , i< results.getLength(), i+=1  {
+            content += String.format(
+                "{\"type\":\"text\",\"text\":%s}",
+                results(i).buf
+            );
+            if i + 1 < results~size content += ",";
+        }
+        content += "]";
+
+        def response: String = String.format(
+            "{"
+              "\"jsonrpc\":\"2.0\","
+              "\"id\":%i,"
+              "\"result\":{"
+                "\"content\":%s"
+              "}"
+            "}",
+            id, content.buf
+        );
+
+        sendHttpResponse(conn, 200, response, "application/json", "POST", "/mcp");
+        return;
+    }
+    sendHttpResponse(conn, 400, "Bad Request", "text/plain", "POST", "/mcp");
+}
+
+@beEndpoint["POST", "/query"]
+func handleQuery(conn: ptr[Http.Connection]) {
+    def json: Json = getJsonBody[2048](conn);
+    sendHttpResponse(
+        conn,
+        200,
+        "{\"response\":\"message reached the server!!\"}",
+        "application/json",
+        "POST",
+        "/query"
+    );
+}
+
+startServer();
+ 
+    
