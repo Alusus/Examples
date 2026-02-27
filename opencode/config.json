@@ -1,0 +1,39 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "alusus-server": {
+      "mode": "subagent",
+      "description": "Posts user input to my HTTP endpoint and returns the JSON response",
+      "model": "openai/o4-mini",
+      "prompt": "Take the user’s question, POST `{ \"input\": \"<question>\" }` to http://127.0.0.1:5000/query , then return the parsed JSON."
+    },
+
+    "alusus-simple": {
+      "mode": "subagent",
+      "description": "Clean the user query and retrieve docs from the correct mcp",
+      "prompt": "When the user asks about the Alusus programming language, Clean the user’s question by removing filler words, trailing punctuation, and convert it to a concise form. Then take it and, POST `{ \"query\": \"<question>\" }` to http://127.0.0.1:5000/retrieve-docs. Once the tool returns, compose a final answer grounded in the returned 'docs' field.",
+      "model": "openai/o4-mini"
+    },
+
+    "alusus-docs": {
+      "mode": "subagent",
+      "description": "Posts user input to my mcp endpoint and returns the JSON response",
+      "model": "openai/o4-mini",
+      "prompt": "Use the mcp \"alusus-docs\" to retrieve docs through the tool `alusus_docs_retrieve`, the mcp use http, so do the initialization and all steps required for that."
+    },
+  },
+
+
+  "mcp": {
+    "alusus-docs": {
+      "type": "remote",
+      "url": "http://127.0.0.1:5000/mcp",
+      "enabled": true
+    }
+  },
+
+  "tools": {
+    // Enable all tools from the docs server
+    "alusus-docs_*": true
+  }
+}
