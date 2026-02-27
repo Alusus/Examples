@@ -1,0 +1,42 @@
+نـص (String)
+الصنف `نـص` يسهل التعامل مع سلاسل المحارف فهو يتولى مسؤولية حجز وتحرير الذاكرة الخاصة بسلسلة المحارف مع مراعاة الأداء وتجنب عمليات النسخ وحجز الذاكرة غير الضرورية. يوفر الصنف دالات لتسهيل العمليات المختلفة على سلاسل الحارف. المثال التالي يوضح التعامل مع سلاسل المحارف:
+ar version:
+```
+دالة رئيسي {
+  عرف نص: نـص = هات_نص()؛
+  نص += " والحمد لله"؛ // هنا يتم تمديد حجم الذاكرة المحجوزة
+  عرف نص2: نـص = نص؛ // هنا لا يتم إنشاء نسخة جديدة من النص
+  نص += "."؛ // الآن يتم إنشاء نسخة جديدة كي لا يتأثر نص2
+  اطبع_نص(نص)؛ // لا يتم هنا إعادة حجز الذاكرة أو نسخها
+  // الآن يتم تحرير ذاكرة نص ونص2
+}
+
+دالة هات_نص (): نـص {
+  عرف ن: نـص = "بسم الله"؛
+  ارجع ن؛ // لا يتم هنا إعادة حجز الذاكرة أو نسخها
+}
+
+دالة اطبع_نص (ن: نـص) {
+  طـرفية.اطبع(ن)؛ // يتم هنا التحويل تلقائيا من صنف نـص إلى مؤشر على محارف.
+}
+```
+en version:
+```
+func main {
+  def str: String = getString();
+  str += " world"; // Memory block is expanded here.
+  def str2: String = str; // No new memory is allocated here.
+  str += "."; // Copy of the string buffer is created so str2 is not affected.
+  printStr(str); // No new memory allocation or copy happens here.
+  // Now memory blocks of str and str2 are freed.
+}
+
+func getString (): String {
+  def s: String = "Hello";
+  return s; // No new memory allocation or copy happens here.
+}
+
+func printStr (s: String) {
+  Console.print(s); // s is automatically casted into ptr[array[Char]].
+}
+```

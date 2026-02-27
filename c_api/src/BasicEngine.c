@@ -3,6 +3,7 @@
 #include "MainAgent.h"
 #include "AlususExpert.h"
 #include "KeywordDocsRetriever.h"
+#include "Translator.h"
 #include "common.h"
 #include "utils.h"
 #include <c_api/Index_c.h>
@@ -57,7 +58,7 @@ static float* get_embedding(const char *question, const char *model_path) {
 
         if (model == NULL) {
             printf("%s: unable to load model\n", __func__);
-            return 1;
+            return NULL;
         }
         else {
             printf("model loaded successfuly!\n");
@@ -222,8 +223,8 @@ static JSON* get_examples(idx_t *indices, int k, const char *examples_index_path
 }
 
 char* basic_run(
-  const char *api_key, const char *question,
-  const char* docs_root_dir, const char *docs_index_path,
+  const char *api_key, const char *question, const char *lang,
+  const char* docs_root_dir, const char *docs_index_path, const char *ar_docs_dir,
   const char *base_model_tag, const char *model_tag,
   const char *vdb_path, const char *index_path,
   const char *alusus_features_mapper_path, const char *embedding_model_path) {
@@ -303,7 +304,12 @@ char* basic_run(
     const char *final_answer = prompt_alusus_expert(initial_code, keyword_docs, api_key);
     printf("\nPrompting Alusus Expert is done successfully\n");
 
-    char *formatted_response = format_final_response(final_answer);
+    // translate the code
+    printf("\nPrompting Alusus Translator ...\n");
+    const char *translated_code = prompt_translator(final_answer, lang, ar_docs_dir, api_key, NULL);
+    printf("\nPrompting Alusus Translator is done successfully\n");
+
+    char *formatted_response = format_final_response(translated_code);
     //printf("formatted_response:\n%s\n", formatted_response);
     return formatted_response;
 }

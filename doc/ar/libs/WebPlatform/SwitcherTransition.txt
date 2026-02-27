@@ -1,0 +1,6 @@
+عرف انـتقال_مبدال: لقب SwitcherTransition؛
+@دمج صنف انـتقال_مبدال {
+    عرف طراز_المشهد_الحالي: لقب currentViewStyle؛
+    عرف طراز_المشهد_التالي: لقب incomingViewStyle؛
+    عرف المدة_الكلية: لقب totalDuration؛
+}

@@ -31,6 +31,14 @@ typedef struct {
     char basic_vdb_path[MAX_LINE_LENGTH];
     char basic_index_path[MAX_LINE_LENGTH];
     char alusus_features_mapper_path[MAX_LINE_LENGTH];
+    char ar_docs_dir[MAX_LINE_LENGTH];
 } Config;
+
+// constants
+#define PATH_MAX 2048
+static const char *library_names[] = {
+    "WebPlatform"
+};
+static const int num_libraries = sizeof(library_names) / sizeof(library_names[0]);
 
 #endif // COMMON_H

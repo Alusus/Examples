@@ -1,0 +1,16 @@
+عرف رسـم: لقب Drawing؛
+@دمج صنف رسـم {
+    عرف ارسم_خطا: لقب drawLine؛
+    عرف ارسم_مضلعا: لقب drawPolygon؛
+    عرف ارسم_مستطيلا_مليئا: لقب drawFilledRect؛
+    عرف فرغ_مستطيلا: لقب clearRect؛
+    عرف ارسم_دائرة: لقب drawCircle؛
+    عرف ارسم_كتابة: لقب drawText؛
+    عرف قس_أبعاد_كتابة: لقب measureText؛
+    عرف حدد_الاتجاه: لقب setDirection؛
+    عرف حدد_نمط_الملء: لقب setFillStyle؛
+    عرف حدد_نمط_القلم: لقب setStrokeStyle؛
+    عرف حدد_عرض_القلم: لقب setLineWidth؛
+    عرف ارسم_صورة: لقب drawImage؛
+    عرف فرغ: لقب clear؛
+}

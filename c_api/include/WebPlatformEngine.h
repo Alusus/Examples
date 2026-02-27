@@ -5,8 +5,8 @@
 void webplatform_free_resources();
 
 char* webplatform_run(
-  const char *api_key, const char *question,
-  const char *docs_index_path, const char *rag_index_path,
+  const char *api_key, const char *question, const char *lang,
+  const char *docs_index_path, const char *rag_index_path, const char *ar_docs_dir,
   const char *model_tag, const char *model_path,
   const char *alusus_features_mapper_path, const char *docs_root_dir);
 

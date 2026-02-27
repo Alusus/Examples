@@ -3,6 +3,7 @@
 #include "MainAgent.h"
 #include "AlususExpert.h"
 #include "KeywordDocsRetriever.h"
+#include "Translator.h"
 #include "common.h"
 #include "utils.h"
 #include "llama.h"
@@ -203,8 +204,8 @@ static JSON* get_docs_from_code(
 }
 
 char* webplatform_run(
-  const char *api_key, const char *question,
-  const char *docs_index_path, const char *rag_index_path,
+  const char *api_key, const char *question, const char *lang,
+  const char *docs_index_path, const char *rag_index_path, const char *ar_docs_dir,
   const char *model_tag, const char *embedding_model_path,
   const char *alusus_features_mapper_path, const char *docs_root_dir) {
     // read the index file once
@@ -274,7 +275,14 @@ char* webplatform_run(
     const char *final_answer = prompt_alusus_expert(initial_code, keyword_docs, api_key);
     printf("\nPrompting Alusus Expert is done successfully\n");
 
-    char *formatted_response = format_final_response(final_answer);
+    // translate the code
+    printf("\nPrompting Alusus Translator ...\n");
+    JSON *used_libs = json_object_new_array();
+    JSON_A_ADD(used_libs, STR2JSON("WebPlatform"));
+    const char *translated_code = prompt_translator(final_answer, lang, ar_docs_dir, api_key, used_libs);
+    printf("\nPrompting Alusus Translator is done successfully\n");
+
+    char *formatted_response = format_final_response(translated_code);
     //printf("formatted_response:\n%s\n", formatted_response);
     return formatted_response;
 }

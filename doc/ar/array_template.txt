@@ -1,0 +1,46 @@
+مـصفوفة (Array)
+قالب مصفوفة ديناميكية تتولى مسؤولية إدارة الذاكرة مع مراعاة الأداء وتجنب عمليات النسخ وحجز الذاكرة غير الضرورية. المثال التالي يوضح التعامل مع هذه المصفوفة الديناميكية:
+ar version:
+```
+دالة رئيسي {
+  عرف م: مـصفوفة[صـحيح] = هات_مصفوفة()؛
+  م.أضف(1)؛ // هنا يتم تمديد حجم الذاكرة المحجوزة
+  عرف م2: مـصفوفة[صـحيح] = م؛ // هنا لا يتم إنشاء نسخة جديدة من الصوان
+  م.أضف(2)؛ // الآن يتم إنشاء نسخة جديدة كي لا يتأثر م2
+  اطبع_مصفوفة(م)؛ // لا يتم هنا إعادة حجز الذاكرة أو نسخها
+  // الآن يتم تحرير ذاكرة م وم2
+}
+
+دالة هات_مصفوفة (): مـصفوفة[صـحيح] {
+  عرف ن: مـصفوفة[صـحيح]؛
+  ن.أضف(0)؛
+  ارجع ن؛ // لا يتم هنا إعادة حجز الذاكرة أو نسخها
+}
+
+دالة اطبع_مصفوفة (ن: مـصفوفة[صـحيح]) {
+  عرف ع: صـحيح؛
+  لكل ع = 0، ع < ن.هات_الطول()، ++ع طـرفية.اطبع("%d\ج"، ن(ع))؛
+}
+```
+en version:
+```
+func main {
+  def a: Array[Int] = getArray();
+  a.add(1); // Here the allocated memory block is expanded.
+  def a2: Array[Int] = a; // No new memory block is allocated here.
+  a.add(2); // Now a new copy of the buffer is created so a2 is not affected.
+  printArray(a); // No new memory block is created or copied here.
+  // Now the memory blocks of a and a2 are freed.
+}
+
+func getArray(): Array[Int] {
+  def a: Array[Int];
+  a.add(0);
+  return a; // No new memory block is allcoated here and memory copy happens.
+}
+
+func printArray (a: Array[Int]) {
+  def i: Int;
+  for i = 0, i < a.getLength(), ++i Console.print("%d\n", a(i));
+}
+```

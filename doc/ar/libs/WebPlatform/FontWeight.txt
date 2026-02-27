@@ -1,0 +1,5 @@
+FontWeight سـمك_خط
+عرف سـمك_خط: {
+    عرف _عادي_: لقب FontWeight.NORMAL؛
+    عرف _سميك_: لقب FontWeight.BOLD؛
+}

@@ -238,7 +238,6 @@ class MainAgent:
         return code
 
 
-
 class KeywordDocsRetriever:
     def __init__(self, alusus_features_mapper_path: str, docs_root_dir: str):
         self.alusus_features_mapper_path = alusus_features_mapper_path
@@ -345,5 +344,164 @@ class AlususExpert:
         else:
             # Default to 0 if <code> tags are not found
             code = "Cannot answer this question"
+
+        return code
+
+
+class Translator:
+    def __init__(self, llm: LLM, ar_docs_dir: str, debug=False):
+        self.llm = llm
+        self.debug = debug
+        self.ar_docs_dir = ar_docs_dir
+
+        with open(os.path.join(self.ar_docs_dir, "translator_mapping.json"), encoding='utf-8') as f:
+            self.translator_mapping = json.load(f)
+
+        self.direct_mapping = dict()
+        with open(os.path.join(self.ar_docs_dir, "direct_mapping.json"), encoding='utf-8') as f:
+            self.direct_mapping["basic"] = json.load(f)
+
+        # libraries
+        self.features_names = dict()
+        self.libs_dir = os.path.join(self.ar_docs_dir, "libs")
+        for lib in os.listdir(self.libs_dir):
+            lib_path = os.path.join(self.libs_dir, lib)
+            lib_dict_path = os.path.join(lib_path, "direct_mapping.json")
+
+            self.features_names[lib] = [
+                os.path.splitext(feature)[0]
+                for feature in os.listdir(lib_path)
+                if feature != 'direct_mapping.json'
+            ]
+
+            with open(lib_dict_path, encoding='utf-8') as f:
+                self.direct_mapping[lib] = json.load(f)
+        
+
+    def __call__(self, code, lang, used_libs=None):
+        if lang == 'en':
+            return code
+
+        docs = self.__get_docs(code, used_libs)
+
+        # The number 3 is determined by experiments
+        # More complex experiments might need more iterations
+        for _ in range(3):
+
+            prompt = self.__generate_prompt(code, docs)
+
+            messages=[
+                {"role": "user", "content": prompt},
+            ]
+
+            response = self.llm(messages)
+
+            if self.debug:
+                write_logs([
+                    "############Translator_START\n"
+                    f"Raw output:\n{response}\n"
+                    "############Translator_END\n"
+                ])
+
+            code = self.__clean_and_extract_code(response)
+
+        return code
+
+    def __get_docs(self, code, used_libs):
+        # TODO: all loops in this function should be parallelized before pushing to production
+        docs = []
+
+        # Extract related basic docs
+        for feature in self.translator_mapping:
+            if self.__is_feature_used(code, feature):
+                doc_path = os.path.join(self.ar_docs_dir, feature["filename"])
+                with open(doc_path, encoding='utf-8') as f:
+                    doc = f.read()
+                    docs.append(f"doc about '{feature['name']}':\n{doc}")
+
+        syntax_dictionary = []
+        for en_keyword, ar_keyword in self.direct_mapping["basic"].items():
+            if code.find(en_keyword) != -1:
+                syntax_dictionary.append(f"'{en_keyword}': '{ar_keyword}'")
+        
+        inline_direct_mappings = "\n".join(syntax_dictionary)
+        docs.append(f"Keyword mapping dictionary:\n{inline_direct_mappings}")
+
+        # Extract related libraries docs
+        if used_libs is not None:
+            for lib in used_libs:
+                lib_path = os.path.join(self.libs_dir, lib)
+
+                for feature in self.features_names[lib]:
+                    if code.find(feature) != -1:
+                        doc_path = os.path.join(lib_path, f"{feature}.txt")
+                        with open(doc_path, encoding='utf-8') as f:
+                            doc = f.read()
+                            docs.append(f"doc about '{feature}':\n{doc}")
+
+                syntax_dictionary = []
+                for en_keyword, ar_keyword in self.direct_mapping[lib].items():
+                    if code.find(en_keyword) != -1:
+                        syntax_dictionary.append(f"'{en_keyword}': '{ar_keyword}'")
+            
+                inline_direct_mappings = "\n".join(syntax_dictionary)
+                docs.append(f"{lib} library dictionary:\n{inline_direct_mappings}")
+
+        return docs
+
+    def __is_feature_used(self, code, feature):
+        if feature["regex"]:
+            for pattern in feature["patterns"]:
+                m = re.search(pattern, code, re.DOTALL | re.MULTILINE)
+                if m is not None:
+                    return True
+        else:
+            for pattern in feature["patterns"]:
+                if code.find(pattern) != -1:
+                    return True
+        return False
+
+    def __generate_prompt(self, code, docs):
+        inline_docs = "\n******\n".join(docs)
+        prompt = (
+            "Alusus is a programming language with syntax in English and Arabic.\n"
+            "Your task will be to translate from the English syntax to the Arabic syntax\n"
+            "Please follow this rules:\n"
+            "1. Variables names and user-defined functions names should always be translated and must be consistent.\n"
+            "2. Language reserved keywords and built-in functions should be translated only if present in the docs,"
+                "otherwise, leave them as they are.\n"
+            "3. You should only translate, do not change the approach or the code structure.\n"
+            "4. comments and print strings literals should be translated and written in Arabic.\n"
+            "5. Check your work twice before providing the final answer.\n"
+            "6. Make sure to match anything in the docs with the code and translate it, sometimes there"
+               "will be hierarchical structure so make sure to account for that.\n"
+            "7. To translate effectively, move through the code line by line, and translate according to the docs.\n"
+            "Documents:\n"
+            f"{inline_docs}\n"
+            "Code:\n"
+            "```"
+            f"{code}"
+            "```"
+            "Please think about what you should translate between <think></think> tags.\n"
+            "Please put the full code after translation between <code></code> tags.\n"
+        )
+        return prompt
+
+    def __clean_and_extract_code(self, llm_output):
+        """Remove <think> section and extract the code"""
+        # Remove the <think> section if it exists
+        cleaned_output = re.sub(r"<think>.*?</think>", "", llm_output, flags=re.DOTALL).strip()
+
+        write_logs([
+            f"cleaned_output:\n{cleaned_output}\n----------\n"
+        ])
+
+        # Extract the code from <code> tags
+        match = re.search(r"<code>(.*?)</code>", cleaned_output, re.DOTALL)
+        if match:
+            code = match.group(1)
+        else:
+            # Default response if <code> tags are not found
+            code = "Something wrong has happened!"
 
         return code
