@@ -1,0 +1,62 @@
+import "Srl/Memory";
+import "Srl/Memory";
+import "Srl/Possible";
+import "Apm";
+use Srl;
+Apm.importFile("Alusus/Faiss");
+Apm.importFile("Alusus/Llama");
+Apm.importFile("Alusus/ExtendedNet");
+
+
+import "AlususExpert";
+import "BasicEngine";
+import "Config";
+import "DocsExpert";
+import "KeywordDocsRetriever";
+import "utils";
+import "WebPlatformEngine";
+import "MainAgent";
+@merge module AlususHelper {
+    func showResult(result: String) {
+        if (result) {
+            Console.print("***************\nresult:\n%s\n**************\n", result.buf);
+        } else {
+            Console.print("Failed to get the result.\n");
+        }
+    }
+
+    func main(configFile: String, question: String): int {
+        question = question.toLowerCase();
+        def result: String;
+        def config: Config;
+        if (parseConfig(configFile, config~ptr) != 0) {
+  
+            return 1;
+        }
+        if question.find("webplatform") !=  - 1 {
+            result = webPlatformRun(
+                config.apiKey, question,
+                config.webplatformDocsIndexPath, config.ragIndexPath,
+                config.modelTag, config.embeddingModelPath,
+                config.alususFeaturesMapperPath, config.docsRootDir
+            );
+            show_result(result);
+        } else if question.find("enalusus") !=  - 1 {
+            result = basicRun(
+                config.apiKey, question,
+                config.basicDocsIndexPath, config.ragIndexPath,
+                config.modelTag, config.embeddingModelPath,
+                config.alususFeaturesMapperPath, config.docsRootDir
+            );
+            show_result(result);
+        } else {
+            Console.print("\nError: Question cannot be answered by current supported engines.\n");
+            return 1;
+        }
+        return 0;
+    }
+
+    return 0;
+}
+
+ }

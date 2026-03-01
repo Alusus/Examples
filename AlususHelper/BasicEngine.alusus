@@ -1,0 +1,199 @@
+@merge module AlususHelper {
+    def model: SrdRef[Model];
+    def ctx: SrdRef[Context];
+    def faissIndex: SrdRef[FaissIndex];
+    def cparams: ContextParams;
+
+
+    func basicFreeResources() {
+        if faissIndex != null {
+            faissIndexFree(faissIndex);
+            faissIndex = null;
+        }
+
+        if ctx != null {
+            llamaFree(ctx);
+            ctx = null;
+        }
+
+        if model != null {
+            llamaFreeModel(model);
+            model = null;
+        }
+
+        llamaBackendFree();
+        Console.print("LLama.cpp resources are freed.\n");
+    }
+
+    func getEmbedding(question: String, modelPath: String): ptr[float] {
+        if model == null {
+            llamaBackendInit();
+            def mparams: llamaModelParams = llamaModelDefaultParams();
+            model = llamaLoadModelFromFile(modelpath, mparams);
+            cparams = llamaContextDefaultParams();
+            cparams.embeddings = true;
+            cparams.n_batch = 4096;
+            cparams.n_ubatch = cparams.n_batch;
+            cparams.pooling_type = LLAMA_POOLING_TYPE_MEAN;
+            ctx = llamaNewContextWithModel(model, cparams);
+            if model == null {
+                Console.print("unable to load model\n");
+                return 1.0;
+            } else {
+                Console.print("model loaded successfuly!\n");
+            }
+        }
+        def tokens: array[Token, 512];
+        def nTokens: int = tokenize(model, question~ptr, question.getLength, 512, 1, 0);
+        def batch: Batch = batchInit(cparams.nBatch, 0, 1);
+        def nEmbdCount: int = 1;
+        llamaKvCacheClear(ctx);
+        def i: int = 0;
+        for i = 0, i < nTokens, ++i {
+            batch.token(batch.n_tokens) = tokens(i);
+            batch.pos(batch.n_tokens) = i;
+            batch.n_seq_id(batch.n_tokens) = 1;
+            batch.seq_id(batch.n_tokens)(0) = 0;
+            batch.logits(batch.n_tokens) = true;
+            batch.n_tokens++;
+        }
+        if modelHasEncoder(model) && not modelHasDencoder(model) {
+            if encode(ctx, batch) < 0 {
+                Console.print("failed to encode\n ");
+            }
+        } else if not modelHasEncoder(model) && modelHasDencoder(model) {
+            if decode(ctx, batch) < 0 {
+                Console.print("failed to decode\n ");
+            }
+        }
+        def nEmbd: int modelNEmbeddings(model);
+        embeddings: array[float, nEmbdCount * nEmbd];
+        for i = 0, i < nEmbdCount * nEmbd, i++ {
+            embeddings(i) = 0;
+        }
+        Console.print("Extract embeddings...\n ");
+        embeddings = getEmbeddingsSeq(ctx, 0);
+        Console.print(" *  *  *  * Done extracting embeddings *  *  * \n ");
+        return embeddings;
+    }
+
+    func combinDocs(docs: Json): String {
+        def docsArray: Array[String] = docs;
+        def numDocs: int = docsArray.getLength();
+        def docsLength: int = 0;
+        def i: int = 0;
+        for i = 0, i < numDocs, i++ {
+            docsLength += docsArray(i).getLength() + 1;
+        }
+
+        def combDocs: String;
+
+        for i = 0, i < numDocs, i++ {
+            def doc: String = docsArray(i);
+
+            combDocs += doc;
+            if i < numDocs - 1 {
+                combDocs += "\n ";
+            }
+        }
+        return combDocs;
+    }
+
+    func getDocsFromCode(code: String, docsRootDir: String, featuresMapperPath: String): Json {
+        def featuresMapper: Json = readJsonFile(featuresMapperPath);
+        return getDocsByKeyword(code, docsRootDir, featuresMapper);
+    }
+
+    func formatExample(docId: int, prompt: String, doc: String): String {
+        return String.format("Prompt: %s\nAnswer: \n%s\n ", prompt.buf, doc.buf);
+    }
+
+    func getExamples(indices: Array[idx_t], k: int, examplesIndexPath: String): Json {
+        def examplesIndex: Json = readJsonFile(examplesIndexPath);
+
+        def docsRootDir: String = getRootDir(examplesIndexPath);
+        def docsArray: String = "[";
+        def i: int = 0;
+        for i = 0, i < k, i++ {
+            def docId: int = indices(i);
+            if docId ==  - 1 {
+                continue;
+            }
+
+            def prompt: String = examplesIndex(docId)("enPrompt ");
+            def docPath: String = String.format("%s / %s ", docsRootDir.buf,
+                examplesIndex(docId)("enAlususAnswer "));
+
+            def doc: String = readDocByPath(docPath);
+            if doc != String("") {
+                def example: String = formatExample(docId, prompt, doc);
+                docsArray = docsArray + example;
+                if i < k - 1 {
+                    docsArray = docsArray + String(", ");
+                } else {
+                    docsArray = docsArray + String("]");
+                }
+            } else {
+                Console.print("Failed to add Doc%i\n ", docId);
+            }
+        }
+
+        return Json(docsArray);
+    }
+
+    func basicRun(apiKey: String, question: String, docsRootDir: String, docsIndexPath: String,
+        baseModelTag: String, modelTag: String, vdbPath: String, indexPath: String,
+        alususFeaturesMapperPath: String, embeddingModelPath: String): String {
+        def cppCode: String = getCppCode(apiKey, question, baseModelTag);
+        if not cppCode {
+            return String("");
+        }
+
+        def docs: Json = getDocsFromCode(cppCode, docsRootDir, docsIndexPath);
+
+
+        if faissIndex == null {
+            def error: FaissErrorCode = faissReadIndexFname(vdbPath.buf, 0, faissIndex~ptr);
+            if error != 0 {
+                return String("Error reading index\n ");
+            }
+        }
+        def dEmbeddings: int = faissIndexd(faissIndex);
+        def empddings: ptr[float] = getEmbedding(question, embeddingModelPath);
+
+
+        def k: int = 5;
+        def nq: int = 1;
+        def distances: array[float, nq * k];
+        def indices: array[int, nq * k];
+        faissIndexSearch(faissIndex, nq, empddings, k, distances, indices);
+        Console.print("reading examples\n ");
+        def examples: Json = getExamples(indices, k, indexPath);
+        Console.print("Reading exmpales is done successfully\n ");
+
+
+        def refinedExamples: Json = refineDocs(question, examples, cppCode, apiKey);
+        Console.print("Refining exmpales is done successfully\n ");
+        def i: int = 0;
+        for i = 0, i < docs.getLength(), i++ {
+            def formattedDoc: String = formatScoredDoc(docs(i), 1.0);
+            def refinedExamplesArray: Array[String] = refinedExamples;
+            refinedExamplesArray.add(formattedDoc);
+        }
+        Console.print("\nPrompting Main Agent...\n ");
+
+        def initialCode: String = promptMainAgent(question, refinedExamples, apiKey);
+        Console.print("initial code: \n%s\n ", initialCode);
+        Console.print("\nPrompting Main Agent is done successfully\n ");
+        Console.print("\nGetting keyword docs...\n ");
+        def keywordDocs: Json = getDocsFromCode(initialCode, docsRootDir, alususFeaturesMapperPath);
+        Console.print("\nGetting keyword docs is done successfully\n ");
+        Console.print("\nPrompting Alusus Expert...\n ");
+
+        def finalAnswer: String = promptAlususExpert(initialCode, keywordDocs, apiKey);
+
+
+        return formatFinalResponse(finalAnswer);
+    }
+}
+
