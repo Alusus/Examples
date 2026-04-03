@@ -1,4 +1,0 @@
-```
-import "Apm";
-Apm.importFile("Alusus/WebPlatform");
-```

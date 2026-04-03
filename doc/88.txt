@@ -1,4 +1,0 @@
-Inserts a new key and its value at the given index.
-```
-handler this.insert (index: ArchInt, key: KeyType, value: ValueType);
-```

@@ -1,8 +1,0 @@
-عرف إشـارة: لقب Signal؛
-@دمج صنف إشـارة {
-    عرف اربط: لقب connect؛
-    عرف افصل: لقب disconnect؛
-    عرف هات_عدد_الروابط: لقب getConnectionCount؛
-    عرف أرسل: لقب emit؛
-    عرف عند_تغير_الارتباطات: لقب onConnectionsChanged؛
-}

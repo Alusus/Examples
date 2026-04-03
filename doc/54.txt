@@ -1,4 +1,0 @@
-This is similar to `trim` function but it trims from the end only.
-```
-handler this.trimEnd (): String;
-```

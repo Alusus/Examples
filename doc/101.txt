@@ -1,4 +1,0 @@
-Returns true if the reference is null.
-```
-handler this.isNull(): Bool;
-```

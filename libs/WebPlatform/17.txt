@@ -1,3 +1,0 @@
-A widget that displays a multi-choice input.
-Properties:
-* `items`: `Map[String, String]`. The choices we want the user to choose from.

@@ -1,4 +1,0 @@
-An array of variables. Defined by specifying variables' type and their number inside Square brackets as follows:
-```
-array[the_type, element_count]
-```

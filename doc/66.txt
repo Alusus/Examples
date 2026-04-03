@@ -1,4 +1,0 @@
-Reads an integer from the given array of chars and returns it.
-```
-func parseInt (str: ptr[array[Char]]): Int[64];
-```

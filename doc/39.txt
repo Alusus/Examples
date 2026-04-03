@@ -1,4 +1,0 @@
-A pointer to this string content.
-```
-def buf: ptr[array[Char]];
-```

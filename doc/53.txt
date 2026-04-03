@@ -1,4 +1,0 @@
-This is similar to `trim` function but it trims from the beginning only.
-```
-handler this.trimStart (): String;
-```

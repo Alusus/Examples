@@ -1,4 +1,0 @@
-Tells whether the two given strings are the same.
-```
-func isEqual (str1: ptr[array[Char]], str2: ptr[array[Char]]): Bool;
-```

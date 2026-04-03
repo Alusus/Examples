@@ -1,4 +1,0 @@
-Removes the specified key and its value at the given index.
-```
-handler this.removeAt (index: ArchInt);
-```

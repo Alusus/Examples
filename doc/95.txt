@@ -1,1 +1,0 @@
-The record that holds the number of references that point to the same object and the necessary information to terminate and release the object.

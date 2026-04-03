@@ -1,4 +1,0 @@
-Clear all content and starts with an empty Map.
-```
-handler this.clear ();
-```

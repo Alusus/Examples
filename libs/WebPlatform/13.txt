@@ -1,3 +1,0 @@
-A text entry box.
-Properties:
-* `text`: `String`. The entered text.

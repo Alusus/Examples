@@ -1,4 +1,0 @@
-Returns the number of items that the current allocated memory could store. When exceeding that size the object will extend the memory capacity automatically.
-```
-handler this.getBufSize (): ArchInt;
-```
